@@ -58,6 +58,7 @@ export interface Kit {
 export const KITS: Kit[] = [
   {
     slug: "cigar-whisky",
+    etsyUrl: "https://kingbkits.etsy.com/listing/4566632986",
     name: "Cigar & Whisky Journey",
     subtitle: "Pairing Party Kit",
     shortDescription:
@@ -126,6 +127,7 @@ export const KITS: Kit[] = [
   },
   {
     slug: "tequila-mezcal",
+    etsyUrl: "https://kingbkits.etsy.com/listing/4566840538",
     name: "Tequila & Mezcal",
     subtitle: "Tasting Party Kit",
     shortDescription:
@@ -197,6 +199,7 @@ export const KITS: Kit[] = [
   },
   {
     slug: "candy-whisky",
+    etsyUrl: "https://kingbkits.etsy.com/listing/4567609487",
     name: "Candy & Whisky",
     subtitle: "Halloween Pairing Kit",
     shortDescription:
