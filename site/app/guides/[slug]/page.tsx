@@ -3,9 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Container } from "@/components/Container";
-import { EtsyButton } from "@/components/EtsyButton";
+import { withUtm } from "@/lib/utm";
 import { getGuide, getGuideSlugs } from "@/lib/guides";
 import { getKit } from "@/data/kits";
+import { SITE } from "@/data/site";
 
 export function generateStaticParams() {
   return getGuideSlugs().map((slug) => ({ slug }));
@@ -24,6 +25,13 @@ export async function generateMetadata({
     return {};
   }
 }
+
+const mdxComponents = {
+  img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img {...props} className="w-full rounded-card border border-rule" alt={props.alt ?? ""} />
+  ),
+};
 
 export default async function GuidePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -45,30 +53,32 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   };
 
   return (
-    <Container className="py-16">
+    <Container className="max-w-[65ch] py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <Link href="/guides" className="text-sm font-semibold text-ink-faint hover:text-ink">
-        ← All Guides
+        ← All guides
       </Link>
-      <span className="mt-6 block text-xs font-bold uppercase tracking-wide text-ink-faint">{guide.topic}</span>
-      <h1 className="mt-2 max-w-2xl text-4xl font-light text-ink">{guide.title}</h1>
+      <div className="mt-6 text-xs font-bold uppercase tracking-[0.08em] text-ink-faint">{guide.topic}</div>
+      <h1 className="mt-2 font-display text-3xl text-ink sm:text-4xl">{guide.title}</h1>
 
-      <article className="prose-guide mt-10 max-w-2xl">
-        <MDXRemote source={guide.content} />
+      <article className="prose-guide mt-10">
+        <MDXRemote source={guide.content} components={mdxComponents} />
       </article>
 
       {relatedKit && (
-        <div className="mt-14 flex max-w-2xl flex-col items-start gap-4 rounded-xl border border-rule bg-cover p-6">
-          <div>
-            <div className="text-xs font-bold uppercase tracking-wide text-ink-faint">Related Kit</div>
-            <div className="text-lg font-semibold text-ink">{relatedKit.name}</div>
-            <p className="mt-1 text-sm text-ink-body">{relatedKit.shortDescription}</p>
-          </div>
-          <EtsyButton href={relatedKit.etsyUrl} campaign={`guide_${guide.slug}`} content="related_kit">
-            Buy on Etsy
-          </EtsyButton>
-        </div>
+        <p className="mt-14 border-t border-rule pt-8 text-ink-2">
+          Our <Link href={`/kits/${relatedKit.slug}`} className="font-semibold text-ink underline decoration-accent decoration-2 underline-offset-4">{relatedKit.name}</Link> kit
+          builds this into a full pairing chart, flavor wheels, and tasting cards.{" "}
+          <a
+            href={withUtm(relatedKit.etsyUrl ?? SITE.etsyShopUrl, { campaign: `guide_${guide.slug}`, content: "related_kit" })}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-ink underline decoration-accent decoration-2 underline-offset-4"
+          >
+            Buy it on Etsy →
+          </a>
+        </p>
       )}
     </Container>
   );

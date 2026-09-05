@@ -6,7 +6,7 @@ export function TierTable({ kit }: { kit: Kit }) {
   const labels = kit.tierLabels ?? { primary: "Pick", secondary: undefined };
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-rule">
+    <div className="overflow-x-auto rounded-card border border-rule">
       <table className="w-full min-w-[640px] border-collapse text-sm">
         <thead>
           <tr className="border-b-2 border-ink text-left text-xs font-bold uppercase tracking-wide text-ink-faint">
@@ -42,7 +42,7 @@ export function TierTable({ kit }: { kit: Kit }) {
               )}
               <td className="px-4 py-4 text-ink-body">{row.notes}</td>
               {kit.tiers?.some((t) => t.cost) && (
-                <td className="px-4 py-4 whitespace-nowrap text-ink-body">{row.cost}</td>
+                <td className="px-4 py-4 whitespace-nowrap tabular-nums text-ink-body">{row.cost}</td>
               )}
             </tr>
           ))}

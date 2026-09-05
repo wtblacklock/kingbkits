@@ -2,9 +2,9 @@ export const SITE = {
   name: "KingBKits",
   domain: "kingbkits.com",
   url: "https://kingbkits.com",
-  tagline: "Printable tasting-party kits — pick a tier, buy the bottles, run the night.",
+  tagline: "Printable tasting-party kits. Pick a tier, buy the bottles, run the night.",
   description:
-    "KingBKits makes printable party-tasting-kit PDFs that pair a spirit with something else — cigars, agave, Halloween candy, an advent calendar — across three budget tiers, ready to print and host tonight.",
+    "KingBKits makes printable party-tasting-kit PDFs that pair a spirit with something else: cigars, agave, Halloween candy, or an advent calendar, across three budget tiers, ready to print and host tonight.",
   etsyShopUrl: "https://www.etsy.com/shop/KingBKits",
   twitter: "",
   ogImage: "/og-default.png",

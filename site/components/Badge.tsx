@@ -16,6 +16,11 @@ const SIZES = {
   },
 } as const;
 
+/**
+ * Placeholder wordmark badge. Swap for the real crowned-bee logo asset once
+ * it's attached to the session; every usage below reads from this one
+ * component, so the swap is a single-file change.
+ */
 export function Badge({ size = "md" }: { size?: keyof typeof SIZES }) {
   const s = SIZES[size];
   return (
@@ -23,7 +28,7 @@ export function Badge({ size = "md" }: { size?: keyof typeof SIZES }) {
       className={`inline-flex w-fit flex-none flex-col items-center justify-center bg-black font-display leading-[0.92] ${s.wrap}`}
       aria-label="KingBKits"
     >
-      <span className={`text-gold tracking-tight ${s.l1}`}>KINGB</span>
+      <span className={`text-accent tracking-tight ${s.l1}`}>KINGB</span>
       <span className={`mt-px text-white tracking-wide ${s.l2}`}>KITS</span>
     </span>
   );

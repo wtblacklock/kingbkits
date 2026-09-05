@@ -5,20 +5,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: "#ffffff",
-        zone: "#f9f9f9",
-        cover: "#eaeae7",
-        chip: "#d2d2d2",
-        ink: "#000000",
-        "ink-body": "#454545",
-        "ink-faint": "#8a8a8a",
-        rule: "#d8d8d5",
-        gold: "#f3c318",
+        paper: "oklch(97% 0.010 88)",
+        "paper-2": "oklch(94% 0.012 88)",
+        "paper-3": "oklch(90% 0.014 88)",
+        ink: "oklch(18% 0.010 88)",
+        "ink-2": "oklch(38% 0.008 88)",
+        "ink-faint": "oklch(56% 0.008 88)",
+        rule: "oklch(84% 0.012 88)",
+        accent: "oklch(84% 0.167 90)",
+        "accent-ink": "oklch(18% 0.010 88)",
+        focus: "oklch(78% 0.200 90)",
         tier: {
-          newbie: "#87cb28",
-          casual: "#ffff00",
-          aficionado: "#ffd230",
+          newbie: "oklch(76.8% 0.196 130.6)",
+          casual: "oklch(96.8% 0.211 109.8)",
+          aficionado: "oklch(87.8% 0.169 91.9)",
         },
+        // legacy aliases kept during the redesign so unmigrated markup doesn't break
+        cover: "oklch(94% 0.012 88)",
+        zone: "oklch(90% 0.014 88)",
+        chip: "oklch(84% 0.012 88)",
+        "ink-body": "oklch(38% 0.008 88)",
+        gold: "oklch(84% 0.167 90)",
       },
       fontFamily: {
         sans: ["var(--font-raleway)", "ui-sans-serif", "system-ui", "sans-serif"],
@@ -26,6 +33,12 @@ const config: Config = {
       },
       maxWidth: {
         content: "1200px",
+      },
+      borderRadius: {
+        card: "12px",
+      },
+      transitionTimingFunction: {
+        "hallmark-out": "cubic-bezier(0.16, 1, 0.3, 1)",
       },
     },
   },

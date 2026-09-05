@@ -62,22 +62,22 @@ export const KITS: Kit[] = [
     name: "Cigar & Whisky Journey",
     subtitle: "Pairing Party Kit",
     shortDescription:
-      "Printable event planning kit — guide, primer, pairing chart & tier cards.",
+      "Printable event planning kit: guide, primer, pairing chart, and tier cards.",
     pageCount: 8,
     heroHeadline: "One Cigar. Three Whiskies. Zero Guesswork.",
     heroBody:
-      "Most kits have you smoking three full cigars in one night. This one doesn't — pick one cigar for the evening and taste three whisky pours against it as the flavor shifts through its three thirds. Realistic, affordable, and exactly how aficionados actually do it.",
+      "Most kits have you smoking three full cigars in one night. This one doesn't. Pick one cigar for the evening and taste three whisky pours against it as the flavor shifts through its three thirds. Realistic, affordable, and exactly how aficionados actually do it.",
     stats: [
       { value: "17", label: "curated pairings" },
       { value: "3", label: "experience tiers" },
       { value: "1", label: "bottle per tier, easily covers 6 guests" },
     ],
     included: [
-      { number: "01", title: "Party Guide", description: "Setup, timing, supplies — realistic for one cigar per guest, not three." },
+      { number: "01", title: "Party Guide", description: "Setup, timing, supplies: realistic for one cigar per guest, not three." },
       { number: "02", title: "Cigar & Whisky Primer", description: "Wrapper types, whisky styles, and the leaf-to-ash process." },
       { number: "03", title: "Pairbase Chart", description: "17 curated pairings across all three tiers, with real cost math." },
       { number: "04", title: "Flavor Wheels", description: "Dual cigar & whisky wheels to build real tasting vocabulary." },
-      { number: "05–07", title: "Pairing Cards", description: "One full-page tracking card per tier — Newbie, Casual, Aficionado." },
+      { number: "05–07", title: "Pairing Cards", description: "One full-page tracking card per tier: Newbie, Casual, Aficionado." },
       { number: "08", title: "Checklist & Scorecard", description: "Shopping checklist and a scorecard to close out the night." },
     ],
     tierLabels: { primary: "Cigar", secondary: "Whisky" },
@@ -109,9 +109,9 @@ export const KITS: Kit[] = [
     ],
     howItWorks: [
       { title: "Purchase & Download", description: "Instant access to the full PDF, plus your editable Canva invitation template." },
-      { title: "Print at Home or a Shop", description: "Staples, FedEx, or a service like Printify — or just use your own printer." },
-      { title: "Pick Your Tier", description: "Newbie, Casual, or Aficionado — the Pairbase chart tells you what to buy." },
-      { title: "Host Tonight", description: "Everything's ready. No physical items ship — this is an all-digital product." },
+      { title: "Print at Home or a Shop", description: "Staples, FedEx, or a service like Printify, or just use your own printer." },
+      { title: "Pick Your Tier", description: "Newbie, Casual, or Aficionado: the Pairbase chart tells you what to buy." },
+      { title: "Host Tonight", description: "Everything's ready. No physical items ship. This is an all-digital product." },
     ],
     images: {
       hero: "/kits/cigar/hero.png",
@@ -131,7 +131,7 @@ export const KITS: Kit[] = [
     name: "Tequila & Mezcal",
     subtitle: "Tasting Party Kit",
     shortDescription:
-      "Printable tasting kit — guide, primer, bottle chart, flavor wheels & tier cards.",
+      "Printable tasting kit: guide, primer, bottle chart, flavor wheels, and tier cards.",
     pageCount: 8,
     heroHeadline: "Sip It. Don't Shoot It.",
     heroBody:
@@ -142,7 +142,7 @@ export const KITS: Kit[] = [
       { value: "2", label: "flavor wheels, tequila & mezcal" },
     ],
     included: [
-      { number: "01", title: "Party Guide", description: "Setup, timing, supplies — and why the lime and salt stay in the kitchen." },
+      { number: "01", title: "Party Guide", description: "Setup, timing, supplies, and why the lime and salt stay in the kitchen." },
       { number: "02", title: "Tequila & Mezcal Primer", description: "Blue Weber vs wild agave, the age ladder, and how to read a label." },
       { number: "03", title: "Agavebase Chart", description: "Real bottles at three budgets, with per-person cost math." },
       { number: "04", title: "Flavor Wheels", description: "Separate tequila and mezcal wheels to build tasting vocabulary." },
@@ -175,14 +175,14 @@ export const KITS: Kit[] = [
         flightName: "Agave Terroir",
         primaryPicks: ["Tequila Ocho Plata", "Fortaleza Añejo", "El Tesoro Añejo", "Siete Leguas D'Antano"],
         secondaryPicks: ["Del Maguey Tobalá", "Rey Campero Tepeztate", "Mezcal Vago Elote", "El Jolgorio Madrecuixe"],
-        notes: "Single-varietal wild agave. Tropical fruit, hard minerality, florals — plants that grew twenty years before anyone cut them.",
+        notes: "Single-varietal wild agave. Tropical fruit, hard minerality, florals. Plants that grew twenty years before anyone cut them.",
         cost: "$90–160 / bottle · ~$38 / person",
       },
     ],
     howItWorks: [
       { title: "Purchase & Download", description: "Instant access to the 8-page PDF. Nothing ships." },
       { title: "Print at Home or a Shop", description: "Standard US Letter, no bleed or special stock needed." },
-      { title: "Pick Your Tier", description: "Newbie, Casual, or Aficionado — the Agavebase names the bottles." },
+      { title: "Pick Your Tier", description: "Newbie, Casual, or Aficionado: the Agavebase names the bottles." },
       { title: "Host Tonight", description: "Everything's ready. This is an all-digital product." },
     ],
     images: {
@@ -203,24 +203,24 @@ export const KITS: Kit[] = [
     name: "Candy & Whisky",
     subtitle: "Halloween Pairing Kit",
     shortDescription:
-      "The cheapest tasting night you'll ever host — a $12 bag of candy and a bottle you already own.",
+      "The cheapest tasting night you'll ever host: a $12 bag of candy and a bottle you already own.",
     pageCount: 7,
     heroHeadline: "Your Leftover Candy Deserves Better.",
     heroBody:
-      "Coconut in an Almond Joy shares the same compound class as American oak. Caramelized sugar and barrel char are the same chemical reaction. This isn't a party trick — candy and whisky actually agree, and this kit shows you exactly where.",
+      "Coconut in an Almond Joy shares the same compound class as American oak. Caramelized sugar and barrel char are the same chemical reaction. This isn't a party trick. Candy and whisky actually agree, and this kit shows you exactly where.",
     stats: [
       { value: "9", label: "candy & whisky pairings" },
       { value: "$12", label: "covers a table of six" },
-      { value: "2", label: "selling windows — Oct & Nov 1–7" },
+      { value: "2", label: "selling windows: Oct & Nov 1–7" },
     ],
     included: [
       { number: "01", title: "Party Guide", description: "What to buy, how to set up, and how to actually taste a pairing." },
       { number: "02", title: "Candy Primer", description: "The real chemistry behind why chocolate and caramel pair so well with whisky." },
       { number: "03", title: "Pairbase Chart", description: "9 candies matched to real bottles, with the science for each pairing." },
-      { number: "04", title: "Flavor Wheels", description: "Candy and whisky wheels side by side — find where they overlap." },
-      { number: "05", title: "Newbie Card", description: "The Sweet Match — three candies that agree with one bourbon." },
-      { number: "06", title: "Casual Card", description: "The Contrast — pairings that work by fighting instead of agreeing." },
-      { number: "07", title: "Aficionado Card", description: "The Gauntlet — sour candy, licorice, and candy corn. Good luck." },
+      { number: "04", title: "Flavor Wheels", description: "Candy and whisky wheels side by side. Find where they overlap." },
+      { number: "05", title: "Newbie Card", description: "The Sweet Match: three candies that agree with one bourbon." },
+      { number: "06", title: "Casual Card", description: "The Contrast: pairings that work by fighting instead of agreeing." },
+      { number: "07", title: "Aficionado Card", description: "The Gauntlet: sour candy, licorice, and candy corn. Good luck." },
     ],
     tierLabels: { primary: "Candy", secondary: "Whisky style" },
     tiers: [
@@ -230,21 +230,21 @@ export const KITS: Kit[] = [
         flightName: "The Sweet Match",
         primaryPicks: ["Snickers", "Twix", "Milky Way"],
         secondaryPicks: ["Caramel-forward bourbon"],
-        notes: "Every candy here shares a flavor compound with the whisky — nothing fights. This is your baseline for everything after.",
+        notes: "Every candy here shares a flavor compound with the whisky. Nothing fights. This is your baseline for everything after.",
       },
       {
         tier: "Casual",
         tierClass: "casual",
         flightName: "The Contrast",
         primaryPicks: ["Dark Chocolate + Peated Scotch", "Reese's + Wheated Bourbon", "Almond Joy + Rye"],
-        notes: "Opposites on purpose. Dark chocolate against peat smoke should be a train wreck and isn't — find out where the line is.",
+        notes: "Opposites on purpose. Dark chocolate against peat smoke should be a train wreck and isn't. Find out where the line is.",
       },
       {
         tier: "Aficionado",
         tierClass: "aficionado",
         flightName: "The Gauntlet",
         primaryPicks: ["Sour Patch Kids", "Black Licorice", "Candy Corn"],
-        notes: "Acid, anise, and pure sugar — the three things whisky handles worst. Something here will surprise you.",
+        notes: "Acid, anise, and pure sugar: the three things whisky handles worst. Something here will surprise you.",
       },
     ],
     howItWorks: [
@@ -272,11 +272,11 @@ export const KITS: Kit[] = [
     name: "24 Nights of Whisky",
     subtitle: "Advent Calendar Companion",
     shortDescription:
-      "A tasting card for every night, a month tracker, and a flavor wheel — built for the calendar you already bought.",
+      "A tasting card for every night, a month tracker, and a flavor wheel, built for the calendar you already bought.",
     pageCount: 9,
     heroHeadline: "Guess First. Reveal Second.",
     heroBody:
-      "Real whisky advent calendars keep the dram a mystery until you open the door. So every card starts with a blind guess — region and age — before you ever see the label. Then the reveal. That's the part a blank notebook can't do.",
+      "Real whisky advent calendars keep the dram a mystery until you open the door. So every card starts with a blind guess (region and age) before you ever see the label. Then the reveal. That's the part a blank notebook can't do.",
     stats: [
       { value: "24", label: "numbered nights" },
       { value: "30ml", label: "standard dram format" },
@@ -296,7 +296,7 @@ export const KITS: Kit[] = [
       { title: "Guess, Then Reveal", description: "Fill in the blind guess, taste, then check the label." },
     ],
     seasonalNote:
-      "Works with any standard 24 × 30ml calendar, plus supermarket sets. Also works for 12-day calendars — just use cards 01–12.",
+      "Works with any standard 24 × 30ml calendar, plus supermarket sets. Also works for 12-day calendars: just use cards 01–12.",
     images: {
       hero: "/kits/advent/hero.png",
       gallery: [
