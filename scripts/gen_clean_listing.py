@@ -15,6 +15,16 @@ FILTERS = """
     <feColorMatrix type="saturate" values="0"/>
     <feComponentTransfer><feFuncA type="linear" slope="0.22"/></feComponentTransfer>
   </filter>
+  <filter id="stone">
+    <feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="5" seed="9"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.38"/></feComponentTransfer>
+  </filter>
+  <filter id="stone-fine">
+    <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="4" seed="14"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.16"/></feComponentTransfer>
+  </filter>
   <filter id="haze">
     <feTurbulence type="fractalNoise" baseFrequency="0.004 0.011" numOctaves="5" seed="11"/>
     <feColorMatrix type="saturate" values="0"/>

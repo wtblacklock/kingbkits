@@ -11,7 +11,7 @@ body{font-family:'Raleway',sans-serif;position:relative;}
 .pill{display:inline-flex;align-items:center;font-weight:700;font-size:32px;padding:12px 30px;
   border-radius:999px;color:#000;}
 .cap{font-size:32px;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;}
-.grain{position:absolute;inset:0;filter:url(#grain);opacity:0.42;mix-blend-mode:overlay;background:#fff;}
+.grain{position:absolute;inset:0;filter:url(#grain);opacity:0.36;mix-blend-mode:overlay;background:#fff;}
 </style></head><body>
 <svg style="position:absolute;width:0;height:0"><defs>
   <filter id="wood">
@@ -24,6 +24,16 @@ body{font-family:'Raleway',sans-serif;position:relative;}
     <feColorMatrix type="saturate" values="0"/>
     <feComponentTransfer><feFuncA type="linear" slope="0.22"/></feComponentTransfer>
   </filter>
+  <filter id="stone">
+    <feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="5" seed="9"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.38"/></feComponentTransfer>
+  </filter>
+  <filter id="stone-fine">
+    <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="4" seed="14"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.16"/></feComponentTransfer>
+  </filter>
   <filter id="haze">
     <feTurbulence type="fractalNoise" baseFrequency="0.004 0.011" numOctaves="5" seed="11"/>
     <feColorMatrix type="saturate" values="0"/>
@@ -32,21 +42,24 @@ body{font-family:'Raleway',sans-serif;position:relative;}
 </defs></svg>
 
 <div style="position:absolute;inset:0;background:
-  radial-gradient(ellipse 1600px 1300px at 66% 14%,#4a3a2c 0%,#2b211a 40%,#17110d 76%,#0f0a07 100%);"></div>
+  radial-gradient(ellipse 1600px 1300px at 66% 14%,#9a5230 0%,#6b3620 40%,#3c1f14 76%,#1e100a 100%);"></div>
 <div style="position:absolute;left:760px;top:-320px;width:1560px;height:1750px;
-  background:radial-gradient(ellipse at 50% 30%,rgba(255,198,120,0.30),rgba(255,170,80,0.10) 42%,rgba(0,0,0,0) 68%);
+  background:radial-gradient(ellipse at 50% 30%,rgba(90,205,185,0.30),rgba(255,150,70,0.14) 46%,rgba(0,0,0,0) 68%);
   filter:blur(24px);"></div>
 <div style="position:absolute;left:0;right:0;top:120px;height:900px;filter:url(#haze);
-  opacity:0.15;mix-blend-mode:screen;background:#e8d3b0;"></div>
-<div style="position:absolute;left:150px;top:250px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 38% 34%,rgba(255,225,160,0.42),rgba(255,225,160,0.231) 55%,rgba(255,225,160,0) 72%);filter:blur(26px);"></div><div style="position:absolute;left:420px;top:150px;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 38% 34%,rgba(255,225,160,0.36),rgba(255,225,160,0.198) 55%,rgba(255,225,160,0) 72%);filter:blur(18px);"></div><div style="position:absolute;left:1560px;top:330px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 38% 34%,rgba(255,225,160,0.34),rgba(255,225,160,0.18700000000000003) 55%,rgba(255,225,160,0) 72%);filter:blur(22px);"></div><div style="position:absolute;left:1800px;top:180px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 38% 34%,rgba(255,225,160,0.3),rgba(255,225,160,0.165) 55%,rgba(255,225,160,0) 72%);filter:blur(26px);"></div><div style="position:absolute;left:940px;top:120px;width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 38% 34%,rgba(255,225,160,0.26),rgba(255,225,160,0.14300000000000002) 55%,rgba(255,225,160,0) 72%);filter:blur(16px);"></div><div style="position:absolute;left:260px;top:520px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 38% 34%,rgba(255,225,160,0.22),rgba(255,225,160,0.12100000000000001) 55%,rgba(255,225,160,0) 72%);filter:blur(16px);"></div>
+  opacity:0.16;mix-blend-mode:screen;background:#f0d8ae;"></div>
+<div style="position:absolute;left:150px;top:250px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 38% 34%,rgba(255,225,160,0.32),rgba(255,225,160,0.17600000000000002) 55%,rgba(255,225,160,0) 72%);filter:blur(26px);"></div><div style="position:absolute;left:1800px;top:180px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 38% 34%,rgba(255,225,160,0.24),rgba(255,225,160,0.132) 55%,rgba(255,225,160,0) 72%);filter:blur(26px);"></div>
+<div style="position:absolute;left:420px;top:150px;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 38% 34%,rgba(90,210,190,0.4),rgba(90,210,190,0.22000000000000003) 55%,rgba(90,210,190,0) 72%);filter:blur(18px);"></div><div style="position:absolute;left:1560px;top:330px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 38% 34%,rgba(90,210,190,0.36),rgba(90,210,190,0.198) 55%,rgba(90,210,190,0) 72%);filter:blur(22px);"></div><div style="position:absolute;left:940px;top:120px;width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 38% 34%,rgba(90,210,190,0.34),rgba(90,210,190,0.18700000000000003) 55%,rgba(90,210,190,0) 72%);filter:blur(16px);"></div><div style="position:absolute;left:260px;top:520px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 38% 34%,rgba(90,210,190,0.3),rgba(90,210,190,0.165) 55%,rgba(90,210,190,0) 72%);filter:blur(16px);"></div>
 <div style="position:absolute;left:0;right:0;top:560px;bottom:0;
-  background:linear-gradient(180deg,#3a2418 0%,#21130a 45%,#120a04 100%);"></div>
-<div style="position:absolute;left:0;right:0;top:560px;bottom:0;filter:url(#wood);
-  opacity:0.58;mix-blend-mode:multiply;background:#170c05;"></div>
+  background:linear-gradient(180deg,#b06f45 0%,#7a4a2c 45%,#48301e 100%);"></div>
+<div style="position:absolute;left:0;right:0;top:560px;bottom:0;filter:url(#stone);
+  opacity:0.46;mix-blend-mode:multiply;background:#3e2818;"></div>
+<div style="position:absolute;left:0;right:0;top:560px;height:9px;
+  background:linear-gradient(180deg,rgba(90,210,190,0.4),rgba(90,210,190,0));"></div>
 <div style="position:absolute;left:100px;top:90px;">
   <div class="cap" style="color:#e0c397;">03 &middot; Agavebase</div>
 </div>
 <div style="position:absolute;right:100px;top:100px;"><div class="kb"><span class="l1">KINGB</span><span class="l2">KITS</span></div></div>
 <div style="position:absolute;left:50%;top:300px;transform:translateX(-50%) rotate(0deg);">
-  <img src="../listing_images_agave/page-3.png" style="width:1520px;display:block;box-shadow:0 14px 30px rgba(0,0,0,0.55), 0 90px 130px -40px rgba(0,0,0,0.9);">
+  <img src="/Users/BIGWilly/Projects/kingbkits/listing_images_raw/listing_images_agave/page-3.png" style="width:1520px;display:block;box-shadow:0 14px 30px rgba(0,0,0,0.55), 0 90px 130px -40px rgba(0,0,0,0.9);">
 </div><div class="grain"></div></body></html>
