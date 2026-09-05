@@ -3,16 +3,18 @@ REPO = "/Users/BIGWilly/Projects/kingbkits"
 sys.path.insert(0, os.path.join(REPO, "scripts"))
 from gen_hero_gif import build_gif
 
+LOGO_PATH = f"{REPO}/branding/logo/kingbkits-logo.png"
+YELLOW = "#fff200"
+PAPER = "#f3efe6"
+MUTED = "#b7b0a0"
+NEAR_BLACK = "#0d0b08"
+
 FONTS = ("@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;"
-         "0,500;0,600;0,700;0,800;1,400&family=Archivo+Black&display=swap');")
+         "0,500;0,600;0,700;0,800;1,400&family=Fraunces:opsz,wght@9..144,400;9..144,500;"
+         "9..144,600&display=swap');")
 
 FILTERS = """
 <svg style="position:absolute;width:0;height:0"><defs>
-  <filter id="wood">
-    <feTurbulence type="fractalNoise" baseFrequency="0.0016 0.09" numOctaves="4" seed="7"/>
-    <feColorMatrix type="saturate" values="0"/>
-    <feComponentTransfer><feFuncA type="linear" slope="0.42"/></feComponentTransfer>
-  </filter>
   <filter id="haze">
     <feTurbulence type="fractalNoise" baseFrequency="0.004 0.011" numOctaves="5" seed="11"/>
     <feColorMatrix type="saturate" values="0"/>
@@ -33,15 +35,57 @@ CSS_BASE = f"""
 {FONTS}
 *{{box-sizing:border-box;margin:0;padding:0;}}
 html,body{{width:1100px;height:1100px;overflow:hidden;}}
-body{{font-family:'Raleway',sans-serif;position:relative;}}
-.kb{{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;background:#000;
-  border-radius:14px;padding:11px 18px 12px;font-family:'Archivo Black',sans-serif;line-height:0.92;
-  text-align:center;width:fit-content;}}
-.kb .l1{{font-size:24px;color:#f3c318;}}
-.kb .l2{{font-size:17px;color:#fff;letter-spacing:0.02em;margin-top:1px;}}
+body{{font-family:'Raleway',sans-serif;position:relative;background:{NEAR_BLACK};}}
 .pill{{display:inline-flex;align-items:center;font-weight:700;font-size:20px;padding:8px 19px;
-  border-radius:999px;color:#000;}}
+  border-radius:999px;}}
 """
+
+
+def badge_img():
+    return (f'<div style="position:absolute;right:60px;top:58px;">'
+            f'<img src="{LOGO_PATH}" style="height:104px;display:block;'
+            f'filter:drop-shadow(0 6px 14px rgba(0,0,0,0.55));"></div>')
+
+
+def midnight_bg(tint, glow_rgb, glow2_rgb=None, motif=""):
+    glow2 = ""
+    if glow2_rgb:
+        glow2 = (f'<div style="position:absolute;left:-140px;top:230px;width:660px;height:660px;'
+                 f'background:radial-gradient(ellipse at 50% 50%,rgba({glow2_rgb},0.16),'
+                 f'rgba({glow2_rgb},0) 65%);filter:blur(18px);"></div>')
+    return f"""
+<div style="position:absolute;inset:0;background:
+  radial-gradient(ellipse 935px 715px at 66% 9%,{tint} 0%,#15120d 38%,#0a0806 70%,{NEAR_BLACK} 100%);"></div>
+<div style="position:absolute;left:30%;top:-154px;width:825px;height:825px;
+  background:radial-gradient(ellipse at 50% 30%,rgba({glow_rgb},0.22),rgba({glow_rgb},0) 62%);
+  filter:blur(12px);"></div>
+{glow2}
+{motif}
+<div style="position:absolute;left:0;right:0;bottom:0;height:310px;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%);"></div>"""
+
+
+def headline(eyebrow, title_html, sub, tiers=True):
+    tiers_html = ""
+    if tiers:
+        tiers_html = f"""
+  <div style="display:flex;gap:12px;margin-top:20px;">
+    <span class="pill" style="color:#000;background:{YELLOW};">Newbie</span>
+    <span class="pill" style="color:{PAPER};background:rgba(255,255,255,0.07);
+      border:1.5px solid rgba(255,242,0,0.5);">Casual</span>
+    <span class="pill" style="color:{PAPER};background:rgba(255,255,255,0.07);
+      border:1.5px solid rgba(255,242,0,0.5);">Aficionado</span>
+  </div>"""
+    return f"""
+<div style="position:absolute;left:66px;top:70px;max-width:650px;">
+  <div style="font-size:19px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;color:{YELLOW};">{eyebrow}</div>
+  <div style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-weight:500;font-style:normal;
+       font-size:68px;line-height:0.98;color:{PAPER};margin-top:12px;
+       letter-spacing:-0.01em;">{title_html}</div>
+  <div style="font-size:22px;color:{MUTED};margin-top:14px;">{sub}</div>
+  {tiers_html}
+</div>
+{badge_img()}"""
 
 
 def smoke_wisps(t, base):
@@ -94,145 +138,101 @@ def ghost(t, x0, y0, drift=70, bob=22, cycles=1.4, scale=1.0, opacity=0.8):
 </div>"""
 
 
-# ================= AGAVE (unchanged aside from the new t_global signature) =================
-def agave_bg(pages_html, t=0):
-    bg = f"""
-<div style="position:absolute;inset:0;background:
-  radial-gradient(ellipse 880px 715px at 66% 14%,#9a5230 0%,#6b3620 40%,#3c1f14 76%,#1e100a 100%);"></div>
-<div style="position:absolute;left:418px;top:-176px;width:858px;height:962px;
-  background:radial-gradient(ellipse at 50% 30%,rgba(90,205,185,0.30),rgba(255,150,70,0.14) 42%,rgba(0,0,0,0) 68%);
-  filter:blur(13px);"></div>
-<div style="position:absolute;left:0;right:0;top:66px;height:495px;filter:url(#haze);
-  opacity:0.16;mix-blend-mode:screen;background:#f0d8ae;"></div>
-{bokeh([(80,138,83,0.34,26),(990,99,83,0.30,26)])}
-{bokeh([(231,83,53,0.4,18),(858,182,66,0.36,22),(517,66,46,0.34,16),(143,286,44,0.3,16)], rgb="90,210,190")}
-<div style="position:absolute;left:0;right:0;top:512px;bottom:0;
-  background:linear-gradient(180deg,#b06f45 0%,#7a4a2c 45%,#48301e 100%);"></div>
-<div style="position:absolute;left:0;right:0;top:512px;bottom:0;filter:url(#wood);
-  opacity:0.4;mix-blend-mode:multiply;background:#3e2818;"></div>
+def twinkle(t, base):
+    """String-light dots that pulse in and out of brightness, staggered like a real strand."""
+    out = ""
+    for i, (x, y) in enumerate(base):
+        phase = (t * 2.0 + i * 0.35) % 1.0
+        a = 0.35 + 0.45 * (0.5 + 0.5 * math.sin(phase * math.pi * 2))
+        out += (f'<div style="position:absolute;left:{x}px;top:{y}px;width:9px;height:9px;'
+                f'border-radius:50%;background:radial-gradient(circle at 38% 34%,rgba(255,225,140,{a:.2f}),'
+                f'rgba(255,225,140,{a*0.5:.2f}) 55%,rgba(255,225,140,0) 72%);filter:blur(5px);"></div>')
+    return out
 
-<div style="position:absolute;left:66px;top:80px;max-width:650px;">
-  <div style="font-size:19px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:#f0a860;">The Agave Tasting Journey</div>
-  <div style="font-weight:300;font-size:73px;line-height:0.96;color:#fbeddb;margin-top:12px;
-       letter-spacing:-0.02em;">Tequila &amp; Mezcal</div>
-  <div style="font-size:23px;color:#e6c8a8;margin-top:14px;">8-Page Printable Tasting Kit &middot; Instant Download</div>
-  <div style="display:flex;gap:12px;margin-top:20px;">
-    <span class="pill" style="background:#87cb28;">Newbie</span>
-    <span class="pill" style="background:#ffff00;">Casual</span>
-    <span class="pill" style="background:#ffd230;">Aficionado</span>
-  </div>
-</div>
-<div style="position:absolute;right:66px;top:66px;"><div class="kb"><span class="l1">KINGB</span><span class="l2">KITS</span></div></div>
-"""
-    return f"""<!doctype html><html><head><meta charset='utf-8'><style>{CSS_BASE}</style></head>
-<body>{FILTERS}{bg}{pages_html}</body></html>"""
 
-SHADOW_BAR = "0 6px 13px rgba(0,0,0,0.62), 0 44px 66px -20px rgba(0,0,0,0.92)"
+def page(img, x_pct, y_final, ry, rz, w, delay, shadow, filt="none"):
+    return dict(img=img, x_pct=x_pct, y_final=y_final, ry=ry, rz=rz, w=w, delay=delay,
+                shadow=shadow, filter=filt)
+
+
+SHADOW = "0 6px 13px rgba(0,0,0,0.65), 0 44px 66px -20px rgba(0,0,0,0.92)"
+
+# ================= AGAVE — patio dust: terracotta + agave-turquoise =================
 SRC_AGAVE = f"{REPO}/listing_images_raw/listing_images_agave"
 
-agave_pages = [
-    dict(img=f"{SRC_AGAVE}/page-2.png", x_pct="20%", y_final=420, ry=7, rz=-7, w=470, delay=0.0,
-         shadow=SHADOW_BAR, filter="brightness(0.88)"),
-    dict(img=f"{SRC_AGAVE}/page-4.png", x_pct="44%", y_final=375, ry=2, rz=-2, w=510, delay=0.12,
-         shadow=SHADOW_BAR, filter="brightness(0.95)"),
-    dict(img=f"{SRC_AGAVE}/page-1.png", x_pct="70%", y_final=420, ry=-6, rz=4, w=470, delay=0.24,
-         shadow=SHADOW_BAR),
-]
+def agave_bg(pages_html, t=0):
+    dust = bokeh([(80, 138, 42, 0.4, 12), (495, 33, 33, 0.36, 10), (429, 91, 23, 0.34, 8),
+                  (72, 143, 22, 0.3, 8)], rgb="90,210,190")
+    bg = midnight_bg("#241811", "255,150,70", glow2_rgb="90,210,190", motif=dust)
+    head = headline("The Agave Tasting Journey", "Tequila &amp; Mezcal",
+                     "Six pairings, three tiers &middot; Instant Download")
+    return f"""<!doctype html><html><head><meta charset='utf-8'><style>{CSS_BASE}</style></head>
+<body>{FILTERS}{bg}{head}{pages_html}</body></html>"""
 
+agave_pages = [
+    page(f"{SRC_AGAVE}/page-2.png", "20%", 420, 7, -7, 470, 0.0, SHADOW, "brightness(0.9)"),
+    page(f"{SRC_AGAVE}/page-4.png", "44%", 375, 2, -2, 510, 0.12, SHADOW, "brightness(0.96)"),
+    page(f"{SRC_AGAVE}/page-1.png", "70%", 420, -6, 4, 470, 0.24, SHADOW),
+]
 build_gif("agave-hero", REPO + "/source", agave_bg, agave_pages, size=1100, n_frames=16)
 
 
-# ================= HALLOWEEN =================
-def hw_bg(pages_html, t=0):
-    bg = f"""
-<div style="position:absolute;inset:0;background:
-  radial-gradient(ellipse 880px 715px at 66% 14%,#5a2f6e 0%,#341b42 40%,#1a0e22 76%,#0a0510 100%);"></div>
-<div style="position:absolute;left:418px;top:-176px;width:858px;height:962px;
-  background:radial-gradient(ellipse at 50% 30%,rgba(255,140,60,0.24),rgba(255,110,60,0.08) 42%,rgba(0,0,0,0) 68%);
-  filter:blur(13px);"></div>
-<div style="position:absolute;left:0;right:0;top:66px;height:495px;filter:url(#haze);
-  opacity:0.2;mix-blend-mode:screen;background:#c98be0;"></div>
-{ghost(t, x0=760, y0=140, drift=90, bob=26, cycles=1.3, scale=0.62, opacity=0.85)}
-<div style="position:absolute;left:0;right:0;top:512px;bottom:0;
-  background:linear-gradient(180deg,#2c2a2f 0%,#19171b 45%,#0a090b 100%);"></div>
-
-<div style="position:absolute;left:66px;top:80px;max-width:650px;">
-  <div style="font-size:19px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:#e0a866;">The Halloween Pairing Kit</div>
-  <div style="font-weight:300;font-size:73px;line-height:0.96;color:#f2e3da;margin-top:12px;
-       letter-spacing:-0.02em;">Candy &amp; Whisky</div>
-  <div style="font-size:23px;color:#d8c2be;margin-top:14px;">8-Page Printable Tasting Kit &middot; Instant Download</div>
-  <div style="display:flex;gap:12px;margin-top:20px;">
-    <span class="pill" style="background:#87cb28;">Newbie</span>
-    <span class="pill" style="background:#ffff00;">Casual</span>
-    <span class="pill" style="background:#ffd230;">Aficionado</span>
-  </div>
-</div>
-<div style="position:absolute;right:66px;top:66px;"><div class="kb"><span class="l1">KINGB</span><span class="l2">KITS</span></div></div>
-"""
-    return f"""<!doctype html><html><head><meta charset='utf-8'><style>{CSS_BASE}</style></head>
-<body>{FILTERS}{bg}{pages_html}</body></html>"""
-
-SHADOW_HAUNTED = "0 6px 13px rgba(0,0,0,0.65), 0 44px 66px -20px rgba(0,0,0,0.92)"
+# ================= HALLOWEEN — violet haunt + pumpkin glow, a drifting ghost =================
 SRC_HW = f"{REPO}/listing_images_raw/listing_images_halloween"
 
-hw_pages = [
-    dict(img=f"{SRC_HW}/page-2.png", x_pct="20%", y_final=420, ry=7, rz=-7, w=470, delay=0.0,
-         shadow=SHADOW_HAUNTED, filter="brightness(0.88)"),
-    dict(img=f"{SRC_HW}/page-4.png", x_pct="44%", y_final=375, ry=2, rz=-2, w=510, delay=0.12,
-         shadow=SHADOW_HAUNTED, filter="brightness(0.95)"),
-    dict(img=f"{SRC_HW}/page-1.png", x_pct="70%", y_final=420, ry=-6, rz=4, w=470, delay=0.24,
-         shadow=SHADOW_HAUNTED),
-]
+def hw_bg(pages_html, t=0):
+    bg = midnight_bg("#1c1420", "170,110,220", glow2_rgb="255,140,60",
+                      motif=ghost(t, x0=760, y0=140, drift=90, bob=26, cycles=1.3, scale=0.62, opacity=0.85))
+    head = headline("The Halloween Pairing Kit", "Candy &amp; Whisky",
+                     "Six pairings, three tiers &middot; Instant Download")
+    return f"""<!doctype html><html><head><meta charset='utf-8'><style>{CSS_BASE}</style></head>
+<body>{FILTERS}{bg}{head}{pages_html}</body></html>"""
 
+hw_pages = [
+    page(f"{SRC_HW}/page-2.png", "20%", 420, 7, -7, 470, 0.0, SHADOW, "brightness(0.9)"),
+    page(f"{SRC_HW}/page-4.png", "44%", 375, 2, -2, 510, 0.12, SHADOW, "brightness(0.96)"),
+    page(f"{SRC_HW}/page-1.png", "70%", 420, -6, 4, 470, 0.24, SHADOW),
+]
 build_gif("halloween-hero", REPO + "/source", hw_bg, hw_pages, size=1100, n_frames=16)
 
 
-# ================= CIGAR =================
-def cigar_bg(pages_html, t=0):
-    bg = f"""
-<div style="position:absolute;inset:0;background:
-  radial-gradient(ellipse 880px 715px at 66% 14%,#4e3628 0%,#2c1e16 40%,#180f0a 76%,#0f0906 100%);"></div>
-<div style="position:absolute;left:418px;top:-176px;width:858px;height:962px;
-  background:radial-gradient(ellipse at 50% 30%,rgba(255,198,120,0.30),rgba(255,170,80,0.10) 42%,rgba(0,0,0,0) 68%);
-  filter:blur(13px);"></div>
-<div style="position:absolute;left:0;right:0;top:66px;height:495px;filter:url(#haze);
-  opacity:0.15;mix-blend-mode:screen;background:#e8d3b0;"></div>
-{bokeh([(80,138,83,0.42,26),(231,83,53,0.36,18),(858,182,66,0.34,22),
-        (990,99,83,0.30,26),(517,66,46,0.26,16),(143,286,44,0.22,16)])}
-{smoke_wisps(t, base=[(800, 330), (830, 350), (770, 310)])}
-<div style="position:absolute;left:0;right:0;top:512px;bottom:0;
-  background:linear-gradient(180deg,#48261a 0%,#2c150c 45%,#160a05 100%);"></div>
-<div style="position:absolute;left:0;right:0;top:512px;bottom:0;filter:url(#wood);
-  opacity:0.5;mix-blend-mode:multiply;background:#1a0d06;"></div>
-
-<div style="position:absolute;left:66px;top:80px;max-width:650px;">
-  <div style="font-size:19px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:#d8a55f;">The Cigar &amp; Whisky Journey</div>
-  <div style="font-weight:300;font-size:73px;line-height:0.96;color:#f6e9d6;margin-top:12px;
-       letter-spacing:-0.02em;">Cigar &amp; Whisky</div>
-  <div style="font-size:23px;color:#d9c9b4;margin-top:14px;">8-Page Printable Pairing Kit &middot; Instant Download</div>
-  <div style="display:flex;gap:12px;margin-top:20px;">
-    <span class="pill" style="background:#87cb28;">Newbie</span>
-    <span class="pill" style="background:#ffff00;">Casual</span>
-    <span class="pill" style="background:#ffd230;">Aficionado</span>
-  </div>
-</div>
-<div style="position:absolute;right:66px;top:66px;"><div class="kb"><span class="l1">KINGB</span><span class="l2">KITS</span></div></div>
-"""
-    return f"""<!doctype html><html><head><meta charset='utf-8'><style>{CSS_BASE}</style></head>
-<body>{FILTERS}{bg}{pages_html}</body></html>"""
-
-SHADOW_CIGAR = "0 6px 13px rgba(0,0,0,0.62), 0 44px 66px -20px rgba(0,0,0,0.92)"
+# ================= CIGAR — ember glow + curling smoke =================
 SRC_CIGAR = f"{REPO}/listing_images_raw/listing_images"
 
-cigar_pages = [
-    dict(img=f"{SRC_CIGAR}/page-2.png", x_pct="20%", y_final=420, ry=7, rz=-7, w=470, delay=0.0,
-         shadow=SHADOW_CIGAR, filter="brightness(0.88)"),
-    dict(img=f"{SRC_CIGAR}/page-4.png", x_pct="44%", y_final=375, ry=2, rz=-2, w=510, delay=0.12,
-         shadow=SHADOW_CIGAR, filter="brightness(0.95)"),
-    dict(img=f"{SRC_CIGAR}/page-1.png", x_pct="70%", y_final=420, ry=-6, rz=4, w=470, delay=0.24,
-         shadow=SHADOW_CIGAR),
-]
+def cigar_bg(pages_html, t=0):
+    embers = bokeh([(80, 138, 10, 0.55, 6), (500, 60, 8, 0.45, 5), (462, 293, 9, 0.4, 6),
+                    (65, 288, 7, 0.35, 5)], rgb="255,175,90")
+    bg = midnight_bg("#241a12", "255,175,90", motif=embers + smoke_wisps(t, base=[(800, 330), (830, 350), (770, 310)]))
+    head = headline("The Cigar &amp; Whisky Journey", "Cigar &amp; Whisky",
+                     "Six pairings, three tiers &middot; Instant Download")
+    return f"""<!doctype html><html><head><meta charset='utf-8'><style>{CSS_BASE}</style></head>
+<body>{FILTERS}{bg}{head}{pages_html}</body></html>"""
 
+cigar_pages = [
+    page(f"{SRC_CIGAR}/page-2.png", "20%", 420, 7, -7, 470, 0.0, SHADOW, "brightness(0.9)"),
+    page(f"{SRC_CIGAR}/page-4.png", "44%", 375, 2, -2, 510, 0.12, SHADOW, "brightness(0.96)"),
+    page(f"{SRC_CIGAR}/page-1.png", "70%", 420, -6, 4, 470, 0.24, SHADOW),
+]
 build_gif("cigar-hero", REPO + "/source", cigar_bg, cigar_pages, size=1100, n_frames=16)
+
+
+# ================= ADVENT — gold string-lights + a whisper of pine =================
+SRC_ADVENT = f"{REPO}/listing_images_raw/listing_images_advent"
+
+def advent_bg(pages_html, t=0):
+    lights = twinkle(t, base=[(60, 100), (170, 78), (280, 108), (390, 74), (500, 104),
+                               (610, 78), (720, 106), (960, 150)])
+    bg = midnight_bg("#1c160d", "255,215,120", glow2_rgb="70,120,85", motif=lights)
+    head = headline("The Whisky Advent Companion", "24 Nights of Whisky",
+                     "A tasting card for every night &middot; Instant Download", tiers=False)
+    return f"""<!doctype html><html><head><meta charset='utf-8'><style>{CSS_BASE}</style></head>
+<body>{FILTERS}{bg}{head}{pages_html}</body></html>"""
+
+advent_pages = [
+    page(f"{SRC_ADVENT}/page-1.png", "20%", 420, 7, -7, 460, 0.0, SHADOW, "brightness(0.9)"),
+    page(f"{SRC_ADVENT}/page-9.png", "44%", 375, 2, -2, 500, 0.12, SHADOW, "brightness(0.96)"),
+    page(f"{SRC_ADVENT}/page-6.png", "70%", 420, -6, 4, 460, 0.24, SHADOW),
+]
+build_gif("advent-hero", REPO + "/source", advent_bg, advent_pages, size=1100, n_frames=16)
 
 print("done")
