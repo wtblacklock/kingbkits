@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Guides",
   description:
     "Reference guides on cigars, tequila and mezcal, and candy pairings with whisky. The same primers built into every KingBKits PDF.",
+  alternates: { canonical: "/guides" },
 };
 
 export default function GuidesIndexPage() {

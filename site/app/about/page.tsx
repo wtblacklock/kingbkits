@@ -5,6 +5,7 @@ import { EtsyButton } from "@/components/EtsyButton";
 export const metadata: Metadata = {
   title: "About",
   description: "The idea behind KingBKits: printable tasting-party kits built around three real budget tiers.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

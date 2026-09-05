@@ -22,6 +22,7 @@ export async function generateMetadata({
   return {
     title: kit.name,
     description: kit.shortDescription,
+    alternates: { canonical: `/kits/${slug}` },
     openGraph: {
       title: `${kit.name}. ${kit.subtitle}.`,
       description: kit.shortDescription,

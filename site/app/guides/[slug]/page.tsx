@@ -20,7 +20,11 @@ export async function generateMetadata({
   try {
     const { slug } = await params;
     const guide = getGuide(slug);
-    return { title: guide.title, description: guide.description };
+    return {
+      title: guide.title,
+      description: guide.description,
+      alternates: { canonical: `/guides/${slug}` },
+    };
   } catch {
     return {};
   }
