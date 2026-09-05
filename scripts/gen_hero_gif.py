@@ -16,8 +16,10 @@ def build_gif(name, out_dir, bg_html_fn, pages, size=1100, n_frames=16, hold_ms=
     """
     pages: list of dicts: {img, x_pct, y_final, ry, rz, w, delay}
       delay in [0,1): fraction of the entrance timeline before this page starts animating
-    bg_html_fn: function(pal-less) -> full <body> inner HTML for the *static* background+header
-                (no page mockups included -- those are added per-frame)
+    bg_html_fn: function(pages_html, t_global) -> full <body> inner HTML for this frame.
+                t_global is 0..1 across the entrance timeline (held at 1.0 during hold_ms).
+                Use it to drive any continuous background animation (smoke, floating
+                characters, etc) independent of the page-mockup entrance.
     """
     frames_dir = os.path.join(out_dir, f"_frames_{name}")
     os.makedirs(frames_dir, exist_ok=True)
@@ -38,7 +40,7 @@ def build_gif(name, out_dir, bg_html_fn, pages, size=1100, n_frames=16, hold_ms=
      transform-origin:50% 0%;">
   <img src="{p['img']}" style="width:{p['w']}px;display:block;box-shadow:{p['shadow']};filter:{p.get('filter','none')};">
 </div>"""
-        html = bg_html_fn(pages_html)
+        html = bg_html_fn(pages_html, t_global)
         fpath = os.path.join(frames_dir, f"f{i:03d}.html")
         with open(fpath, "w") as f:
             f.write(html)
