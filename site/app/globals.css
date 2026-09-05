@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-cover text-ink-body antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-ink;
+  }
+  ::selection {
+    background: theme("colors.tier.aficionado");
+    color: #000;
+  }
+}
+
+@layer components {
+  .prose-guide {
+    @apply max-w-none text-ink-body;
+  }
+  .prose-guide h2 {
+    @apply mt-10 mb-3 text-2xl font-semibold text-ink;
+  }
+  .prose-guide h3 {
+    @apply mt-8 mb-2 text-xl font-semibold text-ink;
+  }
+  .prose-guide p {
+    @apply mb-4 leading-relaxed;
+  }
+  .prose-guide ul {
+    @apply mb-4 list-disc pl-5;
+  }
+  .prose-guide li {
+    @apply mb-1;
+  }
+  .prose-guide strong {
+    @apply text-ink;
+  }
+}
