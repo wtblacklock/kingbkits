@@ -2,7 +2,7 @@ import os, sys
 REPO = "/Users/BIGWilly/Projects/kingbkits"
 sys.path.insert(0, os.path.join(REPO, "scripts"))
 from gen_clean_listing import (write, bokeh, single_image_slide, hero_slide, bundle_slide,
-                                midnight_bg, midnight_pal)
+                                hero_bg_only, midnight_bg, midnight_pal)
 
 SHADOW = "0 14px 30px rgba(0,0,0,0.6), 0 90px 130px -40px rgba(0,0,0,0.95)"
 
@@ -52,6 +52,8 @@ singles = [
 ]
 for fname, cap, img in singles:
     write(OUT, fname, bg, pal, single_image_slide(cap, f"{SRC}/{img}", pal["eyebrow"], w=1520, top=300, shadow=SHADOW))
+
+write(OUT, "site-hero.html", bg, pal, hero_bg_only(pages))
 
 # 7. BUNDLE / What's Inside
 bundle_pages = f"""

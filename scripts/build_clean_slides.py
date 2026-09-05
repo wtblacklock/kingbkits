@@ -2,7 +2,7 @@ import os, sys
 REPO = "/Users/BIGWilly/Projects/kingbkits"
 sys.path.insert(0, os.path.join(REPO, "scripts"))
 from gen_clean_listing import (write, bokeh, confetti, single_image_slide, hero_slide, bundle_slide,
-                                photo_slide, midnight_bg, midnight_pal)
+                                photo_slide, hero_bg_only, midnight_bg, midnight_pal)
 
 SHADOW = "0 14px 30px rgba(0,0,0,0.6), 0 90px 130px -40px rgba(0,0,0,0.95)"
 
@@ -61,6 +61,8 @@ bundle_pages_a = f"""
 items_a = ["Party Guide", "Agave Primer", "Agavebase (bottle matches)", "Flavor Wheels",
            "Tasting Cards (3 tiers)", "Checklist &amp; Scorecard", "Invitation template"]
 write(OUT_A, "7-bundle.html", bg_a, pal_a, bundle_slide(pal_a, "8 Pages", items_a, bundle_pages_a))
+
+write(OUT_A, "site-hero.html", bg_a, pal_a, hero_bg_only(pages_a))
 
 INVITE_PHOTO_A = f"{REPO}/ETSY_UPLOAD/agave/08-invite.png"
 write(OUT_A, "8-invite.html", bg_a, pal_a, photo_slide("08 &middot; Invitation Template", INVITE_PHOTO_A, pal_a["eyebrow"]))
@@ -125,6 +127,8 @@ bundle_pages_h = f"""
 items_h = ["Party Guide", "Candy Primer", "Pairbase (bottle matches)", "Flavor Wheels",
            "Tasting Cards (3 tiers)", "Checklist &amp; Scorecard", "Invitation template"]
 write(OUT_H, "7-bundle.html", bg_h, pal_h, bundle_slide(pal_h, "8 Pages", items_h, bundle_pages_h))
+
+write(OUT_H, "site-hero.html", bg_h, pal_h, hero_bg_only(pages_h))
 
 INVITE_PHOTO_H = f"{REPO}/ETSY_UPLOAD/halloween/08-invite.png"
 write(OUT_H, "8-invite.html", bg_h, pal_h, photo_slide("08 &middot; Invitation Template", INVITE_PHOTO_H, pal_h["eyebrow"]))

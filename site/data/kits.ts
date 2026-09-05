@@ -299,6 +299,7 @@ export const KITS: Kit[] = [
       "Works with any standard 24 × 30ml calendar, plus supermarket sets. Also works for 12-day calendars: just use cards 01–12.",
     images: {
       hero: "/kits/advent/hero.png",
+      heroGif: "/kits/advent/hero.gif",
       gallery: [
         { src: "/kits/advent/preview-guide.png", label: "How to Use" },
         { src: "/kits/advent/preview-cards.png", label: "Tasting Cards" },

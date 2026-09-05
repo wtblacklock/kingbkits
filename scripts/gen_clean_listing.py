@@ -127,6 +127,13 @@ def bundle_slide(pal, count_label, items, pages_html):
 {pages_html}"""
 
 
+# ---- text-free hero background: badge + fanned pages only, no headline block.
+#      For contexts (like the marketing site) that overlay their own heading text
+#      on top of the hero image - baking our own text in there would duplicate it. ----
+def hero_bg_only(pages_html):
+    return f"{badge()}{pages_html}"
+
+
 # ---- photo slide: a real lifestyle photo (not a page mockup) inset with a frame ----
 def photo_slide(cap, img, cap_color, size=1600, top=300):
     return f"""

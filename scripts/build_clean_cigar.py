@@ -2,7 +2,7 @@ import os, sys
 REPO = "/Users/BIGWilly/Projects/kingbkits"
 sys.path.insert(0, os.path.join(REPO, "scripts"))
 from gen_clean_listing import (write, bokeh, single_image_slide, hero_slide, bundle_slide,
-                                photo_slide, midnight_bg, midnight_pal)
+                                photo_slide, hero_bg_only, midnight_bg, midnight_pal)
 
 SHADOW = "0 14px 30px rgba(0,0,0,0.6), 0 90px 130px -40px rgba(0,0,0,0.95)"
 
@@ -60,6 +60,10 @@ bundle_pages = f"""
 items = ["Party Guide", "Cigar &amp; Whisky Primer", "Pairbase (bottle + leaf matches)",
          "Flavor Wheels", "Pairing Cards (3 tiers)", "Checklist &amp; Scorecard", "Invitation template"]
 write(OUT, "7-bundle.html", bg, pal, bundle_slide(pal, "8 Pages", items, bundle_pages))
+
+# SITE HERO — same background + fanned pages, no baked-in text (the marketing
+# site overlays its own heading on top; text-in-text would duplicate/garble).
+write(OUT, "site-hero.html", bg, pal, hero_bg_only(pages))
 
 # 8. INVITE — reframe the existing lifestyle photo in the same dark system
 INVITE_PHOTO = f"{REPO}/ETSY_UPLOAD/cigar/08-invite.png"
