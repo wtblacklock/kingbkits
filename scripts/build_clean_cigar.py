@@ -57,7 +57,7 @@ pages = f"""
   <img src="{SRC}/page-1.png" style="width:860px;box-shadow:{SHADOW_DARK};">
 </div>"""
 write(OUT, "1-hero.html", bg, pal, hero_slide(
-    "The Cigar &amp; Whisky Journey", "Cigar &amp; Whisky", "7-Page Printable Pairing Kit &middot; Instant Download",
+    "The Cigar &amp; Whisky Journey", "Cigar &amp; Whisky", "8-Page Printable Pairing Kit &middot; Instant Download",
     pal, pages))
 
 singles = [
@@ -75,7 +75,7 @@ for fname, cap, img, moodfn, capcolor in singles:
 bg, pal = cigar_bright()
 badge_html = f"""
 <div style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);text-align:center;">
-  <div style="font-weight:300;font-size:96px;color:#141414;">7 Pages</div>
+  <div style="font-weight:300;font-size:96px;color:#141414;">8 Pages</div>
   <div style="font-size:36px;color:#4a4034;margin-top:10px;">Instant Digital Download &middot; Print at Home</div>
 </div>
 {badge()}

@@ -60,7 +60,7 @@ pages = f"""
   <img src="{SRC_A}/page-1.png" style="width:860px;box-shadow:{SHADOW_DARK};">
 </div>"""
 write(OUT_A, "1-hero.html", bg, pal, hero_slide(
-    "The Agave Tasting Journey", "Tequila &amp; Mezcal", "7-Page Printable Tasting Kit &middot; Instant Download",
+    "The Agave Tasting Journey", "Tequila &amp; Mezcal", "8-Page Printable Tasting Kit &middot; Instant Download",
     pal, pages))
 
 singles = [
@@ -78,7 +78,7 @@ for fname, cap, img, moodfn, capcolor in singles:
 bg, pal = agave_bright()
 badge_html = f"""
 <div style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);text-align:center;">
-  <div style="font-weight:300;font-size:96px;color:#241a0c;">7 Pages</div>
+  <div style="font-weight:300;font-size:96px;color:#241a0c;">8 Pages</div>
   <div style="font-size:36px;color:#5a4128;margin-top:10px;">Instant Digital Download &middot; Print at Home</div>
 </div>
 {badge()}
@@ -149,7 +149,7 @@ pages = f"""
   <img src="{SRC_H}/page-1.png" style="width:860px;box-shadow:{SHADOW_DARK};">
 </div>"""
 write(OUT_H, "1-hero.html", bg, pal, hero_slide(
-    "The Halloween Pairing Kit", "Candy &amp; Whisky", "7-Page Printable Tasting Kit &middot; Instant Download",
+    "The Halloween Pairing Kit", "Candy &amp; Whisky", "8-Page Printable Tasting Kit &middot; Instant Download",
     pal, pages))
 
 singles = [
@@ -167,7 +167,7 @@ for fname, cap, img, moodfn, capcolor in singles:
 bg, pal = hw_candy()
 badge_html = f"""
 <div style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);text-align:center;">
-  <div style="font-weight:300;font-size:96px;color:#2a1608;">7 Pages</div>
+  <div style="font-weight:300;font-size:96px;color:#2a1608;">8 Pages</div>
   <div style="font-size:36px;color:#5a3418;margin-top:10px;">Instant Digital Download &middot; Print at Home</div>
 </div>
 {badge()}
