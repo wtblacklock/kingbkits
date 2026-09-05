@@ -1,0 +1,139 @@
+BASE = "/private/tmp/claude-503/-Users-BIGWilly-Projects-trailsteadguide/87d4370e-7294-4ec3-abfe-3d9c94e0cb41/scratchpad"
+
+AGAVE_ICON = """<svg viewBox="0 0 28 28" style="width:1em;height:1em;">
+  <ellipse cx="14" cy="13" rx="2.7" ry="10.5" fill="#6f8a4c" transform="rotate(-42 14 23)"/>
+  <ellipse cx="14" cy="13" rx="2.7" ry="10.5" fill="#6f8a4c" transform="rotate(42 14 23)"/>
+  <ellipse cx="14" cy="12.5" rx="2.7" ry="11" fill="#87a35f" transform="rotate(-21 14 23)"/>
+  <ellipse cx="14" cy="12.5" rx="2.7" ry="11" fill="#87a35f" transform="rotate(21 14 23)"/>
+  <ellipse cx="14" cy="12" rx="2.8" ry="11.5" fill="#9db977"/>
+</svg>"""
+
+CSS = """
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+  @page{size:letter; margin:0;}
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Raleway',sans-serif; background:#eaeae7;}
+  .sheet{width:8.5in; height:11in; background:#fff; position:relative;
+         page-break-after:always; display:flex; flex-direction:column;
+         align-items:center; justify-content:center; gap:0.3in;}
+
+  .inv{width:5in; height:7in; background:#fff; border:1px dashed #c9c9c4;
+       display:flex; flex-direction:column; overflow:hidden; position:relative;}
+  .inv .band{background:#17130f; padding:0.26in 0.3in 0.24in; text-align:center;}
+  .kb{display:inline-flex; flex-direction:column; align-items:center; justify-content:center;
+      background:#000; border-radius:7px; padding:5px 9px 6px; font-family:'Archivo Black',sans-serif;
+      line-height:0.92;}
+  .kb .l1{font-size:0.6rem; color:#f3c318;}
+  .kb .l2{font-size:0.42rem; color:#fff; letter-spacing:0.02em; margin-top:1px;}
+  .inv .band .yi{font-size:0.62rem; letter-spacing:0.3em; text-transform:uppercase;
+                 color:#d9c9a8; margin-top:9px; font-weight:600;}
+
+  .inv .body{flex:1; padding:0.3in 0.34in 0.26in; display:flex; flex-direction:column;}
+  .inv .ag{font-size:1.5rem; line-height:1; text-align:center; margin-bottom:4px;}
+  .inv h1{font-weight:300; font-size:2.5rem; color:#000; text-align:center; line-height:1.02;
+          letter-spacing:-0.01em;}
+  .inv .tag{text-align:center; font-size:0.9rem; color:#454545; font-style:italic; margin-top:5px;}
+  .inv .rule{border:0; border-top:1px solid #000; margin:0.16in 0;}
+
+  .fields{display:flex; flex-direction:column; justify-content:space-around; flex:1;
+          padding:0.06in 0 0.1in;}
+  .f .lb{font-size:0.55rem; letter-spacing:0.13em; text-transform:uppercase; color:#8a8a8a;
+         font-weight:700;}
+  .f .ln{border-bottom:1px solid #d8d8d5; height:0.26in;}
+
+  .tiers{display:flex; gap:6px; justify-content:center; margin-top:0.1in;}
+  .tp{font-size:0.5rem; font-weight:700; padding:3px 10px; border-radius:999px; color:#000;}
+  .foot{text-align:center; font-size:0.6rem; color:#8a8a8a; margin-top:0.14in; line-height:1.45;}
+  .foot b{color:#454545;}
+
+  /* digital square */
+  .sq{width:1080px; height:1080px; background:#17130f; position:relative; overflow:hidden;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      text-align:center; padding:70px;}
+  .sq .glow{position:absolute; left:50%; top:-180px; width:900px; height:900px;
+     transform:translateX(-50%); border-radius:50%;
+     background:radial-gradient(circle,rgba(255,200,120,0.22),rgba(255,170,80,0) 68%);}
+  .sq .in{position:relative;}
+  .sq .ag{font-size:74px; line-height:1;}
+  .sq .yi{font-size:19px; letter-spacing:0.34em; text-transform:uppercase; color:#d8a55f;
+          font-weight:700; margin-top:22px;}
+  .sq h1{font-weight:300; font-size:104px; color:#f6e9d6; line-height:1.0; margin-top:14px;}
+  .sq .tag{font-size:31px; color:#bfae95; font-style:italic; margin-top:16px;}
+  .sq .meta{font-size:27px; color:#d9c9b4; margin-top:44px; line-height:1.85;}
+  .sq .meta b{color:#f6e9d6;}
+  .sq .foot{font-size:19px; color:#8f8271; margin-top:44px; letter-spacing:0.05em;}
+</style>
+"""
+
+def invite(fillable=True):
+    lines = [("Date", ""), ("Time", ""), ("Where", ""), ("RSVP to", "")]
+    fields = "".join(
+        f'<div class="f"><div class="lb">{lb}</div><div class="ln"></div></div>'
+        for lb, _ in lines)
+    return f"""
+<div class="inv">
+  <div class="band">
+    <span class="kb"><span class="l1">KINGB</span><span class="l2">KITS</span></span>
+    <div class="yi">You're Invited</div>
+  </div>
+  <div class="body">
+    <div class="ag">{AGAVE_ICON}</div>
+    <h1>Agave Night</h1>
+    <div class="tag">Sip it, don't shoot it.</div>
+    <hr class="rule">
+    <div class="fields">{fields}</div>
+    <div class="tiers">
+      <span class="tp" style="background:#87cb28;">Newbie</span>
+      <span class="tp" style="background:#ffff00;">Casual</span>
+      <span class="tp" style="background:#ffd230;">Aficionado</span>
+    </div>
+    <div class="foot">
+      A guided tequila &amp; mezcal tasting &mdash; <b>three one-ounce pours</b>, no shots.<br>
+      Eat beforehand. Come thirsty, leave with opinions.
+    </div>
+  </div>
+</div>"""
+
+
+html = f"""<!doctype html><html><head><meta charset="utf-8"><title>Agave Night Invite</title>{CSS}</head><body>
+
+<!-- SHEET 1: single 5x7, centered -->
+<div class="sheet">{invite()}</div>
+
+<!-- SHEET 2: two-up -->
+<div class="sheet" style="justify-content:center; gap:0.28in;">
+  {invite()}
+  {invite()}
+</div>
+
+</body></html>"""
+
+with open(f"{BASE}/kingbkits-agave-invite.html", "w") as f:
+    f.write(html)
+
+# digital square, separate file
+sq = f"""<!doctype html><html><head><meta charset="utf-8">{CSS}
+<style>body{{background:#17130f;margin:0}} .sheet{{display:none}}</style></head><body>
+<div class="sq">
+  <div class="glow"></div>
+  <div class="in">
+    <div class="ag">{AGAVE_ICON}</div>
+    <div class="yi">You're Invited</div>
+    <h1>Agave Night</h1>
+    <div class="tag">Sip it, don't shoot it.</div>
+    <div class="meta">
+      <b>Date</b> &nbsp;·&nbsp; ______________<br>
+      <b>Time</b> &nbsp;·&nbsp; ______________<br>
+      <b>Where</b> &nbsp;·&nbsp; ______________
+    </div>
+    <div class="foot">TEQUILA &amp; MEZCAL TASTING &nbsp;·&nbsp; THREE POURS &nbsp;·&nbsp; NO SHOTS</div>
+  </div>
+</div>
+</body></html>"""
+
+with open(f"{BASE}/agave-invite-square.html", "w") as f:
+    f.write(sq)
+
+print("invite written")

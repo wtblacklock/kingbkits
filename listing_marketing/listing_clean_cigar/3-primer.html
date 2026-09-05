@@ -1,0 +1,44 @@
+<!doctype html><html><head><meta charset='utf-8'><style>
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Archivo+Black&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:2000px;height:2000px;overflow:hidden;}
+body{font-family:'Raleway',sans-serif;position:relative;}
+.kb{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;background:#000;
+  border-radius:24px;padding:18px 30px 20px;font-family:'Archivo Black',sans-serif;line-height:0.92;
+  text-align:center;width:fit-content;}
+.kb .l1{font-size:40px;color:#f3c318;}
+.kb .l2{font-size:28px;color:#fff;letter-spacing:0.02em;margin-top:2px;}
+.pill{display:inline-flex;align-items:center;font-weight:700;font-size:32px;padding:12px 30px;
+  border-radius:999px;color:#000;}
+.cap{font-size:32px;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;}
+.grain{position:absolute;inset:0;filter:url(#grain);opacity:0.3;mix-blend-mode:overlay;background:#fff;}
+</style></head><body>
+<svg style="position:absolute;width:0;height:0"><defs>
+  <filter id="wood">
+    <feTurbulence type="fractalNoise" baseFrequency="0.0016 0.09" numOctaves="4" seed="7"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.42"/></feComponentTransfer>
+  </filter>
+  <filter id="grain">
+    <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" seed="3"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.22"/></feComponentTransfer>
+  </filter>
+  <filter id="haze">
+    <feTurbulence type="fractalNoise" baseFrequency="0.004 0.011" numOctaves="5" seed="11"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.5"/></feComponentTransfer>
+  </filter>
+</defs></svg>
+
+<div style="position:absolute;inset:0;background:
+  linear-gradient(172deg,#f4efe6 0%,#ece3d5 46%,#e0d4c0 58%,#cdbca3 100%);"></div>
+<div style="position:absolute;left:-220px;top:-320px;width:1550px;height:1550px;
+  background:radial-gradient(circle,rgba(255,255,255,0.85),rgba(255,255,255,0) 62%);"></div>
+<div style="position:absolute;left:100px;top:90px;">
+  <div class="cap" style="color:#8a6f45;">02 &middot; Primer</div>
+</div>
+<div style="position:absolute;right:100px;top:100px;"><div class="kb"><span class="l1">KINGB</span><span class="l2">KITS</span></div></div>
+<div style="position:absolute;left:50%;top:300px;transform:translateX(-50%) rotate(0deg);">
+  <img src="../listing_images/page-2.png" style="width:1520px;display:block;box-shadow:0 10px 22px rgba(70,45,20,0.3), 0 70px 100px -34px rgba(70,45,20,0.5);">
+</div><div class="grain"></div></body></html>

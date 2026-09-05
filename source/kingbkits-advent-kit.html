@@ -1,0 +1,1642 @@
+<title>24 Nights of Whisky</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Archivo+Black&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper: #ffffff;
+    --zone: #f9f9f9;
+    --cover: #eaeae7;
+    --chip: #d2d2d2;
+    --ink: #000000;
+    --ink-body: #454545;
+    --ink-faint: #8a8a8a;
+    --rule: #d8d8d5;
+    --tier-newbie: #87cb28;
+    --tier-casual: #ffff00;
+    --tier-aficionado: #ffd230;
+    --gold: #eddd86;
+    --yellow: #fff481;
+    --cyan: #b8f0f4;
+    --orange: #fdba40;
+    --pink: #ebc8df;
+    --green: #b7d776;
+    --coral: #ff9c97;
+    --shadow-sheet: 0 1px 1px rgba(0,0,0,0.06), 0 20px 44px -22px rgba(0,0,0,0.28);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#1c1c1a; --zone:#242422; --cover:#242422; --chip:#3a3a37;
+      --ink:#f5f5f2; --ink-body:#c9c9c4; --ink-faint:#8f8f89; --rule:#3a3a37;
+      --shadow-sheet: 0 1px 1px rgba(0,0,0,0.4), 0 20px 44px -22px rgba(0,0,0,0.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#1c1c1a; --zone:#242422; --cover:#242422; --chip:#3a3a37;
+    --ink:#f5f5f2; --ink-body:#c9c9c4; --ink-faint:#8f8f89; --rule:#3a3a37;
+    --shadow-sheet: 0 1px 1px rgba(0,0,0,0.4), 0 20px 44px -22px rgba(0,0,0,0.7);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--cover);
+    color:var(--ink-body);
+    font-family:'Raleway', ui-sans-serif, system-ui, sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Nav ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    background:var(--cover);
+    border-bottom:1px solid var(--rule);
+    padding:14px 20px;
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand .bee{width:22px; height:22px; flex:none;}
+  .brand .word{font-weight:600; font-size:0.92rem; color:var(--ink); letter-spacing:0.01em;}
+  .nav-tabs{display:flex; gap:6px; flex-wrap:wrap;}
+  .nav-tabs a{
+    font-size:0.78rem; font-weight:500;
+    text-decoration:none; color:var(--ink-body);
+    background:var(--paper); border:1px solid var(--rule);
+    padding:7px 13px; border-radius:999px;
+  }
+  .nav-tabs a:hover{color:var(--ink); border-color:var(--ink-faint);}
+  .print-hint{margin-left:auto; font-size:0.76rem; color:var(--ink-faint);}
+  .print-hint kbd{font-family:ui-monospace,monospace; background:var(--paper); padding:2px 6px; border-radius:4px; border:1px solid var(--rule);}
+
+  .intro{max-width:760px; margin:0 auto; padding:36px 24px 6px;}
+  .intro .eyebrow{font-style:italic; font-weight:400; font-size:1rem; color:var(--ink-body); margin-bottom:4px;}
+  .intro h1{font-weight:300; font-size:clamp(1.8rem,4.4vw,2.6rem); color:var(--ink); margin:0 0 10px; letter-spacing:-0.01em;}
+  .intro p{max-width:64ch; margin:0 0 6px; font-size:0.95rem;}
+  .intro .fit-note{font-size:0.84rem; color:var(--ink-faint); margin-top:12px; border-left:2px solid var(--ink-faint); padding-left:12px;}
+  .intro .fit-note b{color:var(--ink-body);}
+
+  .deck{max-width:900px; margin:0 auto; padding:30px 24px 100px; display:flex; flex-direction:column; gap:52px;}
+
+  .sheet-label{display:flex; align-items:baseline; gap:10px; margin-bottom:12px;}
+  .sheet-label .n{font-size:0.8rem; color:var(--ink-faint); font-weight:600;}
+  .sheet-label h2{font-weight:600; font-size:1.2rem; margin:0; color:var(--ink);}
+  .sheet-label .fmt{margin-left:auto; font-size:0.74rem; color:var(--ink-faint);}
+
+  .sheet{
+    background:var(--paper); box-shadow:var(--shadow-sheet); border-radius:2px;
+    width:100%; aspect-ratio:8.5/11; padding:0.55in 0.55in; position:relative; overflow:hidden;
+  }
+
+  /* KINGBKITS wordmark badge — real shop mark, not an invented icon */
+  .kb-badge{
+    display:inline-flex; flex-direction:column; align-items:center; justify-content:center;
+    background:#000; border-radius:10px; padding:7px 12px 8px;
+    font-family:'Archivo Black', 'Raleway', sans-serif; font-weight:400;
+    line-height:0.92; text-align:center; width:fit-content; flex:none;
+  }
+  .kb-badge .l1{font-size:1rem; color:#f3c318; letter-spacing:-0.01em;}
+  .kb-badge .l2{font-size:0.72rem; color:#fff; letter-spacing:0.02em; margin-top:1px;}
+  .kb-badge.sm .l1{font-size:0.68rem;}
+  .kb-badge.sm .l2{font-size:0.5rem;}
+  .kb-badge.sm{padding:5px 8px 6px; border-radius:6px;}
+
+  /* ============ PIECE 1 — GUIDE ============ */
+  .g-top{margin-bottom:26px;}
+  .g-top .breadcrumb{font-style:italic; font-size:0.92rem; color:var(--ink-body);}
+  .g-top .arrow{font-size:1rem; color:var(--ink-body); margin:2px 0;}
+  .g-top h3{font-weight:300; font-size:2.6rem; color:var(--ink); margin:2px 0 0;}
+  .g-top .sub{font-weight:400; font-size:1.3rem; color:var(--ink);}
+  .g-cols{display:grid; grid-template-columns:1fr 1fr; gap:0.45in; margin-top:22px;}
+  .g-block{margin-bottom:16px;}
+  .g-block h4{font-weight:700; font-size:0.86rem; color:var(--ink); margin:0 0 6px;}
+  .g-block p, .g-block li{font-size:0.8rem; color:var(--ink-body); margin:0 0 6px;}
+  .g-block ul{margin:0 0 8px; padding-left:16px;}
+  .g-rule{border:0; border-top:1px solid var(--ink); margin:16px 0;}
+  .g-toc{margin-top:26px; padding:16px 18px; background:var(--zone); border-radius:6px;}
+  .g-toc h4{font-weight:700; font-size:0.86rem; color:var(--ink); margin:0 0 12px;}
+  .g-toc-grid{display:grid; grid-template-columns:repeat(5, 1fr); gap:14px;}
+  .g-toc-grid a{display:block; text-decoration:none; color:inherit; border-left:2px solid var(--ink); padding-left:10px;}
+  .g-toc-grid .tn{display:block; font-size:0.68rem; font-weight:700; color:var(--ink-faint); letter-spacing:0.04em;}
+  .g-toc-grid .tt{display:block; font-size:0.8rem; font-weight:600; color:var(--ink); line-height:1.25; margin:2px 0;}
+  .g-toc-grid .tp{display:block; font-size:0.68rem; color:var(--ink-faint);}
+
+  /* ============ PIECE 2 — PAIRBASE ============ */
+  .pb-head{margin-bottom:16px;}
+  .pb-head .eyebrow{font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-faint); font-weight:600;}
+  .pb-head h3{font-weight:300; font-size:2.1rem; color:var(--ink); margin:2px 0;}
+  .pb-head .sub{font-size:0.85rem; color:var(--ink-body);}
+  table.pairbase{width:100%; border-collapse:collapse; font-size:0.76rem; margin-top:14px;}
+  table.pairbase th{
+    text-transform:uppercase; letter-spacing:0.04em; font-size:0.64rem; font-weight:700;
+    color:var(--ink-faint); text-align:left; padding:8px 10px; border-bottom:2px solid var(--ink);
+  }
+  table.pairbase td{padding:13px 10px; border-bottom:1px solid var(--rule); vertical-align:top; color:var(--ink-body);}
+  table.pairbase tr:last-child td{border-bottom:2px solid var(--ink);}
+  .tier-pill{
+    display:inline-block; font-weight:700; font-size:0.72rem; color:#000;
+    padding:3px 10px; border-radius:999px; margin-bottom:6px;
+  }
+  .tier-pill.newbie{background:var(--tier-newbie);}
+  .tier-pill.casual{background:var(--tier-casual);}
+  .tier-pill.aficionado{background:var(--tier-aficionado);}
+  .pb-note{margin-top:20px; padding:12px 14px; background:var(--zone); font-size:0.78rem; color:var(--ink-body); border-left:3px solid var(--ink);}
+  .pb-note b{color:var(--ink);}
+
+  /* ============ PIECE 2 — PRIMER ============ */
+  .pr-head{margin-bottom:20px;}
+  .pr-head .eyebrow{font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-faint); font-weight:600;}
+  .pr-head h3{font-weight:300; font-size:2.1rem; color:var(--ink); margin:2px 0;}
+  .pr-head .sub{font-size:0.85rem; color:var(--ink-body);}
+  .pr-cols{display:grid; grid-template-columns:1.15fr 0.85fr; gap:0.5in;}
+  .pr-section{margin-bottom:18px;}
+  .pr-section h4{font-weight:700; font-size:1rem; color:var(--ink); margin:0 0 4px;}
+  .pr-section .lede{font-size:0.72rem; color:var(--ink-faint); margin-bottom:10px;}
+  .pr-item{margin-bottom:10px;}
+  .pr-item .name{font-weight:700; font-size:0.8rem; color:var(--ink);}
+  .pr-item p{font-size:0.78rem; color:var(--ink-body); margin:2px 0 0;}
+  .pr-dash{border:0; border-top:1px dashed var(--rule); margin:18px 0;}
+  .pr-timeline{position:relative; padding-left:22px;}
+  .pr-timeline::before{content:""; position:absolute; left:4px; top:6px; bottom:6px; width:1px; background:var(--rule);}
+  .pr-step{position:relative; margin-bottom:16px;}
+  .pr-step::before{content:""; position:absolute; left:-22px; top:4px; width:9px; height:9px; border-radius:50%; background:var(--ink);}
+  .pr-step .name{font-weight:700; font-size:0.82rem; color:var(--ink);}
+  .pr-step p{font-size:0.76rem; color:var(--ink-body); margin:2px 0 0;}
+  .pr-callout{background:var(--zone); border-radius:6px; padding:14px 16px; margin-top:20px;}
+  .pr-callout h5{font-weight:700; font-size:0.78rem; color:var(--ink); margin:0 0 6px;}
+  .pr-callout p{font-size:0.74rem; color:var(--ink-body); margin:0 0 4px;}
+  .pr-callout b{color:var(--ink);}
+
+  /* ============ PIECE 4 — FLAVOR WHEELS ============ */
+  .fw-head{margin-bottom:14px;}
+  .fw-head .eyebrow{font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-faint); font-weight:600;}
+  .fw-head h3{font-weight:300; font-size:2.1rem; color:var(--ink); margin:2px 0;}
+  .fw-head .sub{font-size:0.85rem; color:var(--ink-body);}
+  .fw-pair{display:grid; grid-template-columns:1fr 1fr; gap:0.2in; margin:0.15in -0.35in 0; width:calc(100% + 0.7in);}
+  .fw-pair figure{margin:0; display:flex; flex-direction:column; align-items:center;}
+  .fw-pair svg{width:100%; height:auto; max-width:420px;}
+  .fw-pair figcaption{font-weight:700; font-size:0.9rem; color:var(--ink); margin-top:6px;}
+  .fw-how{margin-top:0.1in; padding:10px 16px; background:var(--zone); border-radius:6px; font-size:0.74rem; color:var(--ink-body);}
+  .fw-how b{color:var(--ink);}
+
+  /* ============ PIECE 5 — PAIRING CARDS ============ */
+  .pcard-page{height:100%; display:flex; flex-direction:column;}
+  .pcard{border:1px solid var(--rule); border-radius:4px; overflow:hidden; display:flex; flex-direction:column; height:100%;}
+  .pcard .bar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 18px; border-bottom:1px solid var(--rule);
+  }
+  .pcard .bar .left{display:flex; align-items:center; gap:10px;}
+  .pcard .bar .cat{font-weight:700; font-size:1.15rem; color:var(--ink); letter-spacing:0.01em;}
+  .pcard .bar .jc{display:flex; align-items:center; gap:6px; font-size:0.72rem; color:var(--ink-body);}
+  .pcard .body{padding:16px 18px; flex:1; display:flex; flex-direction:column;}
+  .pcard .origin{font-size:0.68rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:12px;}
+  .pcard .pairnames{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;}
+  .pcard .pairnames .role{font-size:0.64rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:2px;}
+  .pcard .pairnames .fill-line{border-bottom:1px solid var(--rule); height:22px;}
+  .pcard .checkpoints{flex:1; display:flex; flex-direction:column; gap:12px;}
+  .pcard .checkpoint{background:var(--zone); border-radius:4px; padding:10px 14px; flex:1; display:flex; flex-direction:column;}
+  .pcard .checkpoint .ck-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:6px;}
+  .pcard .checkpoint .ck-name{font-weight:700; font-size:0.8rem; color:var(--ink);}
+  .pcard .checkpoint .ck-hint{font-size:0.66rem; color:var(--ink-faint);}
+  .pcard .checkpoint .pour-line{display:flex; align-items:baseline; gap:6px; font-size:0.66rem; color:var(--ink-faint); margin-bottom:6px;}
+  .pcard .checkpoint .pour-line .fill-line{flex:1; border-bottom:1px solid var(--rule); height:16px;}
+  .pcard .checkpoint .note-lines{flex:1; display:flex; flex-direction:column; min-height:44px;}
+  .pcard .checkpoint .note-lines .ln{border-bottom:1px solid var(--rule); flex:1;}
+  .pcard .footer-row{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px; align-items:end;}
+  .pcard .footer-row .role{font-size:0.64rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:2px;}
+  .pcard .footer-row .fill-line{border-bottom:1px solid var(--rule); height:20px;}
+  .pcard .facts{margin-top:12px;}
+  .pcard .facts .f{display:flex; gap:8px; font-size:0.7rem; color:var(--ink-body); margin-bottom:4px;}
+  .pcard .facts .f .ar{color:var(--ink-faint);}
+
+  @media screen and (max-width: 760px){
+    .g-cols, .pr-cols{grid-template-columns:1fr;}
+    .sheet{aspect-ratio:auto; min-height:640px;}
+    .pcard .pairnames{grid-template-columns:1fr;}
+  }
+
+  @media print{
+    .topbar, .intro{display:none;}
+    body{background:#fff;}
+    .deck{padding:0; gap:0; max-width:none;}
+    .sheet-label{display:none;}
+    .sheet{box-shadow:none; border-radius:0; width:8.5in; aspect-ratio:auto; height:11in; page-break-after:always; margin:0 auto;}
+  }
+
+  .ico{width:1em; height:1em; vertical-align:-0.15em; margin-right:5px; flex:none;}
+  h4 .ico, .ck-name .ico{width:1.1em; height:1.1em;}
+  th .ico{width:1.05em; height:1.05em; margin-right:4px;}
+  .role .ico, .pour-line .ico{width:1.5em; height:1.5em; margin-right:6px;}
+
+  /* ============ ADVENT CARDS ============ */
+  @page{size:letter; margin:0;}
+  .sheet-flex{display:flex; flex-direction:column;}
+  .adv-grid{display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;
+            gap:0.16in; flex:1; min-height:0;}
+  .adv-card{border:1px dashed var(--rule); border-radius:3px; padding:0.17in 0.19in;
+            display:flex; flex-direction:column; min-height:0;}
+  .adv-top{display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:7px;}
+  .adv-num{font-family:'Archivo Black','Raleway',sans-serif; font-size:2.1rem; line-height:0.85;
+           color:var(--ink); letter-spacing:-0.02em;}
+  .adv-daylabel{font-size:0.55rem; letter-spacing:0.12em; text-transform:uppercase;
+                color:var(--ink-faint); font-weight:700; margin-bottom:2px;}
+  .adv-datebox{text-align:right;}
+  .adv-datebox .lbl{font-size:0.52rem; letter-spacing:0.07em; text-transform:uppercase; color:var(--ink-faint);}
+  .adv-datebox .ln{border-bottom:1px solid var(--rule); width:0.78in; height:12px;}
+  .adv-guess{background:var(--zone); border-radius:3px; padding:5px 8px 6px; margin-bottom:6px;}
+  .adv-guess .gh{font-size:0.5rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+                 color:var(--ink-faint); margin-bottom:2px;}
+  .adv-guess .gr{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+  .adv-guess .gl{font-size:0.5rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink-faint);}
+  .adv-guess .ln{border-bottom:1px solid var(--rule); height:12px;}
+  .adv-name{margin-bottom:6px;}
+  .adv-name .lbl{font-size:0.52rem; letter-spacing:0.07em; text-transform:uppercase; color:var(--ink-faint);}
+  .adv-name .ln{border-bottom:1px solid var(--ink); height:15px;}
+  .adv-meta{display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-bottom:7px;}
+  .adv-meta .lbl{font-size:0.5rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-faint);}
+  .adv-meta .ln{border-bottom:1px solid var(--rule); height:12px;}
+  .adv-notes{flex:1; display:flex; flex-direction:column; gap:5px; min-height:0;}
+  .adv-note{flex:1; display:flex; flex-direction:column; min-height:0;}
+  .adv-note .lbl{font-size:0.55rem; font-weight:700; color:var(--ink); margin-bottom:1px;}
+  .adv-note .lines{flex:1; display:flex; flex-direction:column; min-height:0;}
+  .adv-note .lines .l{flex:1; border-bottom:1px solid var(--rule); min-height:9px;}
+  .adv-foot{display:flex; align-items:center; justify-content:space-between; margin-top:7px;}
+  .adv-score{display:flex; align-items:center; gap:4px;}
+  .adv-score .lbl{font-size:0.52rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-faint); margin-right:1px;}
+  .adv-dot{width:11px; height:11px; border:1px solid var(--ink-faint); border-radius:50%;}
+  .adv-again{font-size:0.55rem; color:var(--ink-faint);}
+  .adv-again b{color:var(--ink);}
+
+  /* ============ TRACKER ============ */
+  .trk-grid{display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:repeat(6,1fr);
+            gap:0.12in; flex:1; min-height:0; margin-top:0.14in;}
+  .trk-cell{border:1px solid var(--rule); border-radius:3px; padding:6px 8px 7px;
+            display:flex; flex-direction:column; min-height:0;}
+  .trk-cell .n{font-family:'Archivo Black','Raleway',sans-serif; font-size:0.78rem;
+               color:var(--ink-faint); line-height:1;}
+  .trk-cell .wr{flex:1; display:flex; flex-direction:column; min-height:0; margin-top:3px;}
+  .trk-cell .wr .l{flex:1; border-bottom:1px solid var(--rule); min-height:11px;}
+  .trk-cell .sc{display:flex; gap:3px; margin-top:5px;}
+  .trk-cell .sd{width:8px; height:8px; border:1px solid var(--ink-faint); border-radius:50%;}
+  .trk-podium{display:grid; grid-template-columns:repeat(5,1fr); gap:0.13in; margin-top:0.09in;}
+  .trk-slot{border-top:2px solid var(--ink); padding-top:6px;}
+  .trk-slot .r{font-family:'Archivo Black','Raleway',sans-serif; font-size:0.85rem; color:var(--ink);}
+  .trk-slot .ln{border-bottom:1px solid var(--rule); height:20px; margin-top:3px;}
+  ::selection{background:var(--tier-aficionado); color:#000;}
+</style>
+
+<svg style="display:none" aria-hidden="true">
+  <symbol id="ico-glass" viewBox="0 0 28 28">
+    <path d="M7 6 H21 L18.5 20 Q18 23 14 23 Q10 23 9.5 20 Z" fill="none" stroke="#8a7663" stroke-width="1.6"/>
+    <path d="M8.3 12.5 H19.7 L18.5 20 Q18 23 14 23 Q10 23 9.5 20 Z" fill="#c98a2c"/>
+    <path d="M8.3 12.5 H19.7 L19.3 15 H8.7 Z" fill="#e0ab4e"/>
+  </symbol>
+</svg>
+
+<div class="topbar">
+  <div class="brand"><span class="kb-badge sm"><span class="l1">KINGB</span><span class="l2">KITS</span></span><span class="word">24 Nights of Whisky</span></div>
+  <div class="nav-tabs">
+    <a href="#guide">Guide</a>
+    <a href="#cards-1">Tasting Cards</a>
+    <a href="#tracker">Tracker</a>
+    <a href="#wheel">Flavor Wheel</a>
+  </div>
+  <div class="print-hint">Print each sheet at Letter, no scaling - <kbd>Cmd/Ctrl+P</kbd></div>
+</div>
+
+<div class="intro">
+  <div class="eyebrow">Product Master &middot; v1</div>
+  <h1>The advent calendar companion</h1>
+  <p>Built for the person who already bought a 24-dram whisky advent calendar and has nowhere to write anything down. Twenty-four numbered cards, a month-at-a-glance tracker, and a flavor wheel - same system as the other kits.</p>
+  <p class="fit-note">This one deliberately ships <b>no bottle recommendations</b>. The buyer's calendar already picked the whiskies; the job here is to capture them, not to shop. That is what makes it a companion product rather than a competing one.</p>
+</div>
+
+<div class="deck">
+
+  <!-- PIECE 1: GUIDE -->
+  <div id="guide">
+    <div class="sheet-label"><span class="n">01</span><h2>How to Use</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet">
+      <div class="g-top" style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <div class="breadcrumb">Start Here</div>
+          <div class="arrow">&darr;</div>
+          <h3>24 Nights of Whisky</h3>
+          <div class="sub">One dram a night, written down properly</div>
+        </div>
+        <span class="kb-badge"><span class="l1">KINGB</span><span class="l2">KITS</span></span>
+      </div>
+
+      <div class="g-cols">
+        <div>
+          <div class="g-block">
+            <h4>BEFORE NIGHT ONE</h4>
+            <ul>
+              <li>Print the six card sheets and cut along the dashed lines. Twenty-four cards, four per page.</li>
+              <li>Print the tracker once and put it somewhere you'll actually see it - the whole point is watching the month fill in.</li>
+              <li>Keep the flavor wheel next to the glass, not in a drawer.</li>
+            </ul>
+            <h4 style="margin-top:14px;">EACH NIGHT</h4>
+            <ul>
+              <li>Grab that night's numbered card <b>before</b> you open the door. Most calendars keep the dram a mystery, so the guess only works if the card comes first.</li>
+              <li><b>Guess blind.</b> Pour, nose, taste, then commit to a region and an age on the card. Only then read the label and fill in the reveal.</li>
+              <li>Nose it with your mouth slightly open. Most calendar drams run cask strength or close to it.</li>
+              <li>Add a few drops of water partway through and note whether it opened up. On a 30ml dram you get exactly one chance at this.</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="g-block">
+            <h4>SCORING</h4>
+            <ul>
+              <li>Five circles, fill as many as it earns. Resist scoring everything a four - the spread is what makes the tracker worth reading in January.</li>
+              <li>"Full bottle? Y / N" is the only question that really matters. Circle it honestly.</li>
+            </ul>
+            <h4 style="margin-top:14px;">AT THE END</h4>
+            <ul>
+              <li>Transfer each night's name and score to the tracker as you go, not all at once on the 24th.</li>
+              <li>Fill in your top five on the tracker. That list is your buying list for next year.</li>
+              <li>Keep the cards. Next December you'll want to know what past-you thought.</li>
+            </ul>
+          </div>
+          <hr class="g-rule">
+          <div class="g-block">
+            <h4>WHICH CALENDARS THIS FITS</h4>
+            <p>Built around the standard <b>24 &times; 30ml</b> format, so it works with Drinks by the Dram, Secret Spirits, Flaviar, The Whisky Exchange, and the supermarket calendars. Scotch, bourbon, Irish, Japanese or world whisky - the cards don't assume a category.</p>
+            <p style="margin-top:6px;">Also fine for a 12-day calendar: use cards 01&ndash;12 and ignore the rest.</p>
+          </div>
+          <hr class="g-rule">
+          <div class="g-block">
+            <h4>IF YOU'RE SHARING</h4>
+            <p>Print a second set per person and compare before the reveal. Two people rarely guess the same region, and that argument is the best part of the night.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="g-toc">
+        <h4>WHAT'S IN THIS KIT</h4>
+        <div class="g-toc-grid">
+          <a href="#guide"><span class="tn">01</span><span class="tt">How to Use</span><span class="tp">This page</span></a>
+          <a href="#cards-1"><span class="tn">02&ndash;07</span><span class="tt">Tasting Cards</span><span class="tp">Pages 2-7</span></a>
+          <a href="#tracker"><span class="tn">08</span><span class="tt">Month Tracker</span><span class="tp">Page 8</span></a>
+          <a href="#wheel"><span class="tn">09</span><span class="tt">Flavor Wheel</span><span class="tp">Page 9</span></a>
+          <a href="#cards-1"><span class="tn">24</span><span class="tt">Numbered Cards</span><span class="tp">4 per sheet</span></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="cards-1">
+    <div class="sheet-label"><span class="n">02</span><h2>Tasting Cards &middot; Nights 1&ndash;4</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet sheet-flex">
+      <div class="adv-grid">
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">01</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">02</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">03</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">04</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cards-2">
+    <div class="sheet-label"><span class="n">03</span><h2>Tasting Cards &middot; Nights 5&ndash;8</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet sheet-flex">
+      <div class="adv-grid">
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">05</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">06</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">07</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">08</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cards-3">
+    <div class="sheet-label"><span class="n">04</span><h2>Tasting Cards &middot; Nights 9&ndash;12</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet sheet-flex">
+      <div class="adv-grid">
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">09</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">10</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">11</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">12</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cards-4">
+    <div class="sheet-label"><span class="n">05</span><h2>Tasting Cards &middot; Nights 13&ndash;16</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet sheet-flex">
+      <div class="adv-grid">
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">13</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">14</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">15</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">16</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cards-5">
+    <div class="sheet-label"><span class="n">06</span><h2>Tasting Cards &middot; Nights 17&ndash;20</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet sheet-flex">
+      <div class="adv-grid">
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">17</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">18</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">19</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">20</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cards-6">
+    <div class="sheet-label"><span class="n">07</span><h2>Tasting Cards &middot; Nights 21&ndash;24</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet sheet-flex">
+      <div class="adv-grid">
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">21</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">22</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">23</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-top">
+            <div>
+              <div class="adv-daylabel">Night</div>
+              <div class="adv-num">24</div>
+            </div>
+            <div class="adv-datebox">
+              <div class="lbl">Date</div>
+              <div class="ln"></div>
+            </div>
+          </div>
+          <div class="adv-guess">
+            <div class="gh">Blind guess - before the reveal</div>
+            <div class="gr">
+              <div><div class="gl">Region / style</div><div class="ln"></div></div>
+              <div><div class="gl">Age</div><div class="ln"></div></div>
+            </div>
+          </div>
+          <div class="adv-name">
+            <div class="lbl">The reveal &middot; distillery &amp; expression</div>
+            <div class="ln"></div>
+          </div>
+          <div class="adv-meta">
+            <div><div class="lbl">Region</div><div class="ln"></div></div>
+            <div><div class="lbl">Age</div><div class="ln"></div></div>
+            <div><div class="lbl">ABV</div><div class="ln"></div></div>
+          </div>
+          <div class="adv-notes">
+            <div class="adv-note"><div class="lbl">Nose</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Palate</div>
+              <div class="lines"><div class="l"></div><div class="l"></div></div></div>
+            <div class="adv-note"><div class="lbl">Finish</div>
+              <div class="lines"><div class="l"></div></div></div>
+          </div>
+          <div class="adv-foot">
+            <div class="adv-score"><span class="lbl">Score</span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span><span class="adv-dot"></span></div>
+            <div class="adv-again">Full bottle? <b>Y / N</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRACKER -->
+  <div id="tracker">
+    <div class="sheet-label"><span class="n">08</span><h2>Month Tracker</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet sheet-flex">
+      <div class="pb-head" style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0;">
+        <div>
+          <div class="eyebrow">Tracker</div>
+          <h3>The Whole Month at a Glance</h3>
+          <div class="sub">Name and score each night as you go, not all at once on the 24th.</div>
+        </div>
+        <span class="kb-badge"><span class="l1">KINGB</span><span class="l2">KITS</span></span>
+      </div>
+
+      <div class="trk-grid">
+          <div class="trk-cell">
+            <div class="n">01</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">02</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">03</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">04</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">05</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">06</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">07</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">08</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">09</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">10</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">11</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">12</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">13</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">14</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">15</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">16</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">17</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">18</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">19</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">20</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">21</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">22</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">23</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+          <div class="trk-cell">
+            <div class="n">24</div>
+            <div class="wr"><div class="l"></div><div class="l"></div></div>
+            <div class="sc"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+          </div>
+      </div>
+
+      <div style="margin-top:0.22in;">
+        <h4 style="font-weight:700; font-size:0.86rem; color:var(--ink); margin:0 0 2px;">TOP FIVE OF THE MONTH</h4>
+        <div style="font-size:0.72rem; color:var(--ink-faint);">Your buying list for next year. Start from the nights you circled <b style="color:var(--ink-body)">Y</b>.</div>
+        <div class="trk-podium">
+          <div class="trk-slot">
+            <div class="r">01</div>
+            <div class="ln"></div>
+          </div>
+          <div class="trk-slot">
+            <div class="r">02</div>
+            <div class="ln"></div>
+          </div>
+          <div class="trk-slot">
+            <div class="r">03</div>
+            <div class="ln"></div>
+          </div>
+          <div class="trk-slot">
+            <div class="r">04</div>
+            <div class="ln"></div>
+          </div>
+          <div class="trk-slot">
+            <div class="r">05</div>
+            <div class="ln"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLAVOR WHEEL -->
+  <div id="wheel">
+    <div class="sheet-label"><span class="n">09</span><h2>Flavor Wheel</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet">
+      <div class="fw-head" style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <div class="eyebrow">Flavor Wheel</div>
+          <h3>Put a Word to It</h3>
+          <div class="sub">Start at the center tier, work outward for something more specific.</div>
+        </div>
+        <span class="kb-badge"><span class="l1">KINGB</span><span class="l2">KITS</span></span>
+      </div>
+
+      <div style="display:flex; justify-content:center; margin-top:0.3in;">
+        <svg viewBox="0 0 580 580" style="width:100%; max-width:5.6in; height:auto;"><circle cx="290" cy="290" r="64" fill="#17130f"/>
+<text x="290" y="290" font-size="18" font-weight="700" fill="#f3c318" text-anchor="middle" dominant-baseline="central" font-family='Raleway, sans-serif'>SIP</text>
+<path d="M 290.00 226.00 A 64.00 64.00 0 0 1 345.43 258.00 L 442.42 202.00 A 176.00 176.00 0 0 0 290.00 114.00 Z" fill="#eecb5f" stroke="#fdf9ef" stroke-width="2"/>
+<text x="339.92" y="203.54" font-size="17" font-weight="700" fill="#241b10" text-anchor="start" transform="rotate(-60.00 339.92 203.54)" font-family="Raleway, sans-serif" >Sweet</text>
+<path d="M 290.00 114.00 A 176.00 176.00 0 0 1 335.55 120.00 L 360.40 27.27 A 272.00 272.00 0 0 0 290.00 18.00 Z" fill="#f6e4a8" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="319.76" y="63.95" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-82.50 319.76 63.95)" font-family="Raleway, sans-serif" >Vanilla</text>
+<path d="M 335.55 120.00 A 176.00 176.00 0 0 1 378.00 137.58 L 426.00 54.44 A 272.00 272.00 0 0 0 360.40 27.27 Z" fill="#f6e4a8" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="377.25" y="79.36" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-67.50 377.25 79.36)" font-family="Raleway, sans-serif" >Caramel</text>
+<path d="M 378.00 137.58 A 176.00 176.00 0 0 1 414.45 165.55 L 482.33 97.67 A 272.00 272.00 0 0 0 426.00 54.44 Z" fill="#f6e4a8" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="428.80" y="109.12" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-52.50 428.80 109.12)" font-family="Raleway, sans-serif" >Honey</text>
+<path d="M 414.45 165.55 A 176.00 176.00 0 0 1 442.42 202.00 L 525.56 154.00 A 272.00 272.00 0 0 0 482.33 97.67 Z" fill="#f6e4a8" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="470.88" y="151.20" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-37.50 470.88 151.20)" font-family="Raleway, sans-serif" >Maple</text>
+<path d="M 345.43 258.00 A 64.00 64.00 0 0 1 345.43 322.00 L 442.42 378.00 A 176.00 176.00 0 0 0 442.42 202.00 Z" fill="#e0793c" stroke="#fdf9ef" stroke-width="2"/>
+<text x="389.84" y="290.00" font-size="17" font-weight="700" fill="#241b10" text-anchor="start" transform="rotate(0.00 389.84 290.00)" font-family="Raleway, sans-serif" >Spicy</text>
+<path d="M 442.42 202.00 A 176.00 176.00 0 0 1 463.33 259.44 L 557.87 242.77 A 272.00 272.00 0 0 0 525.56 154.00 Z" fill="#f0b98d" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="504.25" y="212.02" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-20.00 504.25 212.02)" font-family="Raleway, sans-serif" >Pepper</text>
+<path d="M 463.33 259.44 A 176.00 176.00 0 0 1 463.33 320.56 L 557.87 337.23 A 272.00 272.00 0 0 0 557.87 242.77 Z" fill="#f0b98d" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="518.00" y="290.00" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(0.00 518.00 290.00)" font-family="Raleway, sans-serif" >Cinnamon</text>
+<path d="M 463.33 320.56 A 176.00 176.00 0 0 1 442.42 378.00 L 525.56 426.00 A 272.00 272.00 0 0 0 557.87 337.23 Z" fill="#f0b98d" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="504.25" y="367.98" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(20.00 504.25 367.98)" font-family="Raleway, sans-serif" >Clove</text>
+<path d="M 345.43 322.00 A 64.00 64.00 0 0 1 290.00 354.00 L 290.00 466.00 A 176.00 176.00 0 0 0 442.42 378.00 Z" fill="#6b5a45" stroke="#fdf9ef" stroke-width="2"/>
+<text x="339.92" y="376.46" font-size="17" font-weight="700" fill="#241b10" text-anchor="start" transform="rotate(60.00 339.92 376.46)" font-family="Raleway, sans-serif" >Smoky</text>
+<path d="M 442.42 378.00 A 176.00 176.00 0 0 1 414.45 414.45 L 482.33 482.33 A 272.00 272.00 0 0 0 525.56 426.00 Z" fill="#a5907a" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="470.88" y="428.80" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(37.50 470.88 428.80)" font-family="Raleway, sans-serif" >Peat</text>
+<path d="M 414.45 414.45 A 176.00 176.00 0 0 1 378.00 442.42 L 426.00 525.56 A 272.00 272.00 0 0 0 482.33 482.33 Z" fill="#a5907a" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="428.80" y="470.88" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(52.50 428.80 470.88)" font-family="Raleway, sans-serif" >Smoke</text>
+<path d="M 378.00 442.42 A 176.00 176.00 0 0 1 335.55 460.00 L 360.40 552.73 A 272.00 272.00 0 0 0 426.00 525.56 Z" fill="#a5907a" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="377.25" y="500.64" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(67.50 377.25 500.64)" font-family="Raleway, sans-serif" >Tar</text>
+<path d="M 335.55 460.00 A 176.00 176.00 0 0 1 290.00 466.00 L 290.00 562.00 A 272.00 272.00 0 0 0 360.40 552.73 Z" fill="#a5907a" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="319.76" y="516.05" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(82.50 319.76 516.05)" font-family="Raleway, sans-serif" >Iodine</text>
+<path d="M 290.00 354.00 A 64.00 64.00 0 0 1 234.57 322.00 L 137.58 378.00 A 176.00 176.00 0 0 0 290.00 466.00 Z" fill="#a98a53" stroke="#fdf9ef" stroke-width="2"/>
+<text x="240.08" y="376.46" font-size="17" font-weight="700" fill="#241b10" text-anchor="end" transform="rotate(300.00 240.08 376.46)" font-family="Raleway, sans-serif" >Woody</text>
+<path d="M 290.00 466.00 A 176.00 176.00 0 0 1 229.80 455.39 L 196.97 545.60 A 272.00 272.00 0 0 0 290.00 562.00 Z" fill="#d3bd8e" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="250.41" y="514.54" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(280.00 250.41 514.54)" font-family="Raleway, sans-serif" >Oak</text>
+<path d="M 229.80 455.39 A 176.00 176.00 0 0 1 176.87 424.82 L 115.16 498.36 A 272.00 272.00 0 0 0 196.97 545.60 Z" fill="#d3bd8e" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="176.00" y="487.45" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(300.00 176.00 487.45)" font-family="Raleway, sans-serif" >Cedar</text>
+<path d="M 176.87 424.82 A 176.00 176.00 0 0 1 137.58 378.00 L 54.44 426.00 A 272.00 272.00 0 0 0 115.16 498.36 Z" fill="#d3bd8e" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="115.34" y="436.56" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(320.00 115.34 436.56)" font-family="Raleway, sans-serif" >Sawdust</text>
+<path d="M 234.57 322.00 A 64.00 64.00 0 0 1 234.57 258.00 L 137.58 202.00 A 176.00 176.00 0 0 0 137.58 378.00 Z" fill="#d9c08a" stroke="#fdf9ef" stroke-width="2"/>
+<text x="190.16" y="290.00" font-size="17" font-weight="700" fill="#241b10" text-anchor="end" transform="rotate(360.00 190.16 290.00)" font-family="Raleway, sans-serif" >Grainy</text>
+<path d="M 137.58 378.00 A 176.00 176.00 0 0 1 116.67 320.56 L 22.13 337.23 A 272.00 272.00 0 0 0 54.44 426.00 Z" fill="#ecdfc0" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="75.75" y="367.98" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(340.00 75.75 367.98)" font-family="Raleway, sans-serif" >Malt</text>
+<path d="M 116.67 320.56 A 176.00 176.00 0 0 1 116.67 259.44 L 22.13 242.77 A 272.00 272.00 0 0 0 22.13 337.23 Z" fill="#ecdfc0" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="62.00" y="290.00" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(360.00 62.00 290.00)" font-family="Raleway, sans-serif" >Cereal</text>
+<path d="M 116.67 259.44 A 176.00 176.00 0 0 1 137.58 202.00 L 54.44 154.00 A 272.00 272.00 0 0 0 22.13 242.77 Z" fill="#ecdfc0" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="75.75" y="212.02" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(380.00 75.75 212.02)" font-family="Raleway, sans-serif" >Bread</text>
+<path d="M 234.57 258.00 A 64.00 64.00 0 0 1 290.00 226.00 L 290.00 114.00 A 176.00 176.00 0 0 0 137.58 202.00 Z" fill="#b98aa3" stroke="#fdf9ef" stroke-width="2"/>
+<text x="240.08" y="203.54" font-size="17" font-weight="700" fill="#241b10" text-anchor="end" transform="rotate(420.00 240.08 203.54)" font-family="Raleway, sans-serif" >Fruity</text>
+<path d="M 137.58 202.00 A 176.00 176.00 0 0 1 165.55 165.55 L 97.67 97.67 A 272.00 272.00 0 0 0 54.44 154.00 Z" fill="#dcbecc" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="109.12" y="151.20" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(397.50 109.12 151.20)" font-family="Raleway, sans-serif" >Apple</text>
+<path d="M 165.55 165.55 A 176.00 176.00 0 0 1 202.00 137.58 L 154.00 54.44 A 272.00 272.00 0 0 0 97.67 97.67 Z" fill="#dcbecc" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="151.20" y="109.12" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(412.50 151.20 109.12)" font-family="Raleway, sans-serif" >Citrus</text>
+<path d="M 202.00 137.58 A 176.00 176.00 0 0 1 244.45 120.00 L 219.60 27.27 A 272.00 272.00 0 0 0 154.00 54.44 Z" fill="#dcbecc" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="202.75" y="79.36" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(427.50 202.75 79.36)" font-family="Raleway, sans-serif" >Berry</text>
+<path d="M 244.45 120.00 A 176.00 176.00 0 0 1 290.00 114.00 L 290.00 18.00 A 272.00 272.00 0 0 0 219.60 27.27 Z" fill="#dcbecc" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="260.24" y="63.95" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(442.50 260.24 63.95)" font-family="Raleway, sans-serif" ><tspan x="260.24" dy="-0.5em">Dried</tspan><tspan x="260.24" dy="1.05em">Fruit</tspan></text>
+<circle cx="290" cy="290" r="272" fill="none" stroke="#d8d8d5" stroke-width="1.5"/>
+<circle cx="290" cy="290" r="176" fill="none" stroke="#fdf9ef" stroke-width="1.5"/></svg>
+      </div>
+
+      <div class="fw-how" style="margin-top:0.28in;"><b>Using the wheel:</b> taste first, then find the inner-ring category that fits - Sweet, Smoky, Fruity, and so on. From there work outward to the specific note. Two words per card is plenty; you are building a vocabulary over twenty-four nights, not writing a review.</div>
+    </div>
+  </div>
+
+</div>
