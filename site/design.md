@@ -96,11 +96,13 @@ text on top). For yellow used as text or a link color on the light paper, use
   tight via `scale-[1.35] object-cover object-top` and right-click/drag disabled via
   `components/ProtectedGalleryImage.tsx` — a deterrent against casual image theft, not
   DRM) → how-it-works (step numbers as filled yellow circles with dark ink text, never
-  yellow text directly on paper — fails contrast) → final CTA.
+  yellow text directly on paper — fails contrast) → final CTA (same accent-band pattern
+  as home, kit-name-specific headline).
 - **About**: restructured editorially (What we do / What we don't do / How we build it /
   How we make money / Who's behind it), modeled on the same honest, structured voice used
   on the operator's other sites (wblacklock.com, trailsteadguide.com) rather than a single
-  paragraph.
+  paragraph, closing with the same full-bleed accent-band CTA as every other page (broken
+  out as a sibling `<section>` after the prose `Container`, not an inline link inside it).
 - **Guides**: now spans two kinds of content: per-spirit primers (unchanged) plus a new
   "Party Planning" topic covering logistics that apply across every kit: pour math, tasting
   station setup, running a blind tasting, and printable invitations.
@@ -124,6 +126,10 @@ text on top). For yellow used as text or a link color on the light paper, use
 - FAQ disclosure uses the native `<details>` toggle, no JS animation.
 
 ## CTA voice
+- **One closing-CTA pattern, shared everywhere** it appears (home, every kit detail page,
+  about): full-bleed `bg-accent` band (never a rounded/bordered card, never `bg-ink`),
+  a roman (non-italic) Fraunces headline in `text-accent-ink`, one `text-accent-ink/80`
+  line of subtext, one real `EtsyButton` — never a plain anchor standing in for it.
 - Primary CTA ("Buy on Etsy" / "Shop all kits on Etsy"): filled black pill, turns yellow on
   hover, direct verb copy.
 - Secondary CTA: outlined black pill.

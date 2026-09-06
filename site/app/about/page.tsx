@@ -11,7 +11,8 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <Container className="max-w-[65ch] py-16 sm:py-20">
+    <>
+      <Container className="max-w-[65ch] py-16 sm:py-20">
       <Reveal>
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.08em] text-ink-faint">About</p>
@@ -124,10 +125,21 @@ export default function AboutPage() {
           </div>
         </div>
       </Reveal>
+      </Container>
 
-      <p className="mt-14 border-t border-rule pt-8">
-        <EtsyButton campaign="about_page">Shop the kits on Etsy</EtsyButton>
-      </p>
-    </Container>
+      <Reveal>
+        <section className="bg-accent py-16 sm:py-20">
+          <Container className="flex flex-col items-center gap-5 text-center">
+            <h2 className="font-display text-3xl text-accent-ink sm:text-4xl">Ready to host?</h2>
+            <p className="max-w-md text-accent-ink/80">
+              Every kit is an instant download on Etsy, invitation template included.
+            </p>
+            <EtsyButton campaign="about_page" content="bottom_cta">
+              Shop all kits on Etsy
+            </EtsyButton>
+          </Container>
+        </section>
+      </Reveal>
+    </>
   );
 }

@@ -224,9 +224,14 @@ export default async function KitPage({ params }: { params: Promise<{ slug: stri
       </Reveal>
 
       <Reveal>
-        <section className="border-t border-rule bg-paper-2 py-16">
-          <Container className="flex flex-col items-center gap-4 text-center">
-            <h2 className="font-display text-2xl text-ink">Ready to host {kit.name}?</h2>
+        <section className="bg-accent py-16 sm:py-20">
+          <Container className="flex flex-col items-center gap-5 text-center">
+            <h2 className="font-display text-3xl text-accent-ink sm:text-4xl">
+              Ready to host {kit.name}?
+            </h2>
+            <p className="max-w-md text-accent-ink/80">
+              Instant download on Etsy. Print it tonight and you&apos;re ready.
+            </p>
             <EtsyButton href={kit.etsyUrl} campaign={`kit_${kit.slug}`} content="bottom_cta">
               Buy on Etsy
             </EtsyButton>
