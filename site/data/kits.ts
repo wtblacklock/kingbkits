@@ -274,6 +274,7 @@ export const KITS: Kit[] = [
   },
   {
     slug: "whisky-advent",
+    etsyUrl: "https://kingbkits.etsy.com/listing/4567613063",
     name: "24 Nights of Whisky",
     subtitle: "Advent Calendar Companion",
     shortDescription:
