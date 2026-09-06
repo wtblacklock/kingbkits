@@ -53,7 +53,7 @@ singles = [
 for fname, cap, img in singles:
     write(OUT, fname, bg, pal, single_image_slide(cap, f"{SRC}/{img}", pal["eyebrow"], w=1520, top=300, shadow=SHADOW))
 
-write(OUT, "site-hero.html", bg, pal, hero_bg_only(pages))
+write(OUT, "site-hero.html", bg, pal, hero_bg_only(""))
 
 # 7. BUNDLE / What's Inside
 bundle_pages = f"""

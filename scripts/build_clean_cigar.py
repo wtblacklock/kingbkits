@@ -63,7 +63,7 @@ write(OUT, "7-bundle.html", bg, pal, bundle_slide(pal, "8 Pages", items, bundle_
 
 # SITE HERO — same background + fanned pages, no baked-in text (the marketing
 # site overlays its own heading on top; text-in-text would duplicate/garble).
-write(OUT, "site-hero.html", bg, pal, hero_bg_only(pages))
+write(OUT, "site-hero.html", bg, pal, hero_bg_only(""))
 
 # 8. INVITE — reframe the existing lifestyle photo in the same dark system
 INVITE_PHOTO = f"{REPO}/ETSY_UPLOAD/cigar/08-invite.png"
