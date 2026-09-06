@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Raleway, Fraunces, JetBrains_Mono } from "next/font/google";
+import { Raleway, Archivo_Black } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/data/site";
@@ -11,17 +11,10 @@ const raleway = Raleway({
   display: "swap",
 });
 
-const fraunces = Fraunces({
+const archivoBlack = Archivo_Black({
   subsets: ["latin"],
-  weight: ["500", "600"],
-  variable: "--font-fraunces",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-jetbrains-mono",
+  weight: "400",
+  variable: "--font-archivo-black",
   display: "swap",
 });
 
@@ -69,7 +62,7 @@ const websiteJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${raleway.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${raleway.variable} ${archivoBlack.variable}`}>
       <body className="flex min-h-screen flex-col font-sans">
         <script
           type="application/ld+json"

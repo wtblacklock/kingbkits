@@ -16,7 +16,9 @@ export function KitCard({
       href={`/kits/${kit.slug}`}
       className="group flex h-full flex-col overflow-hidden rounded-card border border-rule bg-paper transition-all duration-200 hover:-translate-y-0.5 hover:border-ink"
     >
-      <div className={`relative flex-1 overflow-hidden bg-paper-2 ${contain ? "p-4" : ""}`}>
+      <div
+        className={`relative aspect-[4/3] overflow-hidden bg-paper-2 sm:aspect-auto sm:flex-1 ${contain ? "p-4" : ""}`}
+      >
         <Image
           src={kit.images.card}
           alt={kit.name}

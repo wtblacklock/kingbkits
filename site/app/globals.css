@@ -20,13 +20,13 @@
   a:focus-visible,
   button:focus-visible,
   [tabindex]:focus-visible {
-    outline: 2px solid oklch(94% 0.2 106);
+    outline: 2px solid oklch(62.4% 0.205 34.2);
     outline-offset: 2px;
     transition: none;
   }
   ::selection {
     background: oklch(94% 0.2 106);
-    color: oklch(15% 0.008 85);
+    color: oklch(15% 0.01 85);
   }
 }
 
@@ -59,54 +59,42 @@
     @apply mt-2 text-sm text-ink-faint;
   }
 
-  /* H2 split hero - decorative aria-hidden shape cluster, Tier A pure CSS art */
-  .hero-play {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    max-width: 26rem;
+  /* wordmark type treatment - no logo image, just confident type + a small crown accent */
+  .wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.15em;
+    font-family: var(--font-archivo-black), sans-serif;
+    line-height: 1;
+    white-space: nowrap;
   }
-  .hero-play__blob {
-    position: absolute;
-    inset: 8% 12%;
-    border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
-    background: theme("colors.paper-3");
-    border: 1px solid theme("colors.rule");
+  .wordmark__crown {
+    display: inline-block;
+    transform: translateY(-0.05em) rotate(-8deg);
   }
-  .hero-play__ring {
+
+  /* hand-drawn confetti scatter behind the hero, pure CSS, aria-hidden */
+  .confetti-field {
     position: absolute;
-    top: 4%;
-    right: 6%;
-    width: 34%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    border: 3px solid theme("colors.accent");
-    opacity: 0.6;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
   }
-  .hero-play__dot {
+  .confetti-field span {
     position: absolute;
-    bottom: 12%;
-    left: 4%;
-    width: 22%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: theme("colors.accent");
+    border-radius: 3px;
   }
-  .hero-play__pill {
-    position: absolute;
-    bottom: 30%;
-    right: -2%;
-    width: 40%;
-    height: 16%;
-    border-radius: 999px;
-    background: theme("colors.paper-2");
-    border: 1px solid theme("colors.rule");
+
+  /* FAQ disclosure */
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
   }
-  .hero-play__badge {
-    position: absolute;
-    top: 34%;
-    left: 22%;
-    width: 34%;
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item[open] .faq-item__icon {
+    transform: rotate(45deg);
   }
 
   /* Ft8 marquee scroll footer */

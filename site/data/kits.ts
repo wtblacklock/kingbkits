@@ -47,7 +47,6 @@ export interface Kit {
   howItWorks: KitStep[];
   images: {
     hero: string;
-    heroGif?: string;
     card: string;
     gallery: KitGalleryImage[];
   };
@@ -117,7 +116,6 @@ export const KITS: Kit[] = [
     images: {
       hero: "/kits/cigar/hero.png",
       card: "/kits/cigar/card.png",
-      heroGif: "/kits/cigar/hero.gif",
       gallery: [
         { src: "/kits/cigar/preview-guide.png", label: "Party Guide" },
         { src: "/kits/cigar/preview-primer.png", label: "Cigar & Whisky Primer" },
@@ -190,7 +188,6 @@ export const KITS: Kit[] = [
     images: {
       hero: "/kits/agave/hero.png",
       card: "/kits/agave/card.png",
-      heroGif: "/kits/agave/hero.gif",
       gallery: [
         { src: "/kits/agave/preview-guide.png", label: "Party Guide" },
         { src: "/kits/agave/preview-primer.png", label: "Tequila & Mezcal Primer" },
@@ -261,7 +258,6 @@ export const KITS: Kit[] = [
     images: {
       hero: "/kits/halloween/hero.png",
       card: "/kits/halloween/card.png",
-      heroGif: "/kits/halloween/hero.gif",
       gallery: [
         { src: "/kits/halloween/preview-guide.png", label: "Party Guide" },
         { src: "/kits/halloween/preview-primer.png", label: "Candy Primer" },
@@ -304,7 +300,6 @@ export const KITS: Kit[] = [
     images: {
       hero: "/kits/advent/hero.png",
       card: "/kits/advent/card.png",
-      heroGif: "/kits/advent/hero.gif",
       gallery: [
         { src: "/kits/advent/preview-guide.png", label: "How to Use" },
         { src: "/kits/advent/preview-cards.png", label: "Tasting Cards" },

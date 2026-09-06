@@ -26,7 +26,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${kit.name}. ${kit.subtitle}.`,
       description: kit.shortDescription,
-      images: [{ url: kit.images.hero }],
+      images: [{ url: kit.images.card }],
     },
   };
 }
@@ -41,7 +41,7 @@ export default async function KitPage({ params }: { params: Promise<{ slug: stri
     "@type": "Product",
     name: kit.name,
     description: kit.shortDescription,
-    image: `${SITE.url}${kit.images.hero}`,
+    image: `${SITE.url}${kit.images.card}`,
     brand: { "@type": "Brand", name: SITE.name },
     offers: {
       "@type": "Offer",
@@ -54,28 +54,32 @@ export default async function KitPage({ params }: { params: Promise<{ slug: stri
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* H6 Photographic Fold hero. Real owned product photography, full-bleed.
-          Kits without a hero GIF ship a designed cover graphic instead of a photographic
-          scene, so that one asset is shown whole (contain) rather than cropped (cover). */}
-      <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden bg-ink">
-        <Image
-          src={kit.images.hero}
-          alt={kit.name}
-          fill
-          priority
-          sizes="100vw"
-          className={kit.images.heroGif ? "object-cover" : "object-contain"}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent" />
-        <Container className="absolute inset-x-0 bottom-0 flex flex-col gap-4 pb-10">
-          <div className="text-xs font-bold uppercase tracking-[0.1em] text-paper/80">{kit.subtitle}</div>
-          <h1 className="max-w-2xl font-display text-3xl text-paper sm:text-5xl">{kit.name}</h1>
-          <p className="max-w-xl text-paper/90">{kit.shortDescription}</p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <EtsyButton href={kit.etsyUrl} campaign={`kit_${kit.slug}`} content="hero_cta">
-              Buy on Etsy
-            </EtsyButton>
-            <span className="text-sm text-paper/80">{kit.pageCount} PDF pages. Instant download.</span>
+      {/* Hero: headline/CTA on light paper, the real Etsy listing image shown
+          whole (no crop) since it's already a fully-designed product shot. */}
+      <section className="border-b border-rule bg-paper-2">
+        <Container className="grid grid-cols-1 items-center gap-10 py-12 sm:py-16 lg:grid-cols-2 lg:gap-16 lg:py-20">
+          <div className="order-2 lg:order-1">
+            <div className="text-xs font-bold uppercase tracking-[0.1em] text-ink-faint">{kit.subtitle}</div>
+            <h1 className="mt-3 font-display text-3xl leading-[1.08] text-ink sm:text-5xl">{kit.name}</h1>
+            <p className="mt-4 max-w-xl text-lg text-ink-2">{kit.shortDescription}</p>
+            <div className="mt-7 flex flex-wrap items-center gap-4">
+              <EtsyButton href={kit.etsyUrl} campaign={`kit_${kit.slug}`} content="hero_cta">
+                Buy on Etsy
+              </EtsyButton>
+              <span className="text-sm font-semibold text-ink-faint">
+                {kit.pageCount} PDF pages &middot; Instant download
+              </span>
+            </div>
+          </div>
+          <div className="relative order-1 aspect-square w-full overflow-hidden rounded-3xl shadow-sm lg:order-2">
+            <Image
+              src={kit.images.card}
+              alt={kit.name}
+              fill
+              priority
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-contain"
+            />
           </div>
         </Container>
       </section>

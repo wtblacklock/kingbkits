@@ -5,121 +5,121 @@ emitting code. Extend or amend this file when the system needs to grow; do not
 regenerate per page.
 
 ## Genre
-playful (bold end of the register: mono labels, pill buttons, badge energy, not soft pastel onboarding)
+playful (bold, exciting, party-planning energy) — mobile-first, high-accessibility,
+fast-to-convert. This supersedes two earlier phases (a light gold/cream system, then a
+dark + bright-yellow studied-DNA system) per explicit user direction: "the dark isn't
+working... ignore my hallmark example and just have fun... reimagine this whole site."
 
 ## Route
-studied-DNA (source: url, https://www.usehallmark.com/) — structure adopted, palette overridden
-with the brand's own colors per explicit user instruction ("adopt the structure, keep our own
-colors"). The studied page supplied the macrostructure family, hero archetype, nav/footer
-archetypes, type-pairing logic (display+body family plus a distinct mono label face), and pill/
-hairline component language. The paper, ink, and accent values below are **not** from the studied
-source — they come from the same dark + bright-yellow identity already shipped across every Etsy
-listing image, itself anchored on the real crowned-bee logo and its printed yellow (`#fff200`).
+custom, complete redo — no external reference site, no studied macrostructure. Built from
+first principles against one brief: **sell Etsy listings fast**, on mobile, to someone who
+doesn't yet know they want a printable party kit until the headline names their exact
+problem. Every section exists to either build desire (hero photo, kit gallery) or remove a
+purchase objection (value props, FAQ) on the way to an Etsy click.
 
-Prior system (superseded 2026-09): a light cream/gold custom palette anchored on `#f3c318`. That
-palette is gone site-wide, not just on hero sections — see Theme below.
+## Theme — light palette (OKLCH)
 
-## Macrostructure family
-- Marketing pages (home, 4 kit pages): **Bento Grid** for the kit gallery and stat/included-item
-  blocks — unchanged, the user explicitly asked to keep the gallery layout as-is.
-- Home hero: **H2 Split Diptych** (studied from usehallmark.com's hero) — eyebrow + display
-  headline + lede + CTAs on the left, a hand-built `aria-hidden` decorative shape cluster (Tier A
-  pure CSS art: blob, ring, pill, dot, the real logo mark) on the right. Replaces the old centered
-  typographic hero — centered-symmetric hero is the anti-pattern the split fixes.
-- Kit detail hero: **H6 Photographic Fold**, unchanged in archetype, but the hero image is now
-  pure atmosphere (background gradient + accent glow + logo badge, no baked-in text, no product
-  pages) because the section overlays its own heading/CTA on top — baking text into the image
-  duplicated it. A separate `images.card` asset (same background, WITH the fanned product pages,
-  no text) feeds the homepage gallery cards instead, since that context has no overlaid heading to
-  collide with.
-- Content pages (guides index + detail, about): **Long Document** — unchanged.
+Anchor hue: **~85-87° (warm neutral)** for paper/ink, **106° (bright yellow)** for the
+primary accent (`#fff200`, the real printed brand yellow), **~30-34° (coral)** for a second,
+more energetic accent used sparingly.
 
-## Theme — dark palette (OKLCH), our own colors on the studied structure
-
-Anchor hue: **~85-87° (warm neutral)** for surfaces/text, **106° (bright yellow)** for the accent —
-taken directly from the brand mark's printed yellow `#fff200`.
-
-- `--color-paper`      oklch(15% 0.008 85)
-- `--color-paper-2`    oklch(19% 0.010 85)
-- `--color-paper-3`    oklch(24% 0.012 85)
-- `--color-ink`         oklch(95% 0.013 87)
-- `--color-ink-2`       oklch(76% 0.024 87)
-- `--color-ink-faint`   oklch(56% 0.018 87)
-- `--color-rule`        oklch(30% 0.014 85)
-- `--color-accent`      oklch(94% 0.200 106)   /* brand yellow, #fff200 */
-- `--color-accent-ink`  oklch(15% 0.008 85)
-- `--color-focus`       oklch(94% 0.200 106)
-
-**Documented exception:** none anymore — the real logo image now renders everywhere (nav, footer,
-favicon), replacing the old placeholder text badge and its "stays literal #000" carve-out.
+- `--color-paper`       oklch(99.4% 0.008 91.5)  /* warm near-white, not stark #fff, not beige */
+- `--color-paper-2`     oklch(96.5% 0.013 87)
+- `--color-paper-3`     oklch(93.2% 0.023 87)
+- `--color-ink`          oklch(15% 0.010 85)
+- `--color-ink-2`        oklch(35% 0.010 85)
+- `--color-ink-faint`    oklch(55% 0.010 85)
+- `--color-rule`         oklch(88% 0.012 85)
+- `--color-accent`       oklch(94% 0.200 106)   /* brand yellow, #fff200 - fills/badges only */
+- `--color-accent-ink`   oklch(15% 0.010 85)    /* text ON accent fills */
+- `--color-accent-text`  oklch(54.8% 0.112 90.2) /* darkened gold, for yellow-as-text on paper */
+- `--color-pop`          oklch(68.5% 0.204 30.3) /* coral - secondary energy accent, sparingly */
+- `--color-pop-dark`     oklch(62.4% 0.205 34.2)
+- `--color-focus`        oklch(62.4% 0.205 34.2) /* coral focus ring - visible on light paper */
 
 **Tier system** (unrelated to the accent, kept exact, printed on real products):
 - `--color-tier-newbie`      oklch(76.8% 0.196 130.6)  /* #87cb28 */
 - `--color-tier-casual`      oklch(96.8% 0.211 109.8)  /* #ffff00 */
 - `--color-tier-aficionado`  oklch(87.8% 0.169 91.9)   /* #ffd230 */
 
-**Diversification axes:** dark / roman-serif-display+mono-label / chromatic-yellow (~106°)
+**Rule:** pure yellow (`--color-accent`) is a fill/badge color only (always paired with dark
+text on top). For yellow used as text or a link color on the light paper, use
+`--color-accent-text` (a darkened gold) so contrast actually holds up.
 
 ## Typography
 
-- Display: **Fraunces**, weights 500/600, roman only — matches the Etsy listing redesign's
-  headline face.
-- Body: **Raleway**, weights 300-700 — unchanged, real shipped brand choice across every physical
-  product and Etsy listing.
-- Label role (new, studied from usehallmark.com): **JetBrains Mono**, weights 400/500 — nav links,
-  hero eyebrow, footer nav/copyright, the Shop pill. This is the type-pairing DNA adopted from the
-  study: a distinct monospace voice for labels/chips/nav, separate from the display+body pairing.
-- Type scale anchor: `--text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem)`
+- Display + wordmark: **Archivo Black**, weight 400, roman only. The real, already-printed
+  brand face across every physical product; also the site's logotype ("KingB Kits" set in
+  Archivo Black, "B" in coral, "Kits" on a rotated yellow highlighter chip).
+- Body: **Raleway**, weights 300-700.
+- No third face. No monospace label voice — that was a studied-DNA device from a discarded
+  direction and doesn't fit a "have fun, exciting" party brand.
+- No logo image anywhere on the site. The mascot (crowned bee) didn't read at web sizes /
+  in this context; a hand-drawn SVG crown accent stands in for it next to the wordmark. The
+  bee mark still lives on the favicon only, where a tiny simplified mark works fine.
 
-## Spacing
-4-point named scale (`--space-3xs` through `--space-3xl`), values in `tokens.css`. Pages use named
-tokens only, never raw pixel values.
+## Imagery
+- **Kit/offering imagery**: the real Etsy listing images (hero + page-fan composites),
+  used as-is. They're dark, richly composed product photography; on the new light page they
+  read as intentional contrast (dark product shot floating on a white/cream page), not as
+  leftover dark-theme styling.
+- **Lifestyle/mood imagery**: sourced from Unsplash (`images.unsplash.com`, allowed via
+  `next.config.mjs` remotePatterns), used for the homepage hero and any future mood sections.
+  Real photography, not fabricated. Attribution isn't required for Unsplash's license but
+  credit the photographer in a code comment near the URL if one is ever added to a new spot.
+- Never fabricate stock-photo-style content or invented metrics/testimonials.
+
+## Layout & structure
+- **Home**: photo-led hero (headline + CTA left, Unsplash lifestyle photo right, stacks on
+  mobile) → value-prop strip (3 cards) → kit gallery (Bento grid, kept exactly as the user
+  asked) → FAQ (native `<details>`, also feeds `FAQPage` JSON-LD) → final CTA band.
+- **Kit detail**: headline + CTA left, the kit's own Etsy hero image shown whole
+  (`object-contain`, never cropped, since it's already a finished product photo) → Bento
+  stats/included grid → tier table → "Inside the PDF" gallery → how-it-works → final CTA.
+- **Content pages** (guides, about): unchanged Long Document prose layout, recolored.
+- Mobile-first: nav collapses to a hamburger sheet under `sm:`; kit-card images use a fixed
+  `aspect-[4/3]` below `sm:` (they collapsed to zero height before, since they depended on a
+  `sm:`-only grid row height that doesn't exist on a single-column mobile grid).
 
 ## Motion
-- Easings: `--ease-out: cubic-bezier(0.16, 1, 0.3, 1)`
-- Reveal pattern: none by default. One optional one-shot fade on Bento tile entry, never a
-  scroll-triggered fade on every section.
-- Marquee footer honors `prefers-reduced-motion: reduce` (animation removed entirely).
-- Reduced-motion fallback everywhere else: opacity-only, at most 150ms.
-
-## Microinteractions stance
-- Silent success, no celebratory toasts.
-- Hover delay 800ms, focus delay 0ms on any tooltip.
-- Card hover: a 1px lift plus border color shift, nothing else.
-- Focus rings appear instantly, never transitioned.
+- Easings: `--ease-out: cubic-bezier(0.16, 1, 0.3, 1)`.
+- No scroll-triggered reveals. The footer marquee is the only continuous motion and honors
+  `prefers-reduced-motion: reduce`.
+- FAQ disclosure uses the native `<details>` toggle, no JS animation.
 
 ## CTA voice
-- Primary CTA (Etsy buy buttons): filled pill, brand yellow, direct verb copy ("Buy on Etsy", never "Click here" or "Learn more").
-- Secondary CTA: outlined pill, same shape family.
-- Long Document (guides/about) CTAs: typographic link inside the paragraph flow (C3), never a boxed button mid-paragraph.
+- Primary CTA ("Buy on Etsy" / "Shop all kits on Etsy"): filled black pill, turns yellow on
+  hover, direct verb copy.
+- Secondary CTA: outlined black pill.
+- Never a boxed button inside Long Document prose; use an underlined text link there instead.
 
-## Copy discipline (site-specific override)
-Hallmark's own copy.md defaults to em dashes for interruption. This project overrides that
-default at the user's explicit request: **no em dashes anywhere on the site.** Use a period, a
-colon, a comma, or a restructured sentence instead. This override applies to every page, every
-data file, and every guide.
+## Copy discipline
+No em dashes anywhere on the site (explicit standing rule). Use a period, colon, comma, or a
+restructured sentence.
 
-## Nav / footer (shared across every page)
-- Nav: **sticky translucent masthead** (studied from usehallmark.com) — `bg-paper/90 backdrop-blur`,
-  hairline bottom border, mono-label nav links, a filled yellow pill CTA. Replaces the old N7 Brutal
-  slab (heavy border, filled-black CTA) — the old pattern doesn't carry over well onto a dark
-  surface where the "slab" contrast device stops reading as bold and just reads as heavy.
-- Footer: **Ft8 Marquee scroll** kept (the scrolling tagline band), with a studied colophon touch
-  added underneath: mono-label nav links and a "Back to top" link alongside the copyright line,
-  echoing usehallmark.com's dense colophon footer without fully replacing the marquee.
+## Accessibility & mobile non-negotiables
+- Hamburger nav on mobile with a real toggle button (`aria-expanded`, `aria-label`), not a
+  hover-only menu.
+- Focus rings always visible, coral, never transitioned.
+- No horizontal scroll except an intentionally-scrollable table (the tier chart).
+- Card images never depend on a breakpoint-scoped ancestor height; use `aspect-*` so they
+  render correctly with no JS and no matching breakpoint upstream.
 
 ## What pages MUST share
-- The real logo image (nav, footer, homepage hero shape cluster, favicon).
-- The accent yellow and its restrained placement (CTAs, focus rings, small accents, never a large fill).
-- Fraunces + Raleway + JetBrains Mono (labels only).
-- The nav and footer archetypes above.
+- The wordmark type treatment (Archivo Black + coral "B" + yellow "Kits" chip + SVG crown).
+- The accent yellow (fills/badges only) and the coral secondary accent (sparing use: focus
+  rings, one highlight per section at most).
+- Archivo Black + Raleway, nothing else.
 - No em dashes.
 
 ## What pages MAY differ on
-- Macrostructure within their family (a kit page could vary its Bento tile arrangement from another kit page; both stay Bento).
-- Hero archetype: kit pages use H6 Photographic Fold (pure atmosphere, no baked text). Home uses the H2 Split hero with the CSS shape cluster.
-- Enrichment: guides get real-asset imagery (existing flavor-wheel crops, kit preview shots) plus small hand-built SVG diagrams where they clarify something. No fabricated stock photography anywhere.
+- Hero composition: home uses a photo; kit pages use the kit's own product image.
+- Enrichment: guides keep their existing real-asset imagery (flavor-wheel crops, kit
+  previews) plus small hand-built SVG diagrams. No fabricated stock photography anywhere.
 
-## Per-page allowances
-- Marketing pages (Bento family) MAY use photographic enrichment and the stat-strip archetype.
-- Content pages (Long Document family) stay typography-plus-real-imagery only. No enrichment tiers beyond that.
+## Superseded
+Two earlier system revisions are fully replaced, not just the palette:
+1. The original light gold/cream "custom (tuned)" system.
+2. A dark + bright-yellow system with a monospace label voice studied from an external
+   reference site (usehallmark.com). Both are gone site-wide; this file describes what
+   actually ships now.
