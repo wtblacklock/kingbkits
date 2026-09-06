@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { Reveal } from "@/components/Reveal";
 import { getAllGuides } from "@/lib/guides";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Guides",
   description:
     "Reference guides on cigars, tequila and mezcal, and candy pairings with whisky, plus party-planning logistics: how much to buy, how to set up a tasting, and how to run the night.",
-  alternates: { canonical: "/guides" },
-};
+  path: "/guides",
+});
 
 export default function GuidesIndexPage() {
   const guides = getAllGuides();

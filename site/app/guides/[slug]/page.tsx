@@ -7,6 +7,7 @@ import { Container } from "@/components/Container";
 import { Reveal } from "@/components/Reveal";
 import { withUtm } from "@/lib/utm";
 import { getGuide, getGuideSlugs } from "@/lib/guides";
+import { pageMetadata } from "@/lib/metadata";
 import { getKit } from "@/data/kits";
 import { SITE } from "@/data/site";
 
@@ -22,11 +23,13 @@ export async function generateMetadata({
   try {
     const { slug } = await params;
     const guide = getGuide(slug);
-    return {
+    return pageMetadata({
       title: guide.title,
       description: guide.description,
-      alternates: { canonical: `/guides/${slug}` },
-    };
+      path: `/guides/${slug}`,
+      image: guide.image,
+      type: "article",
+    });
   } catch {
     return {};
   }

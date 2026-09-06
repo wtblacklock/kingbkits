@@ -28,7 +28,7 @@ export function ProtectedGalleryImage({
         fill
         draggable={false}
         sizes={sizes}
-        className="scale-[1.35] object-cover object-top"
+        className="scale-[1.35] origin-top-left object-cover object-left-top"
       />
       <div className="absolute inset-0" aria-hidden="true" />
     </div>

@@ -20,14 +20,24 @@ export async function generateMetadata({
   const { slug } = await params;
   const kit = getKit(slug);
   if (!kit) return {};
+  const socialTitle = `${kit.name}. ${kit.subtitle}.`;
+  const images = [{ url: kit.images.card }];
   return {
     title: kit.name,
     description: kit.shortDescription,
     alternates: { canonical: `/kits/${slug}` },
     openGraph: {
-      title: `${kit.name}. ${kit.subtitle}.`,
+      type: "website",
+      url: `/kits/${slug}`,
+      title: socialTitle,
       description: kit.shortDescription,
-      images: [{ url: kit.images.card }],
+      images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: socialTitle,
+      description: kit.shortDescription,
+      images,
     },
   };
 }
@@ -179,8 +189,17 @@ export default async function KitPage({ params }: { params: Promise<{ slug: stri
           <Container>
             <h2 className="mb-2 font-display text-2xl text-ink">Inside the PDF</h2>
             <p className="mb-8 max-w-2xl text-ink-2">
-              A peek at {kit.pageCount} pages built to run the whole night: a primer, a shopping
-              chart at three tiers, flavor wheels, and tracking cards for every guest.
+              {kit.tiers ? (
+                <>
+                  A peek at {kit.pageCount} pages built to run the whole night: a primer, a
+                  shopping chart at three tiers, flavor wheels, and tracking cards for every guest.
+                </>
+              ) : (
+                <>
+                  A peek at {kit.pageCount} pages built to run the whole month: a primer, a
+                  tasting card for every night, a tracker, and a flavor wheel.
+                </>
+              )}
             </p>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {kit.images.gallery.map((img) => (

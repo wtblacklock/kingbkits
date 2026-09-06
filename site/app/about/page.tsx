@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/Container";
 import { EtsyButton } from "@/components/EtsyButton";
 import { Reveal } from "@/components/Reveal";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "About",
   description: "The idea behind KingBKits: printable tasting-party kits built around three real budget tiers.",
-  alternates: { canonical: "/about" },
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

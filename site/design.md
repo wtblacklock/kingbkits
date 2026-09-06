@@ -93,7 +93,9 @@ text on top). For yellow used as text or a link color on the light paper, use
   (`object-contain`, never cropped) → Bento stats/included grid → "Pick your tier" as a
   short paragraph, not a table (the full per-tier shopping chart is paid content inside
   the PDF, not given away on the marketing page) → "Inside the PDF" gallery (cropped in
-  tight via `scale-[1.35] object-cover object-top` and right-click/drag disabled via
+  tight, anchored to the top-left corner so a sliver of background shows but the
+  bottom-right (where identifying detail lives) never does, via
+  `scale-[1.35] origin-top-left object-cover object-left-top`, and right-click/drag disabled via
   `components/ProtectedGalleryImage.tsx` — a deterrent against casual image theft, not
   DRM) → how-it-works (step numbers as filled yellow circles with dark ink text, never
   yellow text directly on paper — fails contrast) → final CTA (same accent-band pattern
