@@ -59,12 +59,15 @@ text on top). For yellow used as text or a link color on the light paper, use
   used for page content headings anymore (that's Fraunces' job).
 - **Body:** Raleway, weights 300-700.
 - No monospace label voice. No third face beyond the three above.
-- **No logo image anywhere**, including the favicon. The wordmark is pure type: "KingB" in
-  Archivo Black + a hand-drawn SVG crown accent + "Kits" set on a rotated yellow
-  highlighter chip. No coral, no colored letters. The favicon is a bold yellow "B" on a
-  near-black square (`app/icon.png` / `app/apple-icon.png`), replacing the bee mark
-  entirely, generated the same way as the rest of the type system (Archivo Black, rendered
-  via headless Chrome, not a redrawn icon).
+- **No logo image anywhere**, including the favicon. The wordmark is pure type, one solid
+  word: "KingBKits" in Archivo Black, no space, no crown icon, no separate chip. "Kits"
+  carries an animated yellow highlighter underline (`components/Badge.tsx` +
+  `.wordmark__kits` in `globals.css`) that draws in left-to-right on mount instead of
+  sitting there static, so the mark reads as one unit, not two stacked pieces. No coral,
+  no colored letters. The favicon is a bold yellow "B" on a near-black square
+  (`app/icon.png` / `app/apple-icon.png`), replacing the bee mark entirely, generated the
+  same way as the rest of the type system (Archivo Black, rendered via headless Chrome,
+  not a redrawn icon).
 
 ## Imagery
 - **Kit/offering imagery**: the real Etsy listing images (hero + page-fan composites),
@@ -84,10 +87,16 @@ text on top). For yellow used as text or a link color on the light paper, use
   box) → pull-quote statement section (real brand copy: "Party planning is the part people
   skip.") → kit gallery (Bento grid, kept exactly as the user asked, all kits shown, no
   "how many kits" copy anywhere) → FAQ (native `<details>`, feeds `FAQPage` JSON-LD) →
-  final CTA band (full-opacity text on the dark band, no reduced-opacity copy).
+  final CTA: full-bleed accent-yellow band (not a boxed rounded card), a real "Shop all
+  kits on Etsy" `EtsyButton`, full-opacity text throughout.
 - **Kit detail**: headline + CTA left, the kit's own Etsy hero image shown whole
-  (`object-contain`, never cropped) → Bento stats/included grid → tier table → "Inside the
-  PDF" gallery → how-it-works → final CTA.
+  (`object-contain`, never cropped) → Bento stats/included grid → "Pick your tier" as a
+  short paragraph, not a table (the full per-tier shopping chart is paid content inside
+  the PDF, not given away on the marketing page) → "Inside the PDF" gallery (cropped in
+  tight via `scale-[1.35] object-cover object-top` and right-click/drag disabled via
+  `components/ProtectedGalleryImage.tsx` — a deterrent against casual image theft, not
+  DRM) → how-it-works (step numbers as filled yellow circles with dark ink text, never
+  yellow text directly on paper — fails contrast) → final CTA.
 - **About**: restructured editorially (What we do / What we don't do / How we build it /
   How we make money / Who's behind it), modeled on the same honest, structured voice used
   on the operator's other sites (wblacklock.com, trailsteadguide.com) rather than a single
@@ -101,7 +110,16 @@ text on top). For yellow used as text or a link color on the light paper, use
 
 ## Motion
 - Easings: `--ease-out: cubic-bezier(0.16, 1, 0.3, 1)`.
-- No scroll-triggered reveals. The marquee is the only continuous motion and honors
+- **Scroll-triggered section reveals**, sitewide: every major section on every page
+  (home, kit detail, about, guides index, guide detail) is wrapped in
+  `components/Reveal.tsx`, a client component that fades + rises a section in once
+  (`IntersectionObserver`, 12% threshold, disconnects after first fire) via the `.reveal`
+  / `.reveal.is-visible` classes in `globals.css`. Repeated elements (value props, kit
+  cards, topic groups) stagger with a `delay` prop. Honors
+  `prefers-reduced-motion: reduce` (shows content at full opacity, no transition).
+- The wordmark's yellow underline animates in on mount (`wordmark-underline` keyframe,
+  background-size 0%→100%), also reduced-motion-aware.
+- The marquee is the only continuous, looping motion and also honors
   `prefers-reduced-motion: reduce`.
 - FAQ disclosure uses the native `<details>` toggle, no JS animation.
 
@@ -110,7 +128,9 @@ text on top). For yellow used as text or a link color on the light paper, use
   hover, direct verb copy.
 - Secondary CTA: outlined black pill.
 - Never state the total kit count in marketing copy ("See the kits", not "See the 4 kits").
-- Never reduce opacity on CTA-band body text; always full-opacity paper-on-ink or ink-on-paper.
+- Never reduce opacity on CTA-band body text below `/80`; body copy on a solid band stays
+  at least at 80% of the heading's contrast (paper-on-ink, ink-on-paper, or
+  accent-ink-on-accent).
 - Never a boxed button inside Long Document prose; use an underlined text link there instead.
 
 ## Copy discipline
@@ -127,8 +147,8 @@ gallery speaks for itself).
   render correctly with no JS and no matching breakpoint upstream.
 
 ## What pages MUST share
-- The wordmark type treatment (Archivo Black "KingB" + SVG crown + yellow "Kits" chip, all
-  black/yellow, no other color).
+- The wordmark type treatment: one solid word "KingBKits" in Archivo Black, animated
+  yellow underline on "Kits", no crown icon, no separate chip, no other color.
 - The accent yellow, fills/badges only, never as body text color.
 - Fraunces (display) + Raleway (body) + Archivo Black (wordmark/marquee only).
 - No em dashes. No kit-count statements.

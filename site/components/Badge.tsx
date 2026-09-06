@@ -5,14 +5,14 @@ const SIZES = {
 } as const;
 
 /**
- * Pure type-treatment wordmark. No logo image, no icon: "KingB Kits" set
- * as one unified mark in the brand display face, with "Kits" carrying a
- * yellow highlighter underline instead of sitting apart as its own chip.
+ * Pure type-treatment wordmark, "KingBKits" as one solid word. "Kits"
+ * carries an animated yellow highlighter underline instead of sitting
+ * apart as its own chip, so it reads as one mark, not two.
  */
 export function Badge({ size = "md" }: { size?: keyof typeof SIZES }) {
   return (
-    <span className={`wordmark text-ink ${SIZES[size]}`} aria-label="KingB Kits">
-      KingB&nbsp;<span className="wordmark__kits">Kits</span>
+    <span className={`wordmark text-ink ${SIZES[size]}`} aria-label="KingBKits">
+      KingB<span className="wordmark__kits">Kits</span>
     </span>
   );
 }

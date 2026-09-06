@@ -73,7 +73,19 @@
     background-image: linear-gradient(theme("colors.accent"), theme("colors.accent"));
     background-repeat: no-repeat;
     background-position: 0 88%;
-    background-size: 100% 38%;
+    background-size: 0% 38%;
+    animation: wordmark-underline 0.7s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes wordmark-underline {
+    to {
+      background-size: 100% 38%;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wordmark__kits {
+      animation: none;
+      background-size: 100% 38%;
+    }
   }
 
   /* hand-drawn confetti scatter behind the hero, pure CSS, aria-hidden */
@@ -98,6 +110,27 @@
   }
   .faq-item[open] .faq-item__icon {
     transform: rotate(45deg);
+  }
+
+  /* Progressive section reveal - fades + rises in as each section enters
+     view, driven by the Reveal client component toggling this class. One
+     orchestrated entrance per section, not a continuous scroll gimmick. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 
   /* Ft8 marquee scroll footer */
