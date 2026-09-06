@@ -20,13 +20,13 @@
   a:focus-visible,
   button:focus-visible,
   [tabindex]:focus-visible {
-    outline: 2px solid oklch(78% 0.2 90);
+    outline: 2px solid oklch(94% 0.2 106);
     outline-offset: 2px;
     transition: none;
   }
   ::selection {
-    background: oklch(84% 0.167 90);
-    color: oklch(18% 0.01 88);
+    background: oklch(94% 0.2 106);
+    color: oklch(15% 0.008 85);
   }
 }
 
@@ -57,6 +57,56 @@
   }
   .prose-guide figcaption {
     @apply mt-2 text-sm text-ink-faint;
+  }
+
+  /* H2 split hero - decorative aria-hidden shape cluster, Tier A pure CSS art */
+  .hero-play {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 26rem;
+  }
+  .hero-play__blob {
+    position: absolute;
+    inset: 8% 12%;
+    border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+    background: theme("colors.paper-3");
+    border: 1px solid theme("colors.rule");
+  }
+  .hero-play__ring {
+    position: absolute;
+    top: 4%;
+    right: 6%;
+    width: 34%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 3px solid theme("colors.accent");
+    opacity: 0.6;
+  }
+  .hero-play__dot {
+    position: absolute;
+    bottom: 12%;
+    left: 4%;
+    width: 22%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: theme("colors.accent");
+  }
+  .hero-play__pill {
+    position: absolute;
+    bottom: 30%;
+    right: -2%;
+    width: 40%;
+    height: 16%;
+    border-radius: 999px;
+    background: theme("colors.paper-2");
+    border: 1px solid theme("colors.rule");
+  }
+  .hero-play__badge {
+    position: absolute;
+    top: 34%;
+    left: 22%;
+    width: 34%;
   }
 
   /* Ft8 marquee scroll footer */

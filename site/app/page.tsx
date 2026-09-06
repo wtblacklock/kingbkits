@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "@/components/Container";
 import { KitCard } from "@/components/KitCard";
 import { EtsyButton } from "@/components/EtsyButton";
@@ -8,27 +9,49 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Bento Grid macrostructure. F1 Bento knobs: tiles=4, spans=irregular, accent=corner-only. */}
-      <section className="flex min-h-[70vh] flex-col items-center justify-center border-b border-rule bg-paper-2 px-6 py-20 text-center">
-        <h1 className="max-w-3xl font-display text-4xl leading-tight text-ink sm:text-5xl">
-          Pick a tier. Buy the bottles. Run the night.
-        </h1>
-        <p className="mt-6 max-w-xl text-lg text-ink-2">
-          Printable party kits that pair a spirit with something else: cigars, agave, Halloween
-          candy, or a whisky advent calendar. Three budget tiers, real named products, ready to
-          print tonight.
-        </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <EtsyButton campaign="home_hero" content="primary_cta">
-            Buy on Etsy
-          </EtsyButton>
-          <a
-            href="#kits"
-            className="inline-flex items-center justify-center rounded-full border-2 border-ink px-6 py-3 text-sm font-bold uppercase tracking-[0.04em] text-ink hover:bg-ink hover:text-paper"
-          >
-            See the kits
-          </a>
-        </div>
+      {/* H2 Split Diptych hero. Left: eyebrow + display headline + lede + CTAs.
+          Right: a hand-built aria-hidden shape cluster (Tier A pure CSS art) -
+          no stock photography, no product screenshot duplicating the gallery below. */}
+      <section className="border-b border-rule bg-paper-2">
+        <Container className="grid grid-cols-1 items-center gap-10 py-20 sm:grid-cols-2 sm:gap-6 sm:py-28">
+          <div className="max-w-xl">
+            <p className="font-mono text-xs uppercase tracking-[0.14em] text-accent">
+              Printable party kits
+            </p>
+            <h1 className="mt-4 font-display text-4xl leading-[1.05] text-ink sm:text-5xl">
+              Pick a tier. Buy the bottles. Run the night.
+            </h1>
+            <p className="mt-5 text-lg text-ink-2">
+              Party kits that pair a spirit with something else: cigars, agave, Halloween candy,
+              or a whisky advent calendar. Three budget tiers, real named products, ready to
+              print tonight.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <EtsyButton campaign="home_hero" content="primary_cta">
+                Buy on Etsy
+              </EtsyButton>
+              <a
+                href="#kits"
+                className="inline-flex items-center justify-center rounded-full border-2 border-ink px-6 py-3 text-sm font-bold uppercase tracking-[0.04em] text-ink hover:bg-ink hover:text-paper"
+              >
+                See the kits
+              </a>
+            </div>
+          </div>
+          <figure className="hero-play mx-auto" aria-hidden="true">
+            <span className="hero-play__blob" />
+            <span className="hero-play__ring" />
+            <span className="hero-play__pill" />
+            <Image
+              src="/logo.png"
+              alt=""
+              width={200}
+              height={200}
+              className="hero-play__badge"
+            />
+            <span className="hero-play__dot" />
+          </figure>
+        </Container>
       </section>
 
       <section id="kits" className="py-16">

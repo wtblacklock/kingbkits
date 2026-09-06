@@ -48,6 +48,7 @@ export interface Kit {
   images: {
     hero: string;
     heroGif?: string;
+    card: string;
     gallery: KitGalleryImage[];
   };
   seasonalNote?: string;
@@ -115,6 +116,7 @@ export const KITS: Kit[] = [
     ],
     images: {
       hero: "/kits/cigar/hero.png",
+      card: "/kits/cigar/card.png",
       heroGif: "/kits/cigar/hero.gif",
       gallery: [
         { src: "/kits/cigar/preview-guide.png", label: "Party Guide" },
@@ -187,6 +189,7 @@ export const KITS: Kit[] = [
     ],
     images: {
       hero: "/kits/agave/hero.png",
+      card: "/kits/agave/card.png",
       heroGif: "/kits/agave/hero.gif",
       gallery: [
         { src: "/kits/agave/preview-guide.png", label: "Party Guide" },
@@ -257,6 +260,7 @@ export const KITS: Kit[] = [
       "Two selling windows on purpose: October for Halloween parties, and November 1–7 for the leftover candy bowl.",
     images: {
       hero: "/kits/halloween/hero.png",
+      card: "/kits/halloween/card.png",
       heroGif: "/kits/halloween/hero.gif",
       gallery: [
         { src: "/kits/halloween/preview-guide.png", label: "Party Guide" },
@@ -299,6 +303,7 @@ export const KITS: Kit[] = [
       "Works with any standard 24 × 30ml calendar, plus supermarket sets. Also works for 12-day calendars: just use cards 01–12.",
     images: {
       hero: "/kits/advent/hero.png",
+      card: "/kits/advent/card.png",
       heroGif: "/kits/advent/hero.gif",
       gallery: [
         { src: "/kits/advent/preview-guide.png", label: "How to Use" },

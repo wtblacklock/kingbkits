@@ -5,60 +5,70 @@ emitting code. Extend or amend this file when the system needs to grow; do not
 regenerate per page.
 
 ## Genre
-playful (bold end of the register: heavy uppercase nav, badge energy, not soft pastel onboarding)
+playful (bold end of the register: mono labels, pill buttons, badge energy, not soft pastel onboarding)
 
 ## Route
-custom (tuned) — anchored on the real, already-printed brand rather than an invented vibe. The
-gold, black, and cream come from the KingBKits wordmark badge and the new crowned-bee-in-mask
-mascot, already shipped across dozens of real Etsy product PDFs. The tier colors (Newbie green,
-Casual yellow, Aficionado gold) are preserved exactly as-is, they are printed on real products and
-must match across every channel.
+studied-DNA (source: url, https://www.usehallmark.com/) — structure adopted, palette overridden
+with the brand's own colors per explicit user instruction ("adopt the structure, keep our own
+colors"). The studied page supplied the macrostructure family, hero archetype, nav/footer
+archetypes, type-pairing logic (display+body family plus a distinct mono label face), and pill/
+hairline component language. The paper, ink, and accent values below are **not** from the studied
+source — they come from the same dark + bright-yellow identity already shipped across every Etsy
+listing image, itself anchored on the real crowned-bee logo and its printed yellow (`#fff200`).
+
+Prior system (superseded 2026-09): a light cream/gold custom palette anchored on `#f3c318`. That
+palette is gone site-wide, not just on hero sections — see Theme below.
 
 ## Macrostructure family
-- Marketing pages (home, 4 kit pages): **Bento Grid** — modular blocks of varying size. Fits
-  stat rows, included-item lists, tier tables, and galleries far better than stacked full-width
-  sections.
-- Content pages (guides index + detail, about): **Long Document** — continuous prose with inline
-  section heads. The guides already read like reference essays; this macrostructure stops fighting
-  that instead of forcing marketing-page furniture onto them.
+- Marketing pages (home, 4 kit pages): **Bento Grid** for the kit gallery and stat/included-item
+  blocks — unchanged, the user explicitly asked to keep the gallery layout as-is.
+- Home hero: **H2 Split Diptych** (studied from usehallmark.com's hero) — eyebrow + display
+  headline + lede + CTAs on the left, a hand-built `aria-hidden` decorative shape cluster (Tier A
+  pure CSS art: blob, ring, pill, dot, the real logo mark) on the right. Replaces the old centered
+  typographic hero — centered-symmetric hero is the anti-pattern the split fixes.
+- Kit detail hero: **H6 Photographic Fold**, unchanged in archetype, but the hero image is now
+  pure atmosphere (background gradient + accent glow + logo badge, no baked-in text, no product
+  pages) because the section overlays its own heading/CTA on top — baking text into the image
+  duplicated it. A separate `images.card` asset (same background, WITH the fanned product pages,
+  no text) feeds the homepage gallery cards instead, since that context has no overlaid heading to
+  collide with.
+- Content pages (guides index + detail, about): **Long Document** — unchanged.
 
-## Theme — custom palette (OKLCH)
+## Theme — dark palette (OKLCH), our own colors on the studied structure
 
-Anchor hue: **90° (gold)**, taken directly from the brand mark `#f3c318`.
+Anchor hue: **~85-87° (warm neutral)** for surfaces/text, **106° (bright yellow)** for the accent —
+taken directly from the brand mark's printed yellow `#fff200`.
 
-- `--color-paper`      oklch(97% 0.010 88)
-- `--color-paper-2`    oklch(94% 0.012 88)
-- `--color-paper-3`    oklch(90% 0.014 88)
-- `--color-ink`         oklch(18% 0.010 88)
-- `--color-ink-2`       oklch(38% 0.008 88)
-- `--color-ink-faint`   oklch(56% 0.008 88)
-- `--color-rule`        oklch(84% 0.012 88)
-- `--color-accent`      oklch(84% 0.167 90)   /* brand gold, #f3c318 */
-- `--color-accent-ink`  oklch(18% 0.010 88)
-- `--color-focus`       oklch(78% 0.200 90)
+- `--color-paper`      oklch(15% 0.008 85)
+- `--color-paper-2`    oklch(19% 0.010 85)
+- `--color-paper-3`    oklch(24% 0.012 85)
+- `--color-ink`         oklch(95% 0.013 87)
+- `--color-ink-2`       oklch(76% 0.024 87)
+- `--color-ink-faint`   oklch(56% 0.018 87)
+- `--color-rule`        oklch(30% 0.014 85)
+- `--color-accent`      oklch(94% 0.200 106)   /* brand yellow, #fff200 */
+- `--color-accent-ink`  oklch(15% 0.008 85)
+- `--color-focus`       oklch(94% 0.200 106)
 
-**Documented exception:** the KINGBKITS wordmark badge chip stays literal `#000` / pure black, not
-the tinted ink token. It is a fixed, already-printed brand mark (matches the physical Etsy
-products and the new logo's linework); tinting it would make the site badge mismatch every
-printed and Etsy-listed version of the same mark.
+**Documented exception:** none anymore — the real logo image now renders everywhere (nav, footer,
+favicon), replacing the old placeholder text badge and its "stays literal #000" carve-out.
 
 **Tier system** (unrelated to the accent, kept exact, printed on real products):
 - `--color-tier-newbie`      oklch(76.8% 0.196 130.6)  /* #87cb28 */
 - `--color-tier-casual`      oklch(96.8% 0.211 109.8)  /* #ffff00 */
 - `--color-tier-aficionado`  oklch(87.8% 0.169 91.9)   /* #ffd230 */
 
-**Diversification axes:** light / display-heavy / chromatic-gold (~90°)
+**Diversification axes:** dark / roman-serif-display+mono-label / chromatic-yellow (~106°)
 
 ## Typography
 
-- Display: **Archivo Black**, weight 400 (single-weight black face), roman only
-- Body: **Raleway**, weights 300/400/500/600/700
-- Documented exception: Raleway sits on Hallmark's generic banned-defaults list. It is kept anyway
-  because it is a real, deliberate, already-shipped brand choice across every physical product and
-  Etsy listing, not a lazy model default. Switching it here would break brand consistency between
-  the site and the product line for no real gain.
-- No outlier third face. The badge/wordmark carries its own register already (Archivo Black); a
-  mono or serif outlier would be a fourth voice for no reason.
+- Display: **Fraunces**, weights 500/600, roman only — matches the Etsy listing redesign's
+  headline face.
+- Body: **Raleway**, weights 300-700 — unchanged, real shipped brand choice across every physical
+  product and Etsy listing.
+- Label role (new, studied from usehallmark.com): **JetBrains Mono**, weights 400/500 — nav links,
+  hero eyebrow, footer nav/copyright, the Shop pill. This is the type-pairing DNA adopted from the
+  study: a distinct monospace voice for labels/chips/nav, separate from the display+body pairing.
 - Type scale anchor: `--text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem)`
 
 ## Spacing
@@ -79,7 +89,7 @@ tokens only, never raw pixel values.
 - Focus rings appear instantly, never transitioned.
 
 ## CTA voice
-- Primary CTA (Etsy buy buttons): filled black pill, gold hover state, direct verb copy ("Buy on Etsy", never "Click here" or "Learn more").
+- Primary CTA (Etsy buy buttons): filled pill, brand yellow, direct verb copy ("Buy on Etsy", never "Click here" or "Learn more").
 - Secondary CTA: outlined pill, same shape family.
 - Long Document (guides/about) CTAs: typographic link inside the paragraph flow (C3), never a boxed button mid-paragraph.
 
@@ -90,26 +100,26 @@ colon, a comma, or a restructured sentence instead. This override applies to eve
 data file, and every guide.
 
 ## Nav / footer (shared across every page)
-- Nav: **N7 Brutal slab** — heavy uppercase wordmark, 2px border-bottom, tracked uppercase links, filled CTA. Matches the mascot's bold badge energy better than a soft floating pill.
-- Footer: **Ft8 Marquee scroll** — a moving brand tagline band, honoring reduced-motion, with a slim functional link row underneath it so kit/guide navigation still works. This also fixes the outgoing footer, which was a textbook Ft3 four-column AI-footer pattern.
+- Nav: **sticky translucent masthead** (studied from usehallmark.com) — `bg-paper/90 backdrop-blur`,
+  hairline bottom border, mono-label nav links, a filled yellow pill CTA. Replaces the old N7 Brutal
+  slab (heavy border, filled-black CTA) — the old pattern doesn't carry over well onto a dark
+  surface where the "slab" contrast device stops reading as bold and just reads as heavy.
+- Footer: **Ft8 Marquee scroll** kept (the scrolling tagline band), with a studied colophon touch
+  added underneath: mono-label nav links and a "Back to top" link alongside the copyright line,
+  echoing usehallmark.com's dense colophon footer without fully replacing the marquee.
 
 ## What pages MUST share
-- The wordmark/logo (once the real asset lands, currently a placeholder text badge).
-- The accent gold and its restrained placement (CTAs, focus rings, small accents, never a large fill).
-- Archivo Black + Raleway.
+- The real logo image (nav, footer, homepage hero shape cluster, favicon).
+- The accent yellow and its restrained placement (CTAs, focus rings, small accents, never a large fill).
+- Fraunces + Raleway + JetBrains Mono (labels only).
 - The nav and footer archetypes above.
 - No em dashes.
 
 ## What pages MAY differ on
 - Macrostructure within their family (a kit page could vary its Bento tile arrangement from another kit page; both stay Bento).
-- Hero archetype: kit pages use **H6 Photographic Fold** (real owned product photography, full-bleed). Home uses a typographic Bento hero, no photograph, since there's no single product to lead with.
+- Hero archetype: kit pages use H6 Photographic Fold (pure atmosphere, no baked text). Home uses the H2 Split hero with the CSS shape cluster.
 - Enrichment: guides get real-asset imagery (existing flavor-wheel crops, kit preview shots) plus small hand-built SVG diagrams where they clarify something. No fabricated stock photography anywhere.
 
 ## Per-page allowances
 - Marketing pages (Bento family) MAY use photographic enrichment and the stat-strip archetype.
 - Content pages (Long Document family) stay typography-plus-real-imagery only. No enrichment tiers beyond that.
-
-## Pending
-- Real logo asset (crowned bee in mask, black/white/gold) not yet attached to the session. Site
-  ships with the existing text badge as a placeholder until the file is provided, then every nav,
-  footer, and favicon usage gets swapped in one pass.

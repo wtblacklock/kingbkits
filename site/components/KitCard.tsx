@@ -18,7 +18,7 @@ export function KitCard({
     >
       <div className={`relative flex-1 overflow-hidden bg-paper-2 ${contain ? "p-4" : ""}`}>
         <Image
-          src={kit.images.hero}
+          src={kit.images.card}
           alt={kit.name}
           fill
           sizes={featured ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 25vw, 50vw"}

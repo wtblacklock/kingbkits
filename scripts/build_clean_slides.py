@@ -63,6 +63,7 @@ items_a = ["Party Guide", "Agave Primer", "Agavebase (bottle matches)", "Flavor 
 write(OUT_A, "7-bundle.html", bg_a, pal_a, bundle_slide(pal_a, "8 Pages", items_a, bundle_pages_a))
 
 write(OUT_A, "site-hero.html", bg_a, pal_a, hero_bg_only(""))
+write(OUT_A, "site-card.html", bg_a, pal_a, hero_bg_only(pages_a))
 
 INVITE_PHOTO_A = f"{REPO}/ETSY_UPLOAD/agave/08-invite.png"
 write(OUT_A, "8-invite.html", bg_a, pal_a, photo_slide("08 &middot; Invitation Template", INVITE_PHOTO_A, pal_a["eyebrow"]))
@@ -129,6 +130,7 @@ items_h = ["Party Guide", "Candy Primer", "Pairbase (bottle matches)", "Flavor W
 write(OUT_H, "7-bundle.html", bg_h, pal_h, bundle_slide(pal_h, "8 Pages", items_h, bundle_pages_h))
 
 write(OUT_H, "site-hero.html", bg_h, pal_h, hero_bg_only(""))
+write(OUT_H, "site-card.html", bg_h, pal_h, hero_bg_only(pages_h))
 
 INVITE_PHOTO_H = f"{REPO}/ETSY_UPLOAD/halloween/08-invite.png"
 write(OUT_H, "8-invite.html", bg_h, pal_h, photo_slide("08 &middot; Invitation Template", INVITE_PHOTO_H, pal_h["eyebrow"]))

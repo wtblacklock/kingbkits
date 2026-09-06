@@ -20,11 +20,11 @@ export function SiteFooter() {
       <Container className="flex flex-col gap-8 py-12 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col gap-3">
           <Badge size="sm" />
-          <p className="max-w-xs text-sm text-ink-faint">
+          <p className="max-w-xs font-mono text-xs text-ink-faint">
             Instant-download PDFs. No physical items ship.
           </p>
         </div>
-        <nav aria-label="Footer" className="flex flex-wrap gap-x-8 gap-y-3 text-sm">
+        <nav aria-label="Footer" className="flex flex-wrap gap-x-8 gap-y-3 font-mono text-xs uppercase tracking-[0.06em]">
           {KITS.map((kit) => (
             <Link key={kit.slug} href={`/kits/${kit.slug}`} className="text-ink-2 hover:text-ink">
               {kit.name}
@@ -38,8 +38,14 @@ export function SiteFooter() {
           </Link>
         </nav>
       </Container>
-      <Container className="border-t border-rule py-6 text-xs text-ink-faint">
-        © {new Date().getFullYear()} KingBKits.
+      <Container className="flex items-center justify-between border-t border-rule py-6 font-mono text-xs text-ink-faint">
+        <span>© {new Date().getFullYear()} KingBKits.</span>
+        <a
+          href="#top"
+          className="uppercase tracking-[0.08em] text-ink-faint hover:text-ink"
+        >
+          Back to top ↑
+        </a>
       </Container>
     </footer>
   );
