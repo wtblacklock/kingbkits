@@ -36,6 +36,8 @@ export interface Kit {
   name: string;
   subtitle: string;
   shortDescription: string;
+  /** USD price, matching the live Etsy listing. */
+  price: number;
   pageCount: number;
   heroHeadline: string;
   heroBody: string;
@@ -63,6 +65,7 @@ export const KITS: Kit[] = [
     subtitle: "Pairing Party Kit",
     shortDescription:
       "Printable event planning kit: guide, primer, pairing chart, and tier cards.",
+    price: 5.5,
     pageCount: 8,
     heroHeadline: "One Cigar. Three Whiskies. Zero Guesswork.",
     heroBody:
@@ -132,6 +135,7 @@ export const KITS: Kit[] = [
     subtitle: "Tasting Party Kit",
     shortDescription:
       "Printable tasting kit: guide, primer, bottle chart, flavor wheels, and tier cards.",
+    price: 5.5,
     pageCount: 8,
     heroHeadline: "Sip It. Don't Shoot It.",
     heroBody:
@@ -204,6 +208,7 @@ export const KITS: Kit[] = [
     subtitle: "Halloween Pairing Kit",
     shortDescription:
       "The cheapest tasting night you'll ever host: a $12 bag of candy and a bottle you already own.",
+    price: 5.5,
     pageCount: 7,
     heroHeadline: "Your Leftover Candy Deserves Better.",
     heroBody:
@@ -273,6 +278,7 @@ export const KITS: Kit[] = [
     subtitle: "Advent Calendar Companion",
     shortDescription:
       "A tasting card for every night, a month tracker, and a flavor wheel, built for the calendar you already bought.",
+    price: 5.5,
     pageCount: 9,
     heroHeadline: "Guess First. Reveal Second.",
     heroBody:

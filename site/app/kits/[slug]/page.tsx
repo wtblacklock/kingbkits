@@ -47,6 +47,24 @@ export default async function KitPage({ params }: { params: Promise<{ slug: stri
       "@type": "Offer",
       url: kit.etsyUrl ?? SITE.etsyShopUrl,
       availability: "https://schema.org/InStock",
+      price: kit.price.toFixed(2),
+      priceCurrency: "USD",
+      // Instant digital download: nothing ships, so handling/transit time is zero.
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "USD" },
+        shippingDestination: { "@type": "DefinedRegion", addressCountry: "US" },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 0, unitCode: "DAY" },
+          transitTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 0, unitCode: "DAY" },
+        },
+      },
+      // Matches the shop's actual policy: instant-download items don't accept returns.
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
+      },
     },
   };
 
