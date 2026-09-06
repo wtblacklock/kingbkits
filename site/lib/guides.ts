@@ -9,6 +9,8 @@ export interface GuideFrontmatter {
   description: string;
   topic: string;
   relatedKit?: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 export interface GuideSummary extends GuideFrontmatter {

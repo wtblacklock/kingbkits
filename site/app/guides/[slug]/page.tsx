@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -65,6 +66,12 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       </Link>
       <div className="mt-6 text-xs font-bold uppercase tracking-[0.08em] text-ink-faint">{guide.topic}</div>
       <h1 className="mt-2 font-display text-3xl text-ink sm:text-4xl">{guide.title}</h1>
+
+      {guide.image && (
+        <div className="relative mt-8 aspect-[16/9] w-full overflow-hidden rounded-card">
+          <Image src={guide.image} alt={guide.imageAlt ?? ""} fill sizes="65ch" className="object-cover" priority />
+        </div>
+      )}
 
       <article className="prose-guide mt-10">
         <MDXRemote source={guide.content} components={mdxComponents} />

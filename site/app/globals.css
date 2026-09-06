@@ -59,18 +59,21 @@
     @apply mt-2 text-sm text-ink-faint;
   }
 
-  /* wordmark type treatment - no logo image, just confident type + a small crown accent */
+  /* wordmark type treatment - no logo image, no icon, just confident type.
+     "Kits" carries a highlighter-style underline instead of a separate chip,
+     so the whole thing reads as one mark, not two stacked pieces. */
   .wordmark {
     display: inline-flex;
     align-items: baseline;
-    gap: 0.15em;
     font-family: var(--font-archivo-black), sans-serif;
     line-height: 1;
     white-space: nowrap;
   }
-  .wordmark__crown {
-    display: inline-block;
-    transform: translateY(-0.05em) rotate(-8deg);
+  .wordmark__kits {
+    background-image: linear-gradient(theme("colors.accent"), theme("colors.accent"));
+    background-repeat: no-repeat;
+    background-position: 0 88%;
+    background-size: 100% 38%;
   }
 
   /* hand-drawn confetti scatter behind the hero, pure CSS, aria-hidden */
