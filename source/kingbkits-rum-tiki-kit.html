@@ -1,0 +1,840 @@
+<title>Rum &amp; Tiki Night</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Archivo+Black&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper: #ffffff;
+    --zone: #f9f9f9;
+    --cover: #eaeae7;
+    --chip: #d2d2d2;
+    --ink: #000000;
+    --ink-body: #454545;
+    --ink-faint: #8a8a8a;
+    --rule: #d8d8d5;
+    --tier-newbie: #87cb28;
+    --tier-casual: #ffff00;
+    --tier-aficionado: #ffd230;
+    --shadow-sheet: 0 1px 1px rgba(0,0,0,0.06), 0 20px 44px -22px rgba(0,0,0,0.28);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#1c1c1a; --zone:#242422; --cover:#242422; --chip:#3a3a37;
+      --ink:#f5f5f2; --ink-body:#c9c9c4; --ink-faint:#8f8f89; --rule:#3a3a37;
+      --shadow-sheet: 0 1px 1px rgba(0,0,0,0.4), 0 20px 44px -22px rgba(0,0,0,0.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#1c1c1a; --zone:#242422; --cover:#242422; --chip:#3a3a37;
+    --ink:#f5f5f2; --ink-body:#c9c9c4; --ink-faint:#8f8f89; --rule:#3a3a37;
+    --shadow-sheet: 0 1px 1px rgba(0,0,0,0.4), 0 20px 44px -22px rgba(0,0,0,0.7);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--cover);
+    color:var(--ink-body);
+    font-family:'Raleway', ui-sans-serif, system-ui, sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    background:var(--cover);
+    border-bottom:1px solid var(--rule);
+    padding:14px 20px;
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand .word{font-weight:600; font-size:0.92rem; color:var(--ink); letter-spacing:0.01em;}
+  .nav-tabs{display:flex; gap:6px; flex-wrap:wrap;}
+  .nav-tabs a{
+    font-size:0.78rem; font-weight:500;
+    text-decoration:none; color:var(--ink-body);
+    background:var(--paper); border:1px solid var(--rule);
+    padding:7px 13px; border-radius:999px;
+  }
+  .nav-tabs a:hover{color:var(--ink); border-color:var(--ink-faint);}
+  .print-hint{margin-left:auto; font-size:0.76rem; color:var(--ink-faint);}
+  .print-hint kbd{font-family:ui-monospace,monospace; background:var(--paper); padding:2px 6px; border-radius:4px; border:1px solid var(--rule);}
+
+  .intro{max-width:760px; margin:0 auto; padding:36px 24px 6px;}
+  .intro .eyebrow{font-style:italic; font-weight:400; font-size:1rem; color:var(--ink-body); margin-bottom:4px;}
+  .intro h1{font-weight:300; font-size:clamp(1.8rem,4.4vw,2.6rem); color:var(--ink); margin:0 0 10px; letter-spacing:-0.01em;}
+  .intro p{max-width:64ch; margin:0 0 6px; font-size:0.95rem;}
+  .intro .fit-note{font-size:0.84rem; color:var(--ink-faint); margin-top:12px; border-left:2px solid var(--ink-faint); padding-left:12px;}
+  .intro .fit-note b{color:var(--ink-body);}
+
+  .deck{max-width:900px; margin:0 auto; padding:30px 24px 100px; display:flex; flex-direction:column; gap:52px;}
+
+  .sheet-label{display:flex; align-items:baseline; gap:10px; margin-bottom:12px;}
+  .sheet-label .n{font-size:0.8rem; color:var(--ink-faint); font-weight:600;}
+  .sheet-label h2{font-weight:600; font-size:1.2rem; margin:0; color:var(--ink);}
+  .sheet-label .fmt{margin-left:auto; font-size:0.74rem; color:var(--ink-faint);}
+
+  .sheet{
+    background:var(--paper); box-shadow:var(--shadow-sheet); border-radius:2px;
+    width:100%; aspect-ratio:8.5/11; padding:0.55in 0.55in; position:relative; overflow:hidden;
+  }
+
+  .kb-badge{
+    display:inline-flex; flex-direction:column; align-items:center; justify-content:center;
+    background:#000; border-radius:10px; padding:7px 12px 8px;
+    font-family:'Archivo Black', 'Raleway', sans-serif; font-weight:400;
+    line-height:0.92; text-align:center; width:fit-content; flex:none;
+  }
+  .kb-badge .l1{font-size:1rem; color:#f3c318; letter-spacing:-0.01em;}
+  .kb-badge .l2{font-size:0.72rem; color:#fff; letter-spacing:0.02em; margin-top:1px;}
+  .kb-badge.sm .l1{font-size:0.68rem;}
+  .kb-badge.sm .l2{font-size:0.5rem;}
+  .kb-badge.sm{padding:5px 8px 6px; border-radius:6px;}
+
+  /* ============ PIECE 1 — GUIDE ============ */
+  .g-top{margin-bottom:26px;}
+  .g-top .breadcrumb{font-style:italic; font-size:0.92rem; color:var(--ink-body);}
+  .g-top .arrow{font-size:1rem; color:var(--ink-body); margin:2px 0;}
+  .g-top h3{font-weight:300; font-size:2.6rem; color:var(--ink); margin:2px 0 0;}
+  .g-top .sub{font-weight:400; font-size:1.3rem; color:var(--ink);}
+  .g-cols{display:grid; grid-template-columns:1fr 1fr; gap:0.45in; margin-top:22px;}
+  .g-block{margin-bottom:16px;}
+  .g-block h4{font-weight:700; font-size:0.86rem; color:var(--ink); margin:0 0 6px;}
+  .g-block p, .g-block li{font-size:0.8rem; color:var(--ink-body); margin:0 0 6px;}
+  .g-block ul{margin:0 0 8px; padding-left:16px;}
+  .g-rule{border:0; border-top:1px solid var(--ink); margin:16px 0;}
+  .g-toc{margin-top:26px; padding:16px 18px; background:var(--zone); border-radius:6px;}
+  .g-toc h4{font-weight:700; font-size:0.86rem; color:var(--ink); margin:0 0 12px;}
+  .g-toc-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:14px 16px;}
+  .g-toc-grid a, .g-toc-grid div.toc-item{display:block; text-decoration:none; color:inherit; border-left:2px solid var(--ink); padding-left:10px;}
+  .g-toc-grid div.toc-item{border-left-color:var(--rule);}
+  .g-toc-grid .tn{display:block; font-size:0.68rem; font-weight:700; color:var(--ink-faint); letter-spacing:0.04em;}
+  .g-toc-grid .tt{display:block; font-size:0.8rem; font-weight:600; color:var(--ink); line-height:1.25; margin:2px 0;}
+  .g-toc-grid .tp{display:block; font-size:0.68rem; color:var(--ink-faint);}
+
+  /* ============ PIECE 2 — RUMBASE ============ */
+  .pb-head{margin-bottom:16px;}
+  .pb-head .eyebrow{font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-faint); font-weight:600;}
+  .pb-head h3{font-weight:300; font-size:2.1rem; color:var(--ink); margin:2px 0;}
+  .pb-head .sub{font-size:0.85rem; color:var(--ink-body);}
+  table.pairbase{width:100%; border-collapse:collapse; font-size:0.76rem; margin-top:14px;}
+  table.pairbase th{
+    text-transform:uppercase; letter-spacing:0.04em; font-size:0.64rem; font-weight:700;
+    color:var(--ink-faint); text-align:left; padding:8px 10px; border-bottom:2px solid var(--ink);
+  }
+  table.pairbase td{padding:13px 10px; border-bottom:1px solid var(--rule); vertical-align:top; color:var(--ink-body);}
+  table.pairbase tr:last-child td{border-bottom:2px solid var(--ink);}
+  .tier-pill{
+    display:inline-block; font-weight:700; font-size:0.72rem; color:#000;
+    padding:3px 10px; border-radius:999px; margin-bottom:6px;
+  }
+  .tier-pill.newbie{background:var(--tier-newbie);}
+  .tier-pill.casual{background:var(--tier-casual);}
+  .tier-pill.aficionado{background:var(--tier-aficionado);}
+  .pb-sub{display:block; font-size:0.68rem; color:var(--ink-faint); margin-top:3px;}
+  .pb-note{margin-top:20px; padding:12px 14px; background:var(--zone); font-size:0.78rem; color:var(--ink-body); border-left:3px solid var(--ink);}
+  .pb-note b{color:var(--ink);}
+  .pb-note ol{margin:6px 0 0; padding-left:16px;}
+  .pb-note ol li{margin-bottom:4px; font-size:0.73rem; line-height:1.35; color:var(--ink-body);}
+  .pb-note ol li:last-child{margin-bottom:0;}
+  .cta-btn{display:inline-block; background:var(--ink); color:var(--paper); font-weight:700; font-size:0.7rem; padding:4px 10px; border-radius:4px; text-decoration:none; letter-spacing:0.01em;}
+
+  /* ============ PIECE 2 — TIKI PRIMER ============ */
+  .pr-head{margin-bottom:20px;}
+  .pr-head .eyebrow{font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-faint); font-weight:600;}
+  .pr-head h3{font-weight:300; font-size:2.1rem; color:var(--ink); margin:2px 0;}
+  .pr-head .sub{font-size:0.85rem; color:var(--ink-body);}
+  .pr-cols{display:grid; grid-template-columns:1.15fr 0.85fr; gap:0.5in;}
+  .pr-section{margin-bottom:18px;}
+  .pr-section h4{font-weight:700; font-size:1rem; color:var(--ink); margin:0 0 4px;}
+  .pr-section .lede{font-size:0.72rem; color:var(--ink-faint); margin-bottom:10px;}
+  .pr-item{margin-bottom:10px;}
+  .pr-item .name{font-weight:700; font-size:0.8rem; color:var(--ink);}
+  .pr-item p{font-size:0.78rem; color:var(--ink-body); margin:2px 0 0;}
+  .pr-dash{border:0; border-top:1px dashed var(--rule); margin:18px 0;}
+  .pr-timeline{position:relative; padding-left:22px;}
+  .pr-timeline::before{content:""; position:absolute; left:4px; top:6px; bottom:6px; width:1px; background:var(--rule);}
+  .pr-step{position:relative; margin-bottom:16px;}
+  .pr-step::before{content:""; position:absolute; left:-22px; top:4px; width:9px; height:9px; border-radius:50%; background:var(--ink);}
+  .pr-step .name{font-weight:700; font-size:0.82rem; color:var(--ink);}
+  .pr-step p{font-size:0.76rem; color:var(--ink-body); margin:2px 0 0;}
+  .pr-callout{background:var(--zone); border-radius:6px; padding:14px 16px; margin-top:20px;}
+  .pr-callout h5{font-weight:700; font-size:0.78rem; color:var(--ink); margin:0 0 6px;}
+  .pr-callout p{font-size:0.74rem; color:var(--ink-body); margin:0 0 4px;}
+  .pr-callout b{color:var(--ink);}
+  .pr-check{list-style:none; margin:8px 0 0; padding:0;}
+  .pr-check li{display:flex; gap:7px; align-items:flex-start; font-size:0.73rem; color:var(--ink-body); margin-bottom:6px;}
+  .pr-check .box{width:11px; height:11px; border:1.5px solid var(--ink); border-radius:3px; margin-top:2px; flex:none;}
+
+  /* ============ PIECE 4 — FLAVOR WHEELS ============ */
+  .fw-head{margin-bottom:14px;}
+  .fw-head .eyebrow{font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-faint); font-weight:600;}
+  .fw-head h3{font-weight:300; font-size:2.1rem; color:var(--ink); margin:2px 0;}
+  .fw-head .sub{font-size:0.85rem; color:var(--ink-body);}
+  .fw-pair{display:grid; grid-template-columns:1fr 1fr; gap:0.2in; margin:0.15in -0.35in 0; width:calc(100% + 0.7in);}
+  .fw-pair figure{margin:0; display:flex; flex-direction:column; align-items:center;}
+  .fw-pair svg{width:100%; height:auto; max-width:420px;}
+  .fw-pair figcaption{font-weight:700; font-size:0.9rem; color:var(--ink); margin-top:6px;}
+  .fw-how{margin-top:0.1in; padding:10px 16px; background:var(--zone); border-radius:6px; font-size:0.74rem; color:var(--ink-body);}
+  .fw-how b{color:var(--ink);}
+
+  /* ============ PIECE 5 — TASTING CARDS ============ */
+  .pcard-page{height:100%; display:flex; flex-direction:column;}
+  .pcard{border:1px solid var(--rule); border-radius:4px; overflow:hidden; display:flex; flex-direction:column; height:100%;}
+  .pcard .bar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 18px; border-bottom:1px solid var(--rule);
+  }
+  .pcard .bar .left{display:flex; align-items:center; gap:10px;}
+  .pcard .bar .cat{font-weight:700; font-size:1.15rem; color:var(--ink); letter-spacing:0.01em;}
+  .pcard .bar .jc{display:flex; align-items:center; gap:6px; font-size:0.72rem; color:var(--ink-body);}
+  .pcard .body{padding:16px 18px; flex:1; display:flex; flex-direction:column;}
+  .pcard .origin{font-size:0.68rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:12px;}
+  .pcard .pairnames{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;}
+  .pcard .pairnames .role{font-size:0.64rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:2px;}
+  .pcard .pairnames .fill-line{border-bottom:1px solid var(--rule); height:22px;}
+  .pcard .checkpoints{flex:1; display:flex; flex-direction:column; gap:12px;}
+  .pcard .checkpoint{background:var(--zone); border-radius:4px; padding:10px 14px; flex:1; display:flex; flex-direction:column;}
+  .pcard .checkpoint .ck-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:6px;}
+  .pcard .checkpoint .ck-name{font-weight:700; font-size:0.8rem; color:var(--ink);}
+  .pcard .checkpoint .ck-hint{font-size:0.66rem; color:var(--ink-faint);}
+  .pcard .checkpoint .pour-line{display:flex; align-items:baseline; gap:6px; font-size:0.66rem; color:var(--ink-faint); margin-bottom:6px;}
+  .pcard .checkpoint .pour-line .fill-line{flex:1; border-bottom:1px solid var(--rule); height:16px;}
+  .pcard .checkpoint .note-lines{flex:1; display:flex; flex-direction:column; min-height:44px;}
+  .pcard .checkpoint .note-lines .ln{border-bottom:1px solid var(--rule); flex:1;}
+  .pcard .footer-row{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px; align-items:end;}
+  .pcard .footer-row .role{font-size:0.64rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:2px;}
+  .pcard .footer-row .fill-line{border-bottom:1px solid var(--rule); height:20px;}
+  .pcard .facts{margin-top:12px;}
+  .pcard .facts .f{display:flex; gap:8px; font-size:0.7rem; color:var(--ink-body); margin-bottom:4px;}
+  .pcard .facts .f .ar{color:var(--ink-faint);}
+
+  /* ============ PIECE 6 — CHECKLIST & SCORECARD ============ */
+  .chk-head{margin-bottom:16px;}
+  .chk-head .eyebrow{font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-faint); font-weight:600;}
+  .chk-head h3{font-weight:300; font-size:2.1rem; color:var(--ink); margin:2px 0;}
+  .chk-head .sub{font-size:0.85rem; color:var(--ink-body);}
+  .chk-cols{display:grid; grid-template-columns:1fr 1fr; gap:0.45in; margin-top:18px;}
+  .chk-list{list-style:none; margin:0 0 14px; padding:0;}
+  .chk-list li{display:flex; align-items:flex-start; gap:9px; margin-bottom:10px; font-size:0.8rem; color:var(--ink-body);}
+  .chk-list .box{width:13px; height:13px; border:1.5px solid var(--ink); border-radius:3px; margin-top:2px; flex:none;}
+  .chk-list b{color:var(--ink);}
+  table.score{width:100%; border-collapse:collapse; font-size:0.74rem; margin-top:6px;}
+  table.score th{text-align:left; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--ink-faint); font-weight:700; padding:6px 7px; border-bottom:2px solid var(--ink);}
+  table.score td{padding:14px 7px 0;}
+  table.score .line{display:block; border-bottom:1px solid var(--rule); height:18px;}
+
+  @media screen and (max-width: 760px){
+    .g-cols, .pr-cols, .chk-cols{grid-template-columns:1fr;}
+    .sheet{aspect-ratio:auto; min-height:640px;}
+    .pcard .pairnames{grid-template-columns:1fr;}
+  }
+
+  @page{size:letter; margin:0;}
+
+  @media print{
+    .topbar, .intro{display:none;}
+    body{background:#fff;}
+    .deck{padding:0; gap:0; max-width:none;}
+    .sheet-label{display:none;}
+    .sheet{box-shadow:none; border-radius:0; width:8.5in; aspect-ratio:auto; height:11in; page-break-after:always; margin:0 auto;}
+  }
+
+  .ico{width:1em; height:1em; vertical-align:-0.15em; margin-right:5px; flex:none;}
+  h4 .ico, .ck-name .ico{width:1.1em; height:1.1em;}
+  th .ico{width:1.05em; height:1.05em; margin-right:4px;}
+  .role .ico, .pour-line .ico{width:1.5em; height:1.5em; margin-right:6px;}
+
+  ::selection{background:var(--tier-aficionado); color:#000;}
+</style>
+
+<svg style="display:none" aria-hidden="true">
+  <symbol id="ico-rum" viewBox="0 0 28 28">
+    <path d="M7 6 H21 L18.5 20 Q18 23 14 23 Q10 23 9.5 20 Z" fill="none" stroke="#8a7663" stroke-width="1.6"/>
+    <path d="M8.3 12.5 H19.7 L18.5 20 Q18 23 14 23 Q10 23 9.5 20 Z" fill="#a9622c"/>
+    <path d="M8.3 12.5 H19.7 L19.3 15 H8.7 Z" fill="#d19a4e"/>
+  </symbol>
+  <symbol id="ico-tiki" viewBox="0 0 28 30">
+    <path d="M9 6 C9 3 11 1 14 1 C17 1 19 3 19 6 L20 24 Q20 28 14 28 Q8 28 8 24 Z" fill="#8a6a45"/>
+    <ellipse cx="11.2" cy="11" rx="1.6" ry="2.1" fill="#241a10"/>
+    <ellipse cx="16.8" cy="11" rx="1.6" ry="2.1" fill="#241a10"/>
+    <path d="M10.5 17 Q14 20 17.5 17" fill="none" stroke="#241a10" stroke-width="1.5" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<div class="topbar">
+  <div class="brand"><span class="kb-badge sm"><span class="l1">KINGB</span><span class="l2">KITS</span></span><span class="word">Rum &amp; Tiki Night</span></div>
+  <div class="nav-tabs">
+    <a href="#guide">Guide</a>
+    <a href="#primer">Tiki Primer</a>
+    <a href="#rumbase">Rumbase</a>
+    <a href="#wheels">Flavor Wheels</a>
+    <a href="#cards">Tasting Cards</a>
+    <a href="#checklist">Checklist</a>
+  </div>
+  <div class="print-hint">Print each sheet at Letter, no scaling - <kbd>Cmd/Ctrl+P</kbd></div>
+</div>
+
+<div class="intro">
+  <div class="eyebrow">Product Master &middot; v1</div>
+  <h1>Rum, done properly, not just poured over ice</h1>
+  <p>Same Raleway type, the same grey/white content-zone blocking, the exact tier colors already used across the Cigar, Agave, and Halloween kits (Newbie <b style="color:#6b9c1c">&#9679;</b> Casual <b style="color:#c7c700">&#9679;</b> Aficionado <b style="color:#c99a1a">&#9679;</b>). Eight pages, print at home.</p>
+  <p class="fit-note">The Tiki Primer runs longer than the other kits' primers on purpose - rum has more unregulated style categories than whisky or agave spirits, and nobody's tiki drink works if the ice, glass, and garnish are wrong. That page earns the extra length.</p>
+</div>
+
+<div class="deck">
+
+  <!-- PIECE 1: GUIDE -->
+  <div id="guide">
+    <div class="sheet-label"><span class="n">01</span><h2>Party Guide</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet">
+      <div class="g-top" style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <div class="breadcrumb">Start Here</div>
+          <div class="arrow">&darr;</div>
+          <h3>Rum &amp; Tiki Night</h3>
+          <div class="sub">Sip it slow, then build something fun with it</div>
+        </div>
+        <span class="kb-badge"><span class="l1">KINGB</span><span class="l2">KITS</span></span>
+      </div>
+
+      <div class="g-cols">
+        <div>
+          <div class="g-block">
+            <h4>PRE-PARTY PLANNING</h4>
+            <ul>
+              <li><b>Two pours per guest per rum</b> - one neat or on the rocks to actually taste it, one built into a tiki drink to see how it changes. Three rums total covers a full flight.</li>
+              <li>Pick <b>one tier</b> from the Rumbase and stay in it for the tasting portion - mixing a $18 mixto-adjacent rum against a $45 pot-still rum just makes the cheap one taste hot and flat.</li>
+              <li>Buying or BYO both work - three bottles is the whole shopping list for the tasting; extras only matter if you're building drinks for a bigger crowd.</li>
+            </ul>
+            <h4 style="margin-top:14px;">SET A DATE AND SEND INVITES</h4>
+            <ul>
+              <li>Say "tiki night," not "rum tasting," on the invite. It sets the right expectation: playful, a little theatrical, not a serious spirits seminar.</li>
+              <li>Tell guests to eat first. Tiki drinks hide their proof behind citrus and syrup.</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="g-block">
+            <h4>PARTY SETUP</h4>
+            <ul>
+              <li>Crushed ice matters more here than any other spirit in this whole product line - see the Tiki Primer before you buy ice.</li>
+              <li>Set out citrus, garnishes, and glassware where guests can build their own second round.</li>
+              <li>A tasting card and a small glass at every seat before anyone pours.</li>
+            </ul>
+            <h4 style="margin-top:14px;">DURING THE PARTY</h4>
+            <ul>
+              <li>Taste each rum <b>neat first</b>, then on the rocks, then in the tiki drink from the Rumbase - the same rum reads completely differently each way.</li>
+              <li>Rotate through the tier in order, lightest to boldest, same rule as every other kit in this line.</li>
+              <li>Close with a vote on the night's best build, not just the best rum.</li>
+            </ul>
+          </div>
+          <hr class="g-rule">
+          <div class="g-block">
+            <h4>SNACK PAIRINGS</h4>
+            <p>Grilled pineapple, coconut shrimp, spiced nuts, dark chocolate. Skip heavy cream sauces - they coat the palate and flatten the citrus in every tiki drink that follows.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="g-toc">
+        <h4>WHAT'S IN THIS KIT</h4>
+        <div class="g-toc-grid">
+          <a href="#guide"><span class="tn">01</span><span class="tt">Party Guide</span><span class="tp">This page</span></a>
+          <a href="#primer"><span class="tn">02</span><span class="tt">Tiki Primer</span><span class="tp">Page 2</span></a>
+          <a href="#rumbase"><span class="tn">03</span><span class="tt">Rumbase</span><span class="tp">Page 3</span></a>
+          <a href="#wheels"><span class="tn">04</span><span class="tt">Flavor Wheels</span><span class="tp">Page 4</span></a>
+          <a href="#cards"><span class="tn">05</span><span class="tt">Tasting Cards</span><span class="tp">Pages 5-7</span></a>
+          <a href="#checklist"><span class="tn">06</span><span class="tt">Checklist &amp; Scorecard</span><span class="tp">Page 8</span></a>
+          <a href="https://canva.link/PASTE-TEMPLATE-LINK"><span class="tn">07</span><span class="tt">Invitation</span><span class="tp">Editable Canva template</span></a>
+        </div>
+      </div>
+
+      <div class="pb-note" style="margin-top:14px;">
+        <b>Set up your RSVP before you send the invite:</b>
+        <ol>
+          <li><a class="cta-btn" href="https://docs.google.com/forms/d/PASTE-FORM-ID/copy">Click to copy the RSVP form</a> - your own private copy, replies land in your account, not ours.</li>
+          <li>Click Send in your new form and copy the link, then open the Invitation above, click the QR code, hit Edit, paste your link, and click Update code.</li>
+        </ol>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PIECE 2: TIKI PRIMER -->
+  <div id="primer">
+    <div class="sheet-label"><span class="n">02</span><h2>Tiki Primer</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet">
+      <div class="pr-head" style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <div class="eyebrow">Primer</div>
+          <h3>Know Your Rum, Build Your Drink</h3>
+          <div class="sub">Rum has no legal style rulebook - here's the one that actually matters at the bar.</div>
+        </div>
+        <span class="kb-badge"><span class="l1">KINGB</span><span class="l2">KITS</span></span>
+      </div>
+
+      <div class="pr-cols">
+        <div>
+          <div class="pr-section">
+            <h4><svg class="ico"><use href="#ico-rum"/></svg>Rum Styles</h4>
+            <div class="lede">Unlike Scotch or tequila, "rum" has almost no enforced production rules - style is set by habit and geography, not law.</div>
+            <div class="pr-item">
+              <div class="name">White / Silver</div>
+              <p>Light-bodied, often filtered after aging to strip color. Clean, faintly sweet - the Newbie-tier default and the tiki backbone for a Daiquiri.</p>
+            </div>
+            <div class="pr-item">
+              <div class="name">Gold / Amber</div>
+              <p>Aged longer or colored for a mixing-friendly middle ground. More vanilla and caramel than white, still light enough to mix.</p>
+            </div>
+            <div class="pr-item">
+              <div class="name">Dark / Navy Strength</div>
+              <p>Pot-still and pit-aged, often blended from multiple islands. Funky esters, char, dried fruit - what a proper Jungle Bird or Navy Grog is built on.</p>
+            </div>
+            <div class="pr-item">
+              <div class="name">Agricole &amp; Rhum</div>
+              <p>Distilled from fresh cane juice instead of molasses, mostly French Caribbean. Grassy, vegetal, almost tequila-adjacent - a different animal entirely.</p>
+            </div>
+          </div>
+
+          <hr class="pr-dash">
+
+          <div class="pr-section">
+            <h4><svg class="ico"><use href="#ico-tiki"/></svg>The Tiki Formula</h4>
+            <div class="lede">Every classic tiki drink is the same four-part structure, just with different rums and fruit in each slot.</div>
+            <div class="pr-item">
+              <div class="name">Spirit</div>
+              <p>Usually two rums of different styles layered together - that's what "tiki" actually means more than any single ingredient.</p>
+            </div>
+            <div class="pr-item">
+              <div class="name">Sour</div>
+              <p>Fresh lime almost always, sometimes with orange or passionfruit alongside it. Bottled juice is the single most common way to ruin a tiki drink.</p>
+            </div>
+            <div class="pr-item">
+              <div class="name">Sweet</div>
+              <p>Orgeat (almond syrup), falernum, honey, or demerara syrup - picks the drink's whole personality more than the rum does.</p>
+            </div>
+            <div class="pr-item">
+              <div class="name">Spice / Float</div>
+              <p>A dash of bitters, a float of overproof rum, or a spiced syrup on top - the finishing note, added last and never stirred in.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4 style="font-weight:700; font-size:1rem; color:var(--ink); margin:0 0 12px;">Cane to Cocktail</h4>
+          <div class="pr-timeline">
+            <div class="pr-step"><div class="name">Milling</div><p>Sugarcane is crushed for juice, or the juice is boiled down into molasses first - this single fork decides agricole vs everything else.</p></div>
+            <div class="pr-step"><div class="name">Fermentation</div><p>Days for molasses-based rum, often under 48 hours for cane-juice agricole. Wild or added yeast, and it's a huge flavor lever either way.</p></div>
+            <div class="pr-step"><div class="name">Distillation</div><p>Column stills give a lighter, cleaner spirit. Pot stills keep more congeners and funk - Jamaican pot-still rum is the extreme end of this.</p></div>
+            <div class="pr-step"><div class="name">Aging</div><p>Tropical aging (Caribbean heat) matures rum roughly twice as fast as a cool warehouse - a 5-year tropical-aged rum can taste like a 10-year one elsewhere.</p></div>
+            <div class="pr-step"><div class="name">Blending</div><p>Most rum on a shelf is a blend of multiple ages and sometimes multiple islands - single-barrel rum is the exception, not the rule.</p></div>
+          </div>
+
+          <div class="pr-callout">
+            <h5>Glassware &amp; Garnish Checklist</h5>
+            <ul class="pr-check">
+              <li><span class="box"></span><span>Tiki mugs or double rocks glasses - anything with some visual presence</span></li>
+              <li><span class="box"></span><span><b>Crushed ice</b>, not cubed - it dilutes faster and that's the point in a tiki drink</span></li>
+              <li><span class="box"></span><span>Fresh limes, oranges - bottled juice will flatten every drink you make</span></li>
+              <li><span class="box"></span><span>Mint sprigs, pineapple fronds, or a paper umbrella for the theater of it</span></li>
+              <li><span class="box"></span><span>Orgeat or falernum if you're building real tiki drinks, not just pours</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIECE 3: RUMBASE -->
+  <div id="rumbase">
+    <div class="sheet-label"><span class="n">03</span><h2>Rumbase</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet">
+      <div class="pb-head" style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <div class="eyebrow">Rumbase</div>
+          <h3>Pick a Tier, Buy Three Bottles</h3>
+          <div class="sub">Each row pairs a rum tier with the tiki drink built to show it off.</div>
+        </div>
+        <span class="kb-badge"><span class="l1">KINGB</span><span class="l2">KITS</span></span>
+      </div>
+
+      <table class="pairbase">
+        <colgroup>
+          <col style="width:11%"><col style="width:26%"><col style="width:17%">
+          <col style="width:26%"><col style="width:20%">
+        </colgroup>
+        <thead><tr><th>Tier</th><th><svg class="ico"><use href="#ico-rum"/></svg>Rum Picks</th><th><svg class="ico"><use href="#ico-tiki"/></svg>Build</th><th>Tasting Notes</th><th>Per Bottle</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="tier-pill newbie">Newbie</span></td>
+            <td>Bacardi Superior<span class="pb-sub">Plantation 3 Stars</span><span class="pb-sub">Denizen White</span><span class="pb-sub">Don Q Cristal</span></td>
+            <td>Daiquiri</td>
+            <td>Clean, faint banana, light vanilla</td>
+            <td>$16&ndash;22</td>
+          </tr>
+          <tr>
+            <td><span class="tier-pill casual">Casual</span></td>
+            <td>Appleton Estate Signature<span class="pb-sub">Mount Gay Eclipse</span><span class="pb-sub">El Dorado 8 Year</span><span class="pb-sub">Plantation Original Dark</span></td>
+            <td>Mai Tai</td>
+            <td>Caramel, baking spice, dried fruit</td>
+            <td>$22&ndash;32</td>
+          </tr>
+          <tr>
+            <td><span class="tier-pill aficionado">Aficionado</span></td>
+            <td>Smith &amp; Cross Navy Strength<span class="pb-sub">Hamilton 86 Demerara</span><span class="pb-sub">Rhum J.M Agricole Blanc</span><span class="pb-sub">Foursquare Exceptional Cask</span></td>
+            <td>Jungle Bird</td>
+            <td>Funky ester, grassy cane, char, overproof heat</td>
+            <td>$30&ndash;55</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="pb-note"><b>Budgeting tip:</b> a 750ml bottle pours 25&ndash;30 tastes at 0.75 oz - even 6 guests taking a neat pour, a rocks pour, and a tiki drink from each of three rums only uses about half of each bottle. One bottle per rum comfortably covers the whole group.</div>
+    </div>
+  </div>
+
+  <!-- PIECE 4: FLAVOR WHEELS -->
+  <div id="wheels">
+    <div class="sheet-label"><span class="n">04</span><h2>Flavor Wheels</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet">
+      <div class="fw-head" style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <div class="eyebrow">Flavor Wheels</div>
+          <h3>Speak the Language of a Build</h3>
+          <div class="sub">One wheel for the rum itself, one for what you build around it.</div>
+        </div>
+        <span class="kb-badge"><span class="l1">KINGB</span><span class="l2">KITS</span></span>
+      </div>
+
+      <div class="fw-pair">
+        <figure>
+          <svg viewBox="0 0 580 580"><circle cx="290" cy="290" r="64" fill="#17130f"/>
+<text x="290" y="290" font-size="18" font-weight="700" fill="#f3c318" text-anchor="middle" dominant-baseline="central" font-family='Raleway, sans-serif'>SIP</text>
+<path d="M 290.00 226.00 A 64.00 64.00 0 0 1 345.43 258.00 L 442.42 202.00 A 176.00 176.00 0 0 0 290.00 114.00 Z" fill="#eecb5f" stroke="#fdf9ef" stroke-width="2"/>
+<text x="339.92" y="203.54" font-size="17" font-weight="700" fill="#241b10" text-anchor="start" transform="rotate(-60.00 339.92 203.54)" font-family="Raleway, sans-serif" >Sweet</text>
+<path d="M 290.00 114.00 A 176.00 176.00 0 0 1 335.55 120.00 L 360.40 27.27 A 272.00 272.00 0 0 0 290.00 18.00 Z" fill="#f6e4a8" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="319.76" y="63.95" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-82.50 319.76 63.95)" font-family="Raleway, sans-serif" >Vanilla</text>
+<path d="M 335.55 120.00 A 176.00 176.00 0 0 1 378.00 137.58 L 426.00 54.44 A 272.00 272.00 0 0 0 360.40 27.27 Z" fill="#f6e4a8" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="377.25" y="79.36" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-67.50 377.25 79.36)" font-family="Raleway, sans-serif" >Caramel</text>
+<path d="M 378.00 137.58 A 176.00 176.00 0 0 1 414.45 165.55 L 482.33 97.67 A 272.00 272.00 0 0 0 426.00 54.44 Z" fill="#f6e4a8" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="428.80" y="109.12" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-52.50 428.80 109.12)" font-family="Raleway, sans-serif" >Molasses</text>
+<path d="M 414.45 165.55 A 176.00 176.00 0 0 1 442.42 202.00 L 525.56 154.00 A 272.00 272.00 0 0 0 482.33 97.67 Z" fill="#f6e4a8" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="470.88" y="151.20" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-37.50 470.88 151.20)" font-family="Raleway, sans-serif" ><tspan x="470.88" dy="-0.5em">Brown</tspan><tspan x="470.88" dy="1.05em">Sugar</tspan></text>
+<path d="M 345.43 258.00 A 64.00 64.00 0 0 1 345.43 322.00 L 442.42 378.00 A 176.00 176.00 0 0 0 442.42 202.00 Z" fill="#e0793c" stroke="#fdf9ef" stroke-width="2"/>
+<text x="389.84" y="290.00" font-size="17" font-weight="700" fill="#241b10" text-anchor="start" transform="rotate(0.00 389.84 290.00)" font-family="Raleway, sans-serif" >Spiced</text>
+<path d="M 442.42 202.00 A 176.00 176.00 0 0 1 460.00 244.45 L 552.73 219.60 A 272.00 272.00 0 0 0 525.56 154.00 Z" fill="#f0b98d" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="500.64" y="202.75" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-22.50 500.64 202.75)" font-family="Raleway, sans-serif" >Cinnamon</text>
+<path d="M 460.00 244.45 A 176.00 176.00 0 0 1 466.00 290.00 L 562.00 290.00 A 272.00 272.00 0 0 0 552.73 219.60 Z" fill="#f0b98d" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="516.05" y="260.24" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-7.50 516.05 260.24)" font-family="Raleway, sans-serif" >Clove</text>
+<path d="M 466.00 290.00 A 176.00 176.00 0 0 1 460.00 335.55 L 552.73 360.40 A 272.00 272.00 0 0 0 562.00 290.00 Z" fill="#f0b98d" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="516.05" y="319.76" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(7.50 516.05 319.76)" font-family="Raleway, sans-serif" >Allspice</text>
+<path d="M 460.00 335.55 A 176.00 176.00 0 0 1 442.42 378.00 L 525.56 426.00 A 272.00 272.00 0 0 0 552.73 360.40 Z" fill="#f0b98d" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="500.64" y="377.25" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(22.50 500.64 377.25)" font-family="Raleway, sans-serif" ><tspan x="500.64" dy="-0.5em">Black</tspan><tspan x="500.64" dy="1.05em">Pepper</tspan></text>
+<path d="M 345.43 322.00 A 64.00 64.00 0 0 1 290.00 354.00 L 290.00 466.00 A 176.00 176.00 0 0 0 442.42 378.00 Z" fill="#f0b23a" stroke="#fdf9ef" stroke-width="2"/>
+<text x="339.92" y="376.46" font-size="17" font-weight="700" fill="#241b10" text-anchor="start" transform="rotate(60.00 339.92 376.46)" font-family="Raleway, sans-serif" >Tropical</text>
+<path d="M 442.42 378.00 A 176.00 176.00 0 0 1 403.13 424.82 L 464.84 498.36 A 272.00 272.00 0 0 0 525.56 426.00 Z" fill="#f6d488" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="464.66" y="436.56" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(40.00 464.66 436.56)" font-family="Raleway, sans-serif" >Banana</text>
+<path d="M 403.13 424.82 A 176.00 176.00 0 0 1 350.20 455.39 L 383.03 545.60 A 272.00 272.00 0 0 0 464.84 498.36 Z" fill="#f6d488" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="404.00" y="487.45" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(60.00 404.00 487.45)" font-family="Raleway, sans-serif" >Pineapple</text>
+<path d="M 350.20 455.39 A 176.00 176.00 0 0 1 290.00 466.00 L 290.00 562.00 A 272.00 272.00 0 0 0 383.03 545.60 Z" fill="#f6d488" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="329.59" y="514.54" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(80.00 329.59 514.54)" font-family="Raleway, sans-serif" >Coconut</text>
+<path d="M 290.00 354.00 A 64.00 64.00 0 0 1 234.57 322.00 L 137.58 378.00 A 176.00 176.00 0 0 0 290.00 466.00 Z" fill="#8a9b5c" stroke="#fdf9ef" stroke-width="2"/>
+<text x="240.08" y="376.46" font-size="17" font-weight="700" fill="#241b10" text-anchor="end" transform="rotate(300.00 240.08 376.46)" font-family="Raleway, sans-serif" >Grassy</text>
+<path d="M 290.00 466.00 A 176.00 176.00 0 0 1 244.45 460.00 L 219.60 552.73 A 272.00 272.00 0 0 0 290.00 562.00 Z" fill="#c3d19a" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="260.24" y="516.05" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(277.50 260.24 516.05)" font-family="Raleway, sans-serif" ><tspan x="260.24" dy="-0.5em">Fresh</tspan><tspan x="260.24" dy="1.05em">Cane</tspan></text>
+<path d="M 244.45 460.00 A 176.00 176.00 0 0 1 202.00 442.42 L 154.00 525.56 A 272.00 272.00 0 0 0 219.60 552.73 Z" fill="#c3d19a" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="202.75" y="500.64" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(292.50 202.75 500.64)" font-family="Raleway, sans-serif" >Hay</text>
+<path d="M 202.00 442.42 A 176.00 176.00 0 0 1 165.55 414.45 L 97.67 482.33 A 272.00 272.00 0 0 0 154.00 525.56 Z" fill="#c3d19a" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="151.20" y="470.88" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(307.50 151.20 470.88)" font-family="Raleway, sans-serif" >Olive</text>
+<path d="M 165.55 414.45 A 176.00 176.00 0 0 1 137.58 378.00 L 54.44 426.00 A 272.00 272.00 0 0 0 97.67 482.33 Z" fill="#c3d19a" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="109.12" y="428.80" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(322.50 109.12 428.80)" font-family="Raleway, sans-serif" >Petrol</text>
+<path d="M 234.57 322.00 A 64.00 64.00 0 0 1 234.57 258.00 L 137.58 202.00 A 176.00 176.00 0 0 0 137.58 378.00 Z" fill="#6b5a45" stroke="#fdf9ef" stroke-width="2"/>
+<text x="190.16" y="290.00" font-size="17" font-weight="700" fill="#241b10" text-anchor="end" transform="rotate(360.00 190.16 290.00)" font-family="Raleway, sans-serif" >Charred</text>
+<path d="M 137.58 378.00 A 176.00 176.00 0 0 1 116.67 320.56 L 22.13 337.23 A 272.00 272.00 0 0 0 54.44 426.00 Z" fill="#a5907a" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="75.75" y="367.98" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(340.00 75.75 367.98)" font-family="Raleway, sans-serif" >Char</text>
+<path d="M 116.67 320.56 A 176.00 176.00 0 0 1 116.67 259.44 L 22.13 242.77 A 272.00 272.00 0 0 0 22.13 337.23 Z" fill="#a5907a" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="62.00" y="290.00" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(360.00 62.00 290.00)" font-family="Raleway, sans-serif" >Smoke</text>
+<path d="M 116.67 259.44 A 176.00 176.00 0 0 1 137.58 202.00 L 54.44 154.00 A 272.00 272.00 0 0 0 22.13 242.77 Z" fill="#a5907a" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="75.75" y="212.02" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(380.00 75.75 212.02)" font-family="Raleway, sans-serif" ><tspan x="75.75" dy="-0.5em">Toasted</tspan><tspan x="75.75" dy="1.05em">Oak</tspan></text>
+<path d="M 234.57 258.00 A 64.00 64.00 0 0 1 290.00 226.00 L 290.00 114.00 A 176.00 176.00 0 0 0 137.58 202.00 Z" fill="#8a6a4f" stroke="#fdf9ef" stroke-width="2"/>
+<text x="240.08" y="203.54" font-size="17" font-weight="700" fill="#241b10" text-anchor="end" transform="rotate(420.00 240.08 203.54)" font-family="Raleway, sans-serif" >Earthy</text>
+<path d="M 137.58 202.00 A 176.00 176.00 0 0 1 165.55 165.55 L 97.67 97.67 A 272.00 272.00 0 0 0 54.44 154.00 Z" fill="#c2a889" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="109.12" y="151.20" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(397.50 109.12 151.20)" font-family="Raleway, sans-serif" >Leather</text>
+<path d="M 165.55 165.55 A 176.00 176.00 0 0 1 202.00 137.58 L 154.00 54.44 A 272.00 272.00 0 0 0 97.67 97.67 Z" fill="#c2a889" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="151.20" y="109.12" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(412.50 151.20 109.12)" font-family="Raleway, sans-serif" >Tobacco</text>
+<path d="M 202.00 137.58 A 176.00 176.00 0 0 1 244.45 120.00 L 219.60 27.27 A 272.00 272.00 0 0 0 154.00 54.44 Z" fill="#c2a889" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="202.75" y="79.36" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(427.50 202.75 79.36)" font-family="Raleway, sans-serif" ><tspan x="202.75" dy="-0.5em">Dark</tspan><tspan x="202.75" dy="1.05em">Fruit</tspan></text>
+<path d="M 244.45 120.00 A 176.00 176.00 0 0 1 290.00 114.00 L 290.00 18.00 A 272.00 272.00 0 0 0 219.60 27.27 Z" fill="#c2a889" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="260.24" y="63.95" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(442.50 260.24 63.95)" font-family="Raleway, sans-serif" >Raisin</text>
+<circle cx="290" cy="290" r="272" fill="none" stroke="#d8d8d5" stroke-width="1.5"/>
+<circle cx="290" cy="290" r="176" fill="none" stroke="#fdf9ef" stroke-width="1.5"/></svg>
+          <figcaption>Rum</figcaption>
+        </figure>
+        <figure>
+          <svg viewBox="0 0 580 580"><circle cx="290" cy="290" r="64" fill="#17130f"/>
+<text x="290" y="290" font-size="18" font-weight="700" fill="#f3c318" text-anchor="middle" dominant-baseline="central" font-family='Raleway, sans-serif'>MIX</text>
+<path d="M 290.00 226.00 A 64.00 64.00 0 0 1 345.43 258.00 L 442.42 202.00 A 176.00 176.00 0 0 0 290.00 114.00 Z" fill="#d4d95a" stroke="#fdf9ef" stroke-width="2"/>
+<text x="339.92" y="203.54" font-size="17" font-weight="700" fill="#241b10" text-anchor="start" transform="rotate(-60.00 339.92 203.54)" font-family="Raleway, sans-serif" >Citrus</text>
+<path d="M 290.00 114.00 A 176.00 176.00 0 0 1 335.55 120.00 L 360.40 27.27 A 272.00 272.00 0 0 0 290.00 18.00 Z" fill="#eaf0a0" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="319.76" y="63.95" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-82.50 319.76 63.95)" font-family="Raleway, sans-serif" >Lime</text>
+<path d="M 335.55 120.00 A 176.00 176.00 0 0 1 378.00 137.58 L 426.00 54.44 A 272.00 272.00 0 0 0 360.40 27.27 Z" fill="#eaf0a0" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="377.25" y="79.36" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-67.50 377.25 79.36)" font-family="Raleway, sans-serif" >Orange</text>
+<path d="M 378.00 137.58 A 176.00 176.00 0 0 1 414.45 165.55 L 482.33 97.67 A 272.00 272.00 0 0 0 426.00 54.44 Z" fill="#eaf0a0" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="428.80" y="109.12" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-52.50 428.80 109.12)" font-family="Raleway, sans-serif" >Grapefruit</text>
+<path d="M 414.45 165.55 A 176.00 176.00 0 0 1 442.42 202.00 L 525.56 154.00 A 272.00 272.00 0 0 0 482.33 97.67 Z" fill="#eaf0a0" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="470.88" y="151.20" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-37.50 470.88 151.20)" font-family="Raleway, sans-serif" >Passionfruit</text>
+<path d="M 345.43 258.00 A 64.00 64.00 0 0 1 345.43 322.00 L 442.42 378.00 A 176.00 176.00 0 0 0 442.42 202.00 Z" fill="#eecb5f" stroke="#fdf9ef" stroke-width="2"/>
+<text x="389.84" y="290.00" font-size="17" font-weight="700" fill="#241b10" text-anchor="start" transform="rotate(0.00 389.84 290.00)" font-family="Raleway, sans-serif" >Syrup</text>
+<path d="M 442.42 202.00 A 176.00 176.00 0 0 1 460.00 244.45 L 552.73 219.60 A 272.00 272.00 0 0 0 525.56 154.00 Z" fill="#f6e4a8" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="500.64" y="202.75" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-22.50 500.64 202.75)" font-family="Raleway, sans-serif" >Orgeat</text>
+<path d="M 460.00 244.45 A 176.00 176.00 0 0 1 466.00 290.00 L 562.00 290.00 A 272.00 272.00 0 0 0 552.73 219.60 Z" fill="#f6e4a8" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="516.05" y="260.24" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(-7.50 516.05 260.24)" font-family="Raleway, sans-serif" >Honey</text>
+<path d="M 466.00 290.00 A 176.00 176.00 0 0 1 460.00 335.55 L 552.73 360.40 A 272.00 272.00 0 0 0 562.00 290.00 Z" fill="#f6e4a8" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="516.05" y="319.76" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(7.50 516.05 319.76)" font-family="Raleway, sans-serif" >Falernum</text>
+<path d="M 460.00 335.55 A 176.00 176.00 0 0 1 442.42 378.00 L 525.56 426.00 A 272.00 272.00 0 0 0 552.73 360.40 Z" fill="#f6e4a8" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="500.64" y="377.25" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(22.50 500.64 377.25)" font-family="Raleway, sans-serif" >Demerara</text>
+<path d="M 345.43 322.00 A 64.00 64.00 0 0 1 290.00 354.00 L 290.00 466.00 A 176.00 176.00 0 0 0 442.42 378.00 Z" fill="#e0793c" stroke="#fdf9ef" stroke-width="2"/>
+<text x="339.92" y="376.46" font-size="17" font-weight="700" fill="#241b10" text-anchor="start" transform="rotate(60.00 339.92 376.46)" font-family="Raleway, sans-serif" >Spice</text>
+<path d="M 442.42 378.00 A 176.00 176.00 0 0 1 414.45 414.45 L 482.33 482.33 A 272.00 272.00 0 0 0 525.56 426.00 Z" fill="#f0b98d" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="470.88" y="428.80" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(37.50 470.88 428.80)" font-family="Raleway, sans-serif" >Cinnamon</text>
+<path d="M 414.45 414.45 A 176.00 176.00 0 0 1 378.00 442.42 L 426.00 525.56 A 272.00 272.00 0 0 0 482.33 482.33 Z" fill="#f0b98d" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="428.80" y="470.88" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(52.50 428.80 470.88)" font-family="Raleway, sans-serif" >Nutmeg</text>
+<path d="M 378.00 442.42 A 176.00 176.00 0 0 1 335.55 460.00 L 360.40 552.73 A 272.00 272.00 0 0 0 426.00 525.56 Z" fill="#f0b98d" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="377.25" y="500.64" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(67.50 377.25 500.64)" font-family="Raleway, sans-serif" >Clove</text>
+<path d="M 335.55 460.00 A 176.00 176.00 0 0 1 290.00 466.00 L 290.00 562.00 A 272.00 272.00 0 0 0 360.40 552.73 Z" fill="#f0b98d" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="319.76" y="516.05" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(82.50 319.76 516.05)" font-family="Raleway, sans-serif" >Bitters</text>
+<path d="M 290.00 354.00 A 64.00 64.00 0 0 1 234.57 322.00 L 137.58 378.00 A 176.00 176.00 0 0 0 290.00 466.00 Z" fill="#7a9b6c" stroke="#fdf9ef" stroke-width="2"/>
+<text x="240.08" y="376.46" font-size="17" font-weight="700" fill="#241b10" text-anchor="end" transform="rotate(300.00 240.08 376.46)" font-family="Raleway, sans-serif" >Herbal</text>
+<path d="M 290.00 466.00 A 176.00 176.00 0 0 1 229.80 455.39 L 196.97 545.60 A 272.00 272.00 0 0 0 290.00 562.00 Z" fill="#b8d1a8" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="250.41" y="514.54" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(280.00 250.41 514.54)" font-family="Raleway, sans-serif" >Mint</text>
+<path d="M 229.80 455.39 A 176.00 176.00 0 0 1 176.87 424.82 L 115.16 498.36 A 272.00 272.00 0 0 0 196.97 545.60 Z" fill="#b8d1a8" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="176.00" y="487.45" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(300.00 176.00 487.45)" font-family="Raleway, sans-serif" >Basil</text>
+<path d="M 176.87 424.82 A 176.00 176.00 0 0 1 137.58 378.00 L 54.44 426.00 A 272.00 272.00 0 0 0 115.16 498.36 Z" fill="#b8d1a8" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="115.34" y="436.56" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(320.00 115.34 436.56)" font-family="Raleway, sans-serif" >Sage</text>
+<path d="M 234.57 322.00 A 64.00 64.00 0 0 1 234.57 258.00 L 137.58 202.00 A 176.00 176.00 0 0 0 137.58 378.00 Z" fill="#f0b23a" stroke="#fdf9ef" stroke-width="2"/>
+<text x="190.16" y="290.00" font-size="17" font-weight="700" fill="#241b10" text-anchor="end" transform="rotate(360.00 190.16 290.00)" font-family="Raleway, sans-serif" >Tropical</text>
+<path d="M 137.58 378.00 A 176.00 176.00 0 0 1 120.00 335.55 L 27.27 360.40 A 272.00 272.00 0 0 0 54.44 426.00 Z" fill="#f6d488" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="79.36" y="377.25" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(337.50 79.36 377.25)" font-family="Raleway, sans-serif" >Pineapple</text>
+<path d="M 120.00 335.55 A 176.00 176.00 0 0 1 114.00 290.00 L 18.00 290.00 A 272.00 272.00 0 0 0 27.27 360.40 Z" fill="#f6d488" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="63.95" y="319.76" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(352.50 63.95 319.76)" font-family="Raleway, sans-serif" >Mango</text>
+<path d="M 114.00 290.00 A 176.00 176.00 0 0 1 120.00 244.45 L 27.27 219.60 A 272.00 272.00 0 0 0 18.00 290.00 Z" fill="#f6d488" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="63.95" y="260.24" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(367.50 63.95 260.24)" font-family="Raleway, sans-serif" >Guava</text>
+<path d="M 120.00 244.45 A 176.00 176.00 0 0 1 137.58 202.00 L 54.44 154.00 A 272.00 272.00 0 0 0 27.27 219.60 Z" fill="#f6d488" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="79.36" y="202.75" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(382.50 79.36 202.75)" font-family="Raleway, sans-serif" >Coconut</text>
+<path d="M 234.57 258.00 A 64.00 64.00 0 0 1 290.00 226.00 L 290.00 114.00 A 176.00 176.00 0 0 0 137.58 202.00 Z" fill="#8a6a4f" stroke="#fdf9ef" stroke-width="2"/>
+<text x="240.08" y="203.54" font-size="17" font-weight="700" fill="#241b10" text-anchor="end" transform="rotate(420.00 240.08 203.54)" font-family="Raleway, sans-serif" >Bitter</text>
+<path d="M 137.58 202.00 A 176.00 176.00 0 0 1 165.55 165.55 L 97.67 97.67 A 272.00 272.00 0 0 0 54.44 154.00 Z" fill="#c2a889" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="109.12" y="151.20" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(397.50 109.12 151.20)" font-family="Raleway, sans-serif" >Angostura</text>
+<path d="M 165.55 165.55 A 176.00 176.00 0 0 1 202.00 137.58 L 154.00 54.44 A 272.00 272.00 0 0 0 97.67 97.67 Z" fill="#c2a889" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="151.20" y="109.12" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(412.50 151.20 109.12)" font-family="Raleway, sans-serif" >Coffee</text>
+<path d="M 202.00 137.58 A 176.00 176.00 0 0 1 244.45 120.00 L 219.60 27.27 A 272.00 272.00 0 0 0 154.00 54.44 Z" fill="#c2a889" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="202.75" y="79.36" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(427.50 202.75 79.36)" font-family="Raleway, sans-serif" >Chocolate</text>
+<path d="M 244.45 120.00 A 176.00 176.00 0 0 1 290.00 114.00 L 290.00 18.00 A 272.00 272.00 0 0 0 219.60 27.27 Z" fill="#c2a889" stroke="#fdf9ef" stroke-width="1.5"/>
+<text x="260.24" y="63.95" font-size="14" font-weight="600" fill="#3a2f22" text-anchor="middle" transform="rotate(442.50 260.24 63.95)" font-family="Raleway, sans-serif" ><tspan x="260.24" dy="-0.5em">Allspice</tspan><tspan x="260.24" dy="1.05em">Dram</tspan></text>
+<circle cx="290" cy="290" r="272" fill="none" stroke="#d8d8d5" stroke-width="1.5"/>
+<circle cx="290" cy="290" r="176" fill="none" stroke="#fdf9ef" stroke-width="1.5"/></svg>
+          <figcaption>Tiki Build</figcaption>
+        </figure>
+      </div>
+
+      <div class="fw-how"><b>Using the wheels:</b> taste the rum first and find its inner-ring category on the left wheel, then work out to the specific note. The right wheel works the same way for whatever you build around it - citrus, syrup, spice. Notice how many words show up on both: that overlap is what makes a build actually work.</div>
+    </div>
+  </div>
+
+  <!-- PIECE 5: TASTING CARDS -->
+  <div id="cards">
+    <div class="sheet-label"><span class="n">05a</span><h2>Tasting Card &mdash; Newbie</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet">
+      <div class="pcard-page">
+        <div class="pcard">
+          <div class="bar">
+            <div class="left"><span class="cat">Newbie</span><span class="tier-pill newbie">Light</span></div>
+            <div class="jc"><span class="kb-badge sm"><span class="l1">KINGB</span><span class="l2">KITS</span></span>Tasting Card</div>
+          </div>
+          <div class="body">
+            <div class="origin">White rum &middot; built into a Daiquiri</div>
+            <div class="pairnames">
+              <div><div class="role"><svg class="ico"><use href="#ico-rum"/></svg>My Rum</div><div class="fill-line"></div></div>
+              <div><div class="role">Poured (time)</div><div class="fill-line"></div></div>
+            </div>
+            <div class="checkpoints">
+              <div class="checkpoint">
+                <div class="ck-head"><span class="ck-name">Neat</span><span class="ck-hint">room temp</span></div>
+                <div class="pour-line"><svg class="ico"><use href="#ico-rum"/></svg>Amount<div class="fill-line"></div></div>
+                <div class="note-lines"><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+              </div>
+              <div class="checkpoint">
+                <div class="ck-head"><span class="ck-name">On the Rocks</span><span class="ck-hint">opens it up</span></div>
+                <div class="pour-line"><svg class="ico"><use href="#ico-rum"/></svg>Amount<div class="fill-line"></div></div>
+                <div class="note-lines"><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+              </div>
+              <div class="checkpoint">
+                <div class="ck-head"><span class="ck-name">In the Daiquiri</span><span class="ck-hint">the real test</span></div>
+                <div class="pour-line"><svg class="ico"><use href="#ico-tiki"/></svg>Built at<div class="fill-line"></div></div>
+                <div class="note-lines"><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+              </div>
+            </div>
+            <div class="footer-row">
+              <div><div class="role">Favorite build tonight</div><div class="fill-line"></div></div>
+              <div><div class="role">Buy again?</div><div class="fill-line"></div></div>
+            </div>
+            <div class="facts">
+              <div class="f"><span class="ar">&rarr;</span>Light, forgiving, and the easiest rum to taste a real difference in when mixed vs neat.</div>
+              <div class="f"><span class="ar">&rarr;</span>Fresh lime only - bottled juice will flatten this drink completely.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cards-casual">
+    <div class="sheet-label"><span class="n">05b</span><h2>Tasting Card &mdash; Casual</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet">
+      <div class="pcard-page">
+        <div class="pcard">
+          <div class="bar">
+            <div class="left"><span class="cat">Casual</span><span class="tier-pill casual">Medium</span></div>
+            <div class="jc"><span class="kb-badge sm"><span class="l1">KINGB</span><span class="l2">KITS</span></span>Tasting Card</div>
+          </div>
+          <div class="body">
+            <div class="origin">Gold/amber rum &middot; built into a Mai Tai</div>
+            <div class="pairnames">
+              <div><div class="role"><svg class="ico"><use href="#ico-rum"/></svg>My Rum</div><div class="fill-line"></div></div>
+              <div><div class="role">Poured (time)</div><div class="fill-line"></div></div>
+            </div>
+            <div class="checkpoints">
+              <div class="checkpoint">
+                <div class="ck-head"><span class="ck-name">Neat</span><span class="ck-hint">room temp</span></div>
+                <div class="pour-line"><svg class="ico"><use href="#ico-rum"/></svg>Amount<div class="fill-line"></div></div>
+                <div class="note-lines"><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+              </div>
+              <div class="checkpoint">
+                <div class="ck-head"><span class="ck-name">On the Rocks</span><span class="ck-hint">opens it up</span></div>
+                <div class="pour-line"><svg class="ico"><use href="#ico-rum"/></svg>Amount<div class="fill-line"></div></div>
+                <div class="note-lines"><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+              </div>
+              <div class="checkpoint">
+                <div class="ck-head"><span class="ck-name">In the Mai Tai</span><span class="ck-hint">the real test</span></div>
+                <div class="pour-line"><svg class="ico"><use href="#ico-tiki"/></svg>Built at<div class="fill-line"></div></div>
+                <div class="note-lines"><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+              </div>
+            </div>
+            <div class="footer-row">
+              <div><div class="role">Favorite build tonight</div><div class="fill-line"></div></div>
+              <div><div class="role">Buy again?</div><div class="fill-line"></div></div>
+            </div>
+            <div class="facts">
+              <div class="f"><span class="ar">&rarr;</span>Caramel and baking spice should show up in all three checkpoints, just louder each time.</div>
+              <div class="f"><span class="ar">&rarr;</span>Orgeat is doing more work than the rum here - taste it on its own once.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cards-aficionado">
+    <div class="sheet-label"><span class="n">05c</span><h2>Tasting Card &mdash; Aficionado</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet">
+      <div class="pcard-page">
+        <div class="pcard">
+          <div class="bar">
+            <div class="left"><span class="cat">Aficionado</span><span class="tier-pill aficionado">Bold</span></div>
+            <div class="jc"><span class="kb-badge sm"><span class="l1">KINGB</span><span class="l2">KITS</span></span>Tasting Card</div>
+          </div>
+          <div class="body">
+            <div class="origin">Navy-strength / agricole &middot; built into a Jungle Bird</div>
+            <div class="pairnames">
+              <div><div class="role"><svg class="ico"><use href="#ico-rum"/></svg>My Rum</div><div class="fill-line"></div></div>
+              <div><div class="role">Poured (time)</div><div class="fill-line"></div></div>
+            </div>
+            <div class="checkpoints">
+              <div class="checkpoint">
+                <div class="ck-head"><span class="ck-name">Neat</span><span class="ck-hint">room temp</span></div>
+                <div class="pour-line"><svg class="ico"><use href="#ico-rum"/></svg>Amount<div class="fill-line"></div></div>
+                <div class="note-lines"><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+              </div>
+              <div class="checkpoint">
+                <div class="ck-head"><span class="ck-name">On the Rocks</span><span class="ck-hint">opens it up</span></div>
+                <div class="pour-line"><svg class="ico"><use href="#ico-rum"/></svg>Amount<div class="fill-line"></div></div>
+                <div class="note-lines"><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+              </div>
+              <div class="checkpoint">
+                <div class="ck-head"><span class="ck-name">In the Jungle Bird</span><span class="ck-hint">the real test</span></div>
+                <div class="pour-line"><svg class="ico"><use href="#ico-tiki"/></svg>Built at<div class="fill-line"></div></div>
+                <div class="note-lines"><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+              </div>
+            </div>
+            <div class="footer-row">
+              <div><div class="role">Favorite build tonight</div><div class="fill-line"></div></div>
+              <div><div class="role">Buy again?</div><div class="fill-line"></div></div>
+            </div>
+            <div class="facts">
+              <div class="f"><span class="ar">&rarr;</span>Not a beginner's lineup - the funk and overproof heat can surprise people.</div>
+              <div class="f"><span class="ar">&rarr;</span>Campari's bitterness in the Jungle Bird is what tames this rum's funk. Taste the bitterness on its own too.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIECE 6: CHECKLIST & SCORECARD -->
+  <div id="checklist">
+    <div class="sheet-label"><span class="n">06</span><h2>Checklist &amp; Scorecard</h2><span class="fmt">8.5 &times; 11 in &middot; 1 page</span></div>
+    <div class="sheet">
+      <div class="chk-head" style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <div class="eyebrow">Piece 06</div>
+          <h3>Shop Smart, Vote Fair</h3>
+          <div class="sub">Everything on the list, then close the night with a real ballot.</div>
+        </div>
+        <span class="kb-badge"><span class="l1">KINGB</span><span class="l2">KITS</span></span>
+      </div>
+
+      <div class="chk-cols">
+        <div>
+          <div class="g-block">
+            <h4>SHOPPING CHECKLIST</h4>
+            <ul class="chk-list">
+              <li><span class="box"></span><span><b>Rum</b> - one bottle per rum, your chosen tier (Rumbase, pg 3)</span></li>
+              <li><span class="box"></span><span>Fresh limes and oranges - not bottled juice</span></li>
+              <li><span class="box"></span><span>Orgeat or falernum, plus a demerara or simple syrup</span></li>
+              <li><span class="box"></span><span>Crushed ice - buy a bag or crush cubes yourself, don't skip this</span></li>
+              <li><span class="box"></span><span>Tiki mugs or double rocks glasses, one per guest</span></li>
+              <li><span class="box"></span><span>Mint, pineapple, or an umbrella for garnish</span></li>
+              <li><span class="box"></span><span>Angostura bitters</span></li>
+              <li><span class="box"></span><span>Pen at every seat for the Tasting Cards</span></li>
+            </ul>
+          </div>
+          <div class="pb-note">
+            <b>Splitting what's left.</b> Neat, rocks, and one small tiki drink per rum barely dents a 750ml bottle across six guests - expect real leftovers. Rum keeps indefinitely once opened, so the easiest move is letting the host hold onto it for the next round, or send a 1-2 oz sample per rum home in a small lidded jar.<br><br>
+            <b>Right glass for the table.</b> A tiki mug or double rocks glass works for the whole tasting portion - no need for anything fancier until you're building drinks for a crowd.
+          </div>
+        </div>
+        <div>
+          <div class="g-block">
+            <h4>TASTING NIGHT SCORECARD</h4>
+            <p style="font-size:0.78rem; color:var(--ink-body); margin:0 0 10px;">Pass around at the end of the night. Whichever build gets the most votes is next round's starting point.</p>
+            <table class="score">
+              <thead><tr><th>Guest</th><th>Favorite Build</th><th>One-Word Verdict</th></tr></thead>
+              <tbody>
+                <tr><td><span class="line"></span></td><td><span class="line"></span></td><td><span class="line"></span></td></tr>
+                <tr><td><span class="line"></span></td><td><span class="line"></span></td><td><span class="line"></span></td></tr>
+                <tr><td><span class="line"></span></td><td><span class="line"></span></td><td><span class="line"></span></td></tr>
+                <tr><td><span class="line"></span></td><td><span class="line"></span></td><td><span class="line"></span></td></tr>
+                <tr><td><span class="line"></span></td><td><span class="line"></span></td><td><span class="line"></span></td></tr>
+                <tr><td><span class="line"></span></td><td><span class="line"></span></td><td><span class="line"></span></td></tr>
+                <tr><td><span class="line"></span></td><td><span class="line"></span></td><td><span class="line"></span></td></tr>
+                <tr><td><span class="line"></span></td><td><span class="line"></span></td><td><span class="line"></span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

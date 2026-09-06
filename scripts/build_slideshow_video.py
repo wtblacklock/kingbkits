@@ -48,6 +48,7 @@ if __name__ == "__main__":
         ("agave", f"{REPO}/listing_marketing/listing_clean_agave"),
         ("halloween", f"{REPO}/listing_marketing/listing_clean_halloween"),
         ("advent", f"{REPO}/listing_marketing/listing_clean_advent"),
+        ("rum", f"{REPO}/listing_marketing/listing_clean_rum"),
     ]
     for name, listing_dir in kits:
         build_slideshow(name, listing_dir, f"{REPO}/source")
