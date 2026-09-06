@@ -105,6 +105,33 @@ def midnight_pal(grain="0.3"):
     return dict(eyebrow=YELLOW, head=PAPER, sub=MUTED, grain=grain)
 
 
+# ---- daylight "tracking desk" background: warm paper base + a faint calendar-
+#      grid texture + a soft gold glow. For a companion/tracker product that
+#      shouldn't share the party kits' after-dark bar look. ----
+PINE = "#2f4a3a"
+INK = "#211c14"
+INK_MUTED = "#6b6155"
+
+def paper_bg(accent_rgb=None, motif=""):
+    accent = accent_rgb or "255,215,120"
+    return f"""
+<div style="position:absolute;inset:0;background:{PAPER};"></div>
+<div style="position:absolute;inset:0;opacity:0.5;
+  background-image:linear-gradient(rgba(47,74,58,0.08) 1px,transparent 1px),
+                    linear-gradient(90deg,rgba(47,74,58,0.08) 1px,transparent 1px);
+  background-size:83.3px 83.3px;"></div>
+<div style="position:absolute;left:60%;top:-280px;width:1500px;height:1500px;
+  background:radial-gradient(ellipse at 50% 30%,rgba({accent},0.30),rgba({accent},0) 62%);
+  filter:blur(20px);"></div>
+{motif}
+<div style="position:absolute;left:0;right:0;bottom:0;height:420px;
+  background:linear-gradient(180deg,rgba(243,239,230,0) 0%,rgba(243,239,230,0.6) 100%);"></div>"""
+
+
+def paper_pal(grain="0.14"):
+    return dict(eyebrow=PINE, head=INK, sub=INK_MUTED, grain=grain)
+
+
 # ---- bundle/"what's inside" slide: left-aligned itemized list + fanned pages ----
 def bundle_slide(pal, count_label, items, pages_html):
     items_html = "".join(
