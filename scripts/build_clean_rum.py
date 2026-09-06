@@ -2,25 +2,17 @@ import os, sys
 REPO = "/Users/BIGWilly/Projects/kingbkits"
 sys.path.insert(0, os.path.join(REPO, "scripts"))
 from gen_clean_listing import (write, bokeh, single_image_slide, hero_slide, bundle_slide,
-                                hero_bg_only, midnight_bg, midnight_pal)
+                                hero_bg_only, tropical_bg, tropical_pal)
 
-SHADOW = "0 14px 30px rgba(0,0,0,0.6), 0 90px 130px -40px rgba(0,0,0,0.95)"
+SHADOW = "0 14px 30px rgba(0,0,0,0.55), 0 90px 130px -40px rgba(0,0,0,0.8)"
 
-# Rum & Tiki: deep tropical-night green-black with warm amber rum glow and a
-# lime/tiki-teal secondary glow - distinct from cigar's mahogany, agave's
-# terracotta, and halloween's violet, but still the same after-dark party look.
-TINT = "#182417"
-GLOW1 = "255,175,90"
-GLOW2 = "90,215,150"
+# Rum & Tiki: loud, lively tropical sunset (teal -> hot pink -> orange-gold)
+# with palm fronds fanning in from two corners - real tiki-menu-art energy,
+# a deliberate departure from the other kits' moody after-dark bar look.
+sparkle = bokeh([(120, 200, 7, 0.6, 5), (1850, 220, 6, 0.55, 4), (1780, 1000, 7, 0.5, 6),
+                  (220, 1020, 6, 0.5, 5)], rgb="255,255,255")
 
-
-def rum_bg():
-    fireflies = bokeh([(120, 200, 8, 0.5, 6), (1830, 160, 7, 0.42, 5), (1720, 920, 9, 0.4, 8),
-                        (260, 950, 7, 0.35, 6), (1080, 130, 6, 0.4, 5)], rgb=GLOW2)
-    return midnight_bg(TINT, GLOW1, glow2_rgb=GLOW2, motif=fireflies)
-
-
-bg, pal = rum_bg(), midnight_pal("0.32")
+bg, pal = tropical_bg(motif=sparkle), tropical_pal()
 
 SRC = f"{REPO}/listing_images_raw/listing_images_rum"
 OUT = f"{REPO}/listing_marketing/listing_clean_rum"

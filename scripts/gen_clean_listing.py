@@ -132,17 +132,49 @@ def paper_pal(grain="0.14"):
     return dict(eyebrow=PINE, head=INK, sub=INK_MUTED, grain=grain)
 
 
+# ---- vivid tropical sunset background: teal -> hot pink -> orange-gold gradient,
+#      a glowing sun, and palm-frond silhouettes fanning in from two corners like
+#      real tiki menu art. Loud and colorful on purpose - not the after-dark bar
+#      look the other party kits share. ----
+def palm_fronds(cx, cy, length, base_angle, color="20,60,35", count=7, spread=150):
+    out = ""
+    for i in range(count):
+        angle = base_angle - spread / 2 + (spread / (count - 1)) * i
+        out += (f'<div style="position:absolute;left:{cx}px;top:{cy}px;width:{length}px;height:50px;'
+                f'background:linear-gradient(90deg,rgba({color},0.88),rgba({color},0.55) 65%,rgba({color},0));'
+                f'border-radius:0 60% 60% 0;transform:rotate({angle}deg);transform-origin:0% 50%;"></div>')
+    return out
+
+
+def tropical_bg(motif=""):
+    return f"""
+<div style="position:absolute;inset:0;background:
+  linear-gradient(140deg,#0aa6a0 0%,#3aa0c4 16%,#b357a8 40%,#ff4d7a 56%,#ff8a3d 76%,#ffc857 100%);"></div>
+<div style="position:absolute;left:60%;top:46%;width:1500px;height:1500px;transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(255,244,200,0.6),rgba(255,205,120,0.2) 46%,rgba(255,205,120,0) 68%);
+  filter:blur(8px);"></div>
+{palm_fronds(-100, 2060, 620, -20, count=7, spread=110)}
+{palm_fronds(2100, -80, 640, 162, count=7, spread=110)}
+{motif}
+<div style="position:absolute;left:0;right:0;bottom:0;height:460px;
+  background:linear-gradient(180deg,rgba(20,8,18,0) 0%,rgba(20,8,18,0.4) 100%);"></div>"""
+
+
+def tropical_pal(grain="0.16"):
+    return dict(eyebrow="#fff200", head="#fff8ec", sub="#ffe3d0", grain=grain)
+
+
 # ---- bundle/"what's inside" slide: left-aligned itemized list + fanned pages ----
 def bundle_slide(pal, count_label, items, pages_html):
     items_html = "".join(
-        f'<div style="display:flex;gap:20px;align-items:baseline;margin-top:24px;">'
-        f'<span style="font-family:\'Fraunces\',serif;font-weight:500;font-size:30px;'
-        f'color:{pal["eyebrow"]};min-width:50px;">{i:02d}</span>'
-        f'<span style="font-size:30px;color:{pal["head"]};">{label}</span></div>'
+        f'<div style="display:flex;gap:22px;align-items:baseline;margin-top:32px;">'
+        f'<span style="font-family:\'Fraunces\',serif;font-weight:500;font-size:42px;'
+        f'color:{pal["eyebrow"]};min-width:62px;">{i:02d}</span>'
+        f'<span style="font-size:42px;color:{pal["head"]};">{label}</span></div>'
         for i, label in enumerate(items, 1)
     )
     return f"""
-<div style="position:absolute;left:100px;top:150px;max-width:840px;">
+<div style="position:absolute;left:100px;top:150px;max-width:900px;">
   <div style="font-size:30px;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;
        color:{pal['eyebrow']};">What&rsquo;s Inside</div>
   <div style="font-family:'Fraunces',serif;font-weight:500;font-style:normal;font-size:100px;
