@@ -5,21 +5,10 @@ import { KITS } from "@/data/kits";
 import { withUtm } from "@/lib/utm";
 import { SITE } from "@/data/site";
 
-const TAGLINE = "PICK A TIER · BUY THE BOTTLES · RUN THE NIGHT";
-
 export function SiteFooter() {
-  const track = `${TAGLINE} · `.repeat(4);
   const shopUrl = withUtm(SITE.etsyShopUrl, { campaign: "footer", content: "shop_link" });
   return (
-    <footer className="mt-24">
-      <div className="foot-marquee overflow-hidden border-y-2 border-ink bg-ink py-4">
-        <div className="foot-marquee__track" aria-hidden="true">
-          <span className="font-display text-lg tracking-[0.08em] text-paper sm:text-xl">{track}</span>
-          <span className="font-display text-lg tracking-[0.08em] text-paper sm:text-xl">{track}</span>
-        </div>
-        <p className="sr-only">KingBKits. Pick a tier, buy the bottles, run the night.</p>
-      </div>
-
+    <footer className="mt-24 border-t border-rule">
       <Container className="flex flex-col gap-10 py-12 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col gap-3">
           <Badge size="sm" />

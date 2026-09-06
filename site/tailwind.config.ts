@@ -15,10 +15,7 @@ const config: Config = {
         accent: "oklch(94% 0.200 106)",
         "accent-ink": "oklch(15% 0.010 85)",
         "accent-text": "oklch(54.8% 0.112 90.2)",
-        pop: "oklch(68.5% 0.204 30.3)",
-        "pop-dark": "oklch(62.4% 0.205 34.2)",
-        "pop-ink": "oklch(99.4% 0.008 91.5)",
-        focus: "oklch(62.4% 0.205 34.2)",
+        focus: "oklch(15% 0.010 85)",
         tier: {
           newbie: "oklch(76.8% 0.196 130.6)",
           casual: "oklch(96.8% 0.211 109.8)",
@@ -33,7 +30,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-raleway)", "ui-sans-serif", "system-ui", "sans-serif"],
-        display: ["var(--font-archivo-black)", "var(--font-raleway)", "sans-serif"],
+        display: ["var(--font-fraunces)", "var(--font-raleway)", "serif"],
+        wordmark: ["var(--font-archivo-black)", "var(--font-raleway)", "sans-serif"],
       },
       maxWidth: {
         content: "1200px",

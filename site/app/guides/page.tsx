@@ -6,7 +6,7 @@ import { getAllGuides } from "@/lib/guides";
 export const metadata: Metadata = {
   title: "Guides",
   description:
-    "Reference guides on cigars, tequila and mezcal, and candy pairings with whisky. The same primers built into every KingBKits PDF.",
+    "Reference guides on cigars, tequila and mezcal, and candy pairings with whisky, plus party-planning logistics: how much to buy, how to set up a tasting, and how to run the night.",
   alternates: { canonical: "/guides" },
 };
 
@@ -17,9 +17,9 @@ export default function GuidesIndexPage() {
   return (
     <Container className="max-w-[65ch] py-16">
       <p className="text-lg leading-relaxed text-ink-2">
-        The same primers built into every kit&apos;s PDF, gathered in one place: how the spirit is
-        made, how to read a label, and what actually pairs with what. No fluff, nothing dated,
-        just the reference material.
+        The primers built into every kit&apos;s PDF, plus the party-planning logistics that come
+        before you even open one: how much to buy, how to set the table, and how to run the
+        night. No fluff, nothing dated, just the reference material.
       </p>
 
       <div className="mt-14 flex flex-col">

@@ -36,7 +36,7 @@ export function Badge({ size = "md" }: { size?: keyof typeof SIZES }) {
   return (
     <span className={`wordmark text-ink ${s.text}`} aria-label="KingB Kits">
       <Crown size={s.crown} />
-      King<span className="text-pop">B</span>
+      KingB
       <span className="ml-1 -rotate-2 rounded bg-accent px-1.5 text-accent-ink">Kits</span>
     </span>
   );

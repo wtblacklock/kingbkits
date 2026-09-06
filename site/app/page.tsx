@@ -85,7 +85,7 @@ export default function HomePage() {
                 href="#kits"
                 className="inline-flex items-center justify-center rounded-full border-2 border-ink px-6 py-3 text-sm font-bold uppercase tracking-[0.04em] text-ink hover:bg-ink hover:text-paper"
               >
-                See the 4 kits
+                See the kits
               </a>
             </div>
             <p className="mt-6 text-sm font-semibold text-ink-faint">
@@ -105,28 +105,44 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Value props */}
-      <section className="py-14 sm:py-16">
-        <Container className="grid gap-6 tabular-nums sm:grid-cols-3">
+      {/* Value props: editorial row, typographic rather than boxed cards */}
+      <section className="py-16 sm:py-20">
+        <Container className="grid gap-10 tabular-nums sm:grid-cols-3 sm:gap-8">
           {VALUE_PROPS.map((v, i) => (
-            <div key={v.label} className="rounded-2xl border border-rule p-6">
-              <div className={`h-1.5 w-10 rounded-full ${i === 1 ? "bg-pop" : "bg-accent"}`} />
-              <div className="mt-4 font-display text-3xl text-ink">{v.value}</div>
-              <p className="mt-1 font-bold text-ink">{v.label}</p>
+            <div
+              key={v.label}
+              className={`sm:pl-8 ${i > 0 ? "border-t border-rule pt-6 sm:border-l sm:border-t-0 sm:pt-0" : ""}`}
+            >
+              <div className="font-display text-4xl italic text-ink">{v.value}</div>
+              <p className="mt-2 font-bold text-ink">{v.label}</p>
               <p className="mt-1 text-sm text-ink-2">{v.detail}</p>
             </div>
           ))}
         </Container>
       </section>
 
+      {/* Pull quote - real, existing brand copy, editorial statement break */}
+      <section className="border-y border-rule bg-paper-2 py-16 sm:py-20">
+        <Container className="max-w-3xl">
+          <blockquote className="font-display text-2xl italic leading-snug text-ink sm:text-3xl">
+            &ldquo;Party planning is the part people skip.&rdquo;
+          </blockquote>
+          <p className="mt-4 text-ink-2">
+            Every kit exists to answer the two questions that actually stall a night before it
+            starts: what do I buy, and how much. Named products, three budget tiers, printed and
+            ready before your guests arrive.
+          </p>
+        </Container>
+      </section>
+
       {/* Kit gallery - kept as the layout the user likes */}
-      <section id="kits" className="py-8 sm:py-10">
+      <section id="kits" className="py-14 sm:py-16">
         <Container>
           <div className="mb-8 max-w-xl">
             <h2 className="font-display text-2xl text-ink sm:text-3xl">Pick your night</h2>
             <p className="mt-2 text-ink-2">
-              Four kits, one format: a printable guide, a shopping chart at three budget tiers, and
-              tasting cards to run the night.
+              One format for every kit: a printable guide, a shopping chart at three budget tiers,
+              and tasting cards to run the night.
             </p>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:auto-rows-[16rem]">
@@ -169,14 +185,14 @@ export default function HomePage() {
       <section className="pb-20">
         <Container className="flex flex-col items-center gap-4 rounded-3xl bg-ink px-8 py-14 text-center">
           <h2 className="font-display text-2xl text-paper sm:text-3xl">Ready to host?</h2>
-          <p className="max-w-md text-paper/80">
+          <p className="max-w-md text-paper">
             Every kit is on Etsy as an instant download, invitation template included.
           </p>
           <a
             href="#kits"
             className="mt-2 inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-bold uppercase tracking-[0.04em] text-accent-ink hover:opacity-90"
           >
-            See the 4 kits
+            See the kits
           </a>
         </Container>
       </section>

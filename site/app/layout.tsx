@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Raleway, Archivo_Black } from "next/font/google";
+import { Raleway, Archivo_Black, Fraunces } from "next/font/google";
+import { MarqueeBar } from "@/components/MarqueeBar";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/data/site";
@@ -15,6 +16,14 @@ const archivoBlack = Archivo_Black({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-archivo-black",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
   display: "swap",
 });
 
@@ -62,7 +71,7 @@ const websiteJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${raleway.variable} ${archivoBlack.variable}`}>
+    <html lang="en" className={`${raleway.variable} ${archivoBlack.variable} ${fraunces.variable}`}>
       <body className="flex min-h-screen flex-col font-sans">
         <script
           type="application/ld+json"
@@ -72,6 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
+        <MarqueeBar />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
