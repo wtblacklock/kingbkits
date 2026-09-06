@@ -164,7 +164,7 @@ export default function HomePage() {
               <KitCard kit={candy} />
             </Reveal>
             <Reveal delay={240} className="sm:col-span-2">
-              <KitCard kit={advent} contain />
+              <KitCard kit={advent} />
             </Reveal>
           </div>
         </Container>

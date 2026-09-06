@@ -5,26 +5,22 @@ import type { Kit } from "@/data/kits";
 export function KitCard({
   kit,
   featured = false,
-  contain = false,
 }: {
   kit: Kit;
   featured?: boolean;
-  contain?: boolean;
 }) {
   return (
     <Link
       href={`/kits/${kit.slug}`}
       className="group flex h-full flex-col overflow-hidden rounded-card border border-rule bg-paper transition-all duration-200 hover:-translate-y-0.5 hover:border-ink"
     >
-      <div
-        className={`relative aspect-[4/3] overflow-hidden bg-paper-2 sm:aspect-auto sm:flex-1 ${contain ? "p-4" : ""}`}
-      >
+      <div className="relative aspect-[4/3] overflow-hidden bg-paper-2 sm:aspect-auto sm:flex-1">
         <Image
           src={kit.images.card}
           alt={kit.name}
           fill
           sizes={featured ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 25vw, 50vw"}
-          className={contain ? "object-contain" : "object-cover"}
+          className="object-cover"
         />
       </div>
       <div className="flex flex-col gap-1 p-4">
