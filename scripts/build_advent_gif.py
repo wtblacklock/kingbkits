@@ -24,14 +24,13 @@ body{{font-family:'Raleway',sans-serif;position:relative;background:{PAPER};}}
 
 
 def check_glints(t):
-    """A few small pine-green ring accents that fade in, echoing the scoring circles."""
+    """A few small pine-green ring accents that pulse in a continuous loop, echoing
+    the scoring circles - keeps the scene breathing after the pages settle."""
     out = ""
-    spots = [(910, 860, 0.0), (960, 190, 0.12), (140, 940, 0.2)]
+    spots = [(910, 860, 0.0), (960, 190, 0.2), (140, 940, 0.4)]
     for x, y, delay in spots:
-        local_t = max(0.0, min(1.0, (t - delay) / (1 - delay)))
-        if local_t <= 0:
-            continue
-        op = math.sin(min(local_t, 1.0) * math.pi) * 0.5
+        cycle_t = (t * 2.5 - delay) % 1.0
+        op = math.sin(cycle_t * math.pi) * 0.5
         out += (f'<div style="position:absolute;left:{x}px;top:{y}px;width:14px;height:14px;'
                 f'border-radius:50%;border:2px solid rgba(47,74,58,{op:.2f});"></div>')
     return out
@@ -72,5 +71,5 @@ pages = [
          shadow=SHADOW),
 ]
 
-build_gif("advent-hero", REPO + "/source", advent_bg, pages, size=1100, n_frames=16)
+build_gif("advent-hero", REPO + "/source", advent_bg, pages, size=1100)
 print("done")

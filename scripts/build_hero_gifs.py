@@ -89,19 +89,18 @@ def headline(eyebrow, title_html, sub, tiers=True):
 
 
 def smoke_wisps(t, base):
-    """Three soft wisps that curl upward and fade, staggered so they never all peak at once.
-    Keep base points inside open background, not under the page-mockup stack."""
+    """Wisps that continuously rise and fade, looping through several cycles across
+    the whole clip so the scene keeps breathing after the pages settle. Keep base
+    points inside open background, not under the page-mockup stack."""
     out = ""
     for i, (bx, by) in enumerate(base):
-        local_t = max(0.0, min(1.0, t * 1.35 - i * 0.22))
-        if local_t <= 0:
-            continue
-        drift_x = math.sin(local_t * math.pi * 1.6 + i * 1.7) * (14 + i * 5)
-        y = by - local_t * 150 - i * 10
+        cycle_t = (t * 3.0 - i * 0.3) % 1.0
+        drift_x = math.sin(cycle_t * math.pi * 1.6 + i * 1.7) * (14 + i * 5)
+        y = by - cycle_t * 150
         x = bx + drift_x
-        size = 30 + local_t * 66
-        opacity = math.sin(min(local_t, 1.0) * math.pi) * 0.4
-        blur = 6 + local_t * 16
+        size = 30 + cycle_t * 66
+        opacity = math.sin(cycle_t * math.pi) * 0.4
+        blur = 6 + cycle_t * 16
         out += (f'<div style="position:absolute;left:{x:.0f}px;top:{y:.0f}px;width:{size:.0f}px;'
                 f'height:{size*1.35:.0f}px;border-radius:50%;'
                 f'background:radial-gradient(ellipse at 50% 60%,rgba(230,224,212,{opacity:.3f}),'
@@ -109,9 +108,10 @@ def smoke_wisps(t, base):
     return out
 
 
-def ghost(t, x0, y0, drift=70, bob=22, cycles=1.4, scale=1.0, opacity=0.8):
-    """A small friendly ghost that drifts sideways and bobs up and down."""
-    x = x0 + t * drift
+def ghost(t, x0, y0, drift=90, bob=26, cycles=3.0, drift_cycles=1.0, scale=1.0, opacity=0.8):
+    """A small friendly ghost that floats in a smooth continuous loop - bobbing and
+    drifting side to side for the whole clip, never just flying off in one direction."""
+    x = x0 + math.sin(t * math.pi * 2 * drift_cycles) * drift
     y = y0 + math.sin(t * math.pi * 2 * cycles) * bob
     w = 118 * scale
     body_h = 92 * scale
@@ -138,15 +138,16 @@ def ghost(t, x0, y0, drift=70, bob=22, cycles=1.4, scale=1.0, opacity=0.8):
 </div>"""
 
 
-def twinkle(t, base):
-    """String-light dots that pulse in and out of brightness, staggered like a real strand."""
+def shimmer(t, base, rgb="120,225,205"):
+    """Slow-pulsing accent dots - agave's answer to cigar's smoke and Halloween's ghost,
+    since agave otherwise has zero motion once the pages settle."""
     out = ""
     for i, (x, y) in enumerate(base):
-        phase = (t * 2.0 + i * 0.35) % 1.0
-        a = 0.35 + 0.45 * (0.5 + 0.5 * math.sin(phase * math.pi * 2))
+        phase = (t * 2.2 + i * 0.4) % 1.0
+        a = 0.25 + 0.35 * (0.5 + 0.5 * math.sin(phase * math.pi * 2))
         out += (f'<div style="position:absolute;left:{x}px;top:{y}px;width:9px;height:9px;'
-                f'border-radius:50%;background:radial-gradient(circle at 38% 34%,rgba(255,225,140,{a:.2f}),'
-                f'rgba(255,225,140,{a*0.5:.2f}) 55%,rgba(255,225,140,0) 72%);filter:blur(5px);"></div>')
+                f'border-radius:50%;background:radial-gradient(circle at 38% 34%,rgba({rgb},{a:.2f}),'
+                f'rgba({rgb},{a*0.5:.2f}) 55%,rgba({rgb},0) 72%);filter:blur(4px);"></div>')
     return out
 
 
@@ -163,7 +164,8 @@ SRC_AGAVE = f"{REPO}/listing_images_raw/listing_images_agave"
 def agave_bg(pages_html, t=0):
     dust = bokeh([(80, 138, 42, 0.4, 12), (495, 33, 33, 0.36, 10), (429, 91, 23, 0.34, 8),
                   (72, 143, 22, 0.3, 8)], rgb="90,210,190")
-    bg = midnight_bg("#241811", "255,150,70", glow2_rgb="90,210,190", motif=dust)
+    glints = shimmer(t, base=[(150, 60), (560, 95), (860, 50), (960, 190)])
+    bg = midnight_bg("#241811", "255,150,70", glow2_rgb="90,210,190", motif=dust + glints)
     head = headline("The Agave Tasting Journey", "Tequila &amp; Mezcal",
                      "Six pairings, three tiers &middot; Instant Download")
     return f"""<!doctype html><html><head><meta charset='utf-8'><style>{CSS_BASE}</style></head>
@@ -174,7 +176,7 @@ agave_pages = [
     page(f"{SRC_AGAVE}/page-4.png", "44%", 375, 2, -2, 510, 0.12, SHADOW, "brightness(0.96)"),
     page(f"{SRC_AGAVE}/page-1.png", "70%", 420, -6, 4, 470, 0.24, SHADOW),
 ]
-build_gif("agave-hero", REPO + "/source", agave_bg, agave_pages, size=1100, n_frames=16)
+build_gif("agave-hero", REPO + "/source", agave_bg, agave_pages, size=1100)
 
 
 # ================= HALLOWEEN — violet haunt + pumpkin glow, a drifting ghost =================
@@ -182,7 +184,8 @@ SRC_HW = f"{REPO}/listing_images_raw/listing_images_halloween"
 
 def hw_bg(pages_html, t=0):
     bg = midnight_bg("#1c1420", "170,110,220", glow2_rgb="255,140,60",
-                      motif=ghost(t, x0=760, y0=140, drift=90, bob=26, cycles=1.3, scale=0.62, opacity=0.85))
+                      motif=ghost(t, x0=760, y0=140, drift=90, bob=26, cycles=3.0, drift_cycles=1.0,
+                                   scale=0.62, opacity=0.85))
     head = headline("The Halloween Pairing Kit", "Candy &amp; Whisky",
                      "Six pairings, three tiers &middot; Instant Download")
     return f"""<!doctype html><html><head><meta charset='utf-8'><style>{CSS_BASE}</style></head>
@@ -193,7 +196,7 @@ hw_pages = [
     page(f"{SRC_HW}/page-4.png", "44%", 375, 2, -2, 510, 0.12, SHADOW, "brightness(0.96)"),
     page(f"{SRC_HW}/page-1.png", "70%", 420, -6, 4, 470, 0.24, SHADOW),
 ]
-build_gif("halloween-hero", REPO + "/source", hw_bg, hw_pages, size=1100, n_frames=16)
+build_gif("halloween-hero", REPO + "/source", hw_bg, hw_pages, size=1100)
 
 
 # ================= CIGAR — ember glow + curling smoke =================
@@ -213,26 +216,9 @@ cigar_pages = [
     page(f"{SRC_CIGAR}/page-4.png", "44%", 375, 2, -2, 510, 0.12, SHADOW, "brightness(0.96)"),
     page(f"{SRC_CIGAR}/page-1.png", "70%", 420, -6, 4, 470, 0.24, SHADOW),
 ]
-build_gif("cigar-hero", REPO + "/source", cigar_bg, cigar_pages, size=1100, n_frames=16)
+build_gif("cigar-hero", REPO + "/source", cigar_bg, cigar_pages, size=1100)
 
-
-# ================= ADVENT — gold string-lights + a whisper of pine =================
-SRC_ADVENT = f"{REPO}/listing_images_raw/listing_images_advent"
-
-def advent_bg(pages_html, t=0):
-    lights = twinkle(t, base=[(60, 100), (170, 78), (280, 108), (390, 74), (500, 104),
-                               (610, 78), (720, 106), (960, 150)])
-    bg = midnight_bg("#1c160d", "255,215,120", glow2_rgb="70,120,85", motif=lights)
-    head = headline("The Whisky Advent Companion", "24 Nights of Whisky",
-                     "A tasting card for every night &middot; Instant Download", tiers=False)
-    return f"""<!doctype html><html><head><meta charset='utf-8'><style>{CSS_BASE}</style></head>
-<body>{FILTERS}{bg}{head}{pages_html}</body></html>"""
-
-advent_pages = [
-    page(f"{SRC_ADVENT}/page-1.png", "20%", 420, 7, -7, 460, 0.0, SHADOW, "brightness(0.9)"),
-    page(f"{SRC_ADVENT}/page-9.png", "44%", 375, 2, -2, 500, 0.12, SHADOW, "brightness(0.96)"),
-    page(f"{SRC_ADVENT}/page-6.png", "70%", 420, -6, 4, 460, 0.24, SHADOW),
-]
-build_gif("advent-hero", REPO + "/source", advent_bg, advent_pages, size=1100, n_frames=16)
+# Advent has its own light "tracking desk" look now (paper_bg, not this file's
+# midnight system) - see build_advent_gif.py.
 
 print("done")
