@@ -315,6 +315,76 @@ export const KITS: Kit[] = [
       ],
     },
   },
+  {
+    slug: "rum-tiki",
+    etsyUrl: "https://kingbkits.etsy.com/listing/4570219582",
+    name: "Rum & Tiki Night",
+    subtitle: "Tasting Party Kit",
+    shortDescription:
+      "Printable tasting kit: guide, primer, rumbase chart, dual flavor wheels, and tier cards.",
+    price: 5.5,
+    pageCount: 8,
+    heroHeadline: "Rum, Done Properly, Not Just Poured Over Ice",
+    heroBody:
+      "Rum has no legal rulebook: no AOC, no minimum age, nothing stopping white, gold, and navy-strength from sharing one label. This kit teaches the four-part formula behind every real tiki drink (spirit, sour, sweet, spice) and proves crushed ice matters more to a good build than the bottle you pour.",
+    stats: [
+      { value: "3", label: "experience tiers" },
+      { value: "2", label: "flavor wheels, rum & tiki build" },
+      { value: "1", label: "bottle per tier, easily covers 6 guests" },
+    ],
+    included: [
+      { number: "01", title: "Party Guide", description: "Setup, timing, and supplies: two pours per guest per rum, one neat and one built into a tiki drink." },
+      { number: "02", title: "Tiki Primer", description: "Rum styles, the four-part tiki formula, and the cane-to-cocktail process, plus a glassware and garnish checklist." },
+      { number: "03", title: "Rumbase Chart", description: "Real rum bottles at three budgets, each paired with the tiki build made to show it off." },
+      { number: "04", title: "Flavor Wheels", description: "Dual rum and tiki-build wheels to build real tasting vocabulary." },
+      { number: "05–07", title: "Tasting Cards", description: "One full-page tracking card per tier: Newbie, Casual, Aficionado." },
+      { number: "08", title: "Checklist & Scorecard", description: "Shopping checklist and a scorecard to close out the night." },
+    ],
+    tierLabels: { primary: "Rum" },
+    tiers: [
+      {
+        tier: "Newbie",
+        tierClass: "newbie",
+        flightName: "Daiquiri",
+        primaryPicks: ["Bacardi Superior", "Plantation 3 Stars", "Denizen White", "Don Q Cristal"],
+        notes: "Clean, faint banana, light vanilla.",
+        cost: "$16–22 / bottle",
+      },
+      {
+        tier: "Casual",
+        tierClass: "casual",
+        flightName: "Mai Tai",
+        primaryPicks: ["Appleton Estate Signature", "Mount Gay Eclipse", "El Dorado 8 Year", "Plantation Original Dark"],
+        notes: "Caramel, baking spice, dried fruit.",
+        cost: "$22–32 / bottle",
+      },
+      {
+        tier: "Aficionado",
+        tierClass: "aficionado",
+        flightName: "Jungle Bird",
+        primaryPicks: ["Smith & Cross Navy Strength", "Hamilton 86 Demerara", "Rhum J.M Agricole Blanc", "Foursquare Exceptional Cask"],
+        notes: "Funky ester, grassy cane, char, overproof heat.",
+        cost: "$30–55 / bottle",
+      },
+    ],
+    howItWorks: [
+      { title: "Purchase & Download", description: "Instant access to the full PDF, plus your editable Canva invitation template." },
+      { title: "Print at Home or a Shop", description: "Standard US Letter, no bleed or special stock needed." },
+      { title: "Pick Your Tier", description: "Newbie, Casual, or Aficionado: the Rumbase chart names the bottle and the build." },
+      { title: "Host Tonight", description: "Everything's ready. No physical items ship. This is an all-digital product." },
+    ],
+    images: {
+      hero: "/kits/rum-tiki/hero.png",
+      card: "/kits/rum-tiki/card.png",
+      gallery: [
+        { src: "/kits/rum-tiki/preview-guide.png", label: "Party Guide" },
+        { src: "/kits/rum-tiki/preview-primer.png", label: "Tiki Primer" },
+        { src: "/kits/rum-tiki/preview-rumbase.png", label: "Rumbase Chart" },
+        { src: "/kits/rum-tiki/preview-wheels.png", label: "Flavor Wheels" },
+        { src: "/kits/rum-tiki/preview-cards.png", label: "Tasting Cards" },
+      ],
+    },
+  },
 ];
 
 export function getKit(slug: string): Kit | undefined {

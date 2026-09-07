@@ -3,7 +3,7 @@ import { Container } from "@/components/Container";
 import { KitCard } from "@/components/KitCard";
 import { EtsyButton } from "@/components/EtsyButton";
 import { Reveal } from "@/components/Reveal";
-import { KITS } from "@/data/kits";
+import { getKit } from "@/data/kits";
 
 const VALUE_PROPS = [
   {
@@ -57,7 +57,11 @@ const faqJsonLd = {
 };
 
 export default function HomePage() {
-  const [cigar, mezcal, candy, advent] = KITS;
+  const cigar = getKit("cigar-whisky")!;
+  const mezcal = getKit("tequila-mezcal")!;
+  const candy = getKit("candy-whisky")!;
+  const rum = getKit("rum-tiki")!;
+  const advent = getKit("whisky-advent")!;
 
   return (
     <>
@@ -163,7 +167,10 @@ export default function HomePage() {
             <Reveal delay={160}>
               <KitCard kit={candy} />
             </Reveal>
-            <Reveal delay={240} className="sm:col-span-2">
+            <Reveal delay={240}>
+              <KitCard kit={rum} />
+            </Reveal>
+            <Reveal delay={320}>
               <KitCard kit={advent} />
             </Reveal>
           </div>
