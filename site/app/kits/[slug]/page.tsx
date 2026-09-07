@@ -75,6 +75,7 @@ export default async function KitPage({ params }: { params: Promise<{ slug: stri
       hasMerchantReturnPolicy: {
         "@type": "MerchantReturnPolicy",
         returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
+        applicableCountry: "US",
       },
     },
   };
