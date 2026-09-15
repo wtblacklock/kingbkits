@@ -4,20 +4,25 @@ import { getGuideSlugs } from "@/lib/guides";
 import { SITE } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
+
   const staticRoutes = ["", "/about", "/guides"].map((route) => ({
     url: `${SITE.url}${route}`,
+    lastModified: now,
     changeFrequency: "monthly" as const,
     priority: route === "" ? 1 : 0.6,
   }));
 
   const kitRoutes = KITS.map((kit) => ({
     url: `${SITE.url}/kits/${kit.slug}`,
+    lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.9,
   }));
 
   const guideRoutes = getGuideSlugs().map((slug) => ({
     url: `${SITE.url}/guides/${slug}`,
+    lastModified: now,
     changeFrequency: "yearly" as const,
     priority: 0.5,
   }));

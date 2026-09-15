@@ -31,6 +31,11 @@ export interface KitGalleryImage {
   label: string;
 }
 
+export interface KitFaq {
+  question: string;
+  answer: string;
+}
+
 export interface Kit {
   slug: string;
   name: string;
@@ -47,6 +52,7 @@ export interface Kit {
   tierLabels?: { primary: string; secondary?: string };
   compatibleWith?: string[];
   howItWorks: KitStep[];
+  faqs?: KitFaq[];
   images: {
     hero: string;
     card: string;
@@ -55,6 +61,8 @@ export interface Kit {
   seasonalNote?: string;
   /** Set to override the shop-wide Etsy URL once this kit has its own listing. */
   etsyUrl?: string;
+  /** Slug of the /guides entry that expands on this kit's primer content. */
+  relatedGuideSlug?: string;
 }
 
 export const KITS: Kit[] = [
@@ -116,6 +124,7 @@ export const KITS: Kit[] = [
       { title: "Pick Your Tier", description: "Newbie, Casual, or Aficionado: the Pairbase chart tells you what to buy." },
       { title: "Host Tonight", description: "Everything's ready. No physical items ship. This is an all-digital product." },
     ],
+    relatedGuideSlug: "cigar-wrapper-and-whisky-primer",
     images: {
       hero: "/kits/cigar/hero.png",
       card: "/kits/cigar/card.png",
@@ -189,6 +198,7 @@ export const KITS: Kit[] = [
       { title: "Pick Your Tier", description: "Newbie, Casual, or Aficionado: the Agavebase names the bottles." },
       { title: "Host Tonight", description: "Everything's ready. This is an all-digital product." },
     ],
+    relatedGuideSlug: "tequila-mezcal-primer",
     images: {
       hero: "/kits/agave/hero.png",
       card: "/kits/agave/card.png",
@@ -260,6 +270,34 @@ export const KITS: Kit[] = [
     ],
     seasonalNote:
       "Two selling windows on purpose: October for Halloween parties, and November 1–7 for the leftover candy bowl.",
+    faqs: [
+      {
+        question: "How much candy and whisky do I actually need?",
+        answer:
+          "One $12 bag of fun-size candy and a bottle you already own covers a table of six. The Pairbase chart names exactly which bars to grab so you're not guessing in the candy aisle.",
+      },
+      {
+        question: "Do I need a rare or expensive whisky bottle?",
+        answer:
+          "No. The Newbie flight, The Sweet Match, is built around a single caramel-forward bourbon most people already have in the cabinet. The pricier picks only show up once you move into the Casual and Aficionado flights.",
+      },
+      {
+        question: "Is this only for Halloween night, or does it work after?",
+        answer:
+          "Both. It's built for two selling windows on purpose: October for the Halloween party itself, and November 1 through 7 for using up the leftover candy bowl.",
+      },
+      {
+        question: "What do I actually get in the download?",
+        answer:
+          "A 7-page PDF: the party guide, a candy chemistry primer, a 9-pairing Pairbase chart, side-by-side candy and whisky flavor wheels, and three tasting cards for the Newbie, Casual, and Aficionado tiers.",
+      },
+      {
+        question: "Does anything ship, or is it all digital?",
+        answer:
+          "It's a 100% instant digital download. Print it at home or at a shop like Staples or FedEx. Nothing physical ever ships.",
+      },
+    ],
+    relatedGuideSlug: "why-candy-and-whisky-pair",
     images: {
       hero: "/kits/halloween/hero.png",
       card: "/kits/halloween/card.png",
