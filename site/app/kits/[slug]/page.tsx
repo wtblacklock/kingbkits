@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { Container } from "@/components/Container";
 import { EtsyButton } from "@/components/EtsyButton";
 import { ProtectedGalleryImage } from "@/components/ProtectedGalleryImage";
 import { Reveal } from "@/components/Reveal";
 import { getKit, KITS } from "@/data/kits";
+import { getGuide } from "@/lib/guides";
 import { SITE } from "@/data/site";
 
 export function generateStaticParams() {
@@ -47,6 +49,8 @@ export default async function KitPage({ params }: { params: Promise<{ slug: stri
   const kit = getKit(slug);
   if (!kit) notFound();
 
+  const relatedGuide = kit.relatedGuideSlug ? getGuide(kit.relatedGuideSlug) : undefined;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -80,9 +84,24 @@ export default async function KitPage({ params }: { params: Promise<{ slug: stri
     },
   };
 
+  const faqJsonLd = kit.faqs
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: kit.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: { "@type": "Answer", text: faq.answer },
+        })),
+      }
+    : undefined;
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {faqJsonLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      )}
 
       {/* Hero: headline/CTA on light paper, the real Etsy listing image shown
           whole (no crop) since it's already a fully-designed product shot. */}
@@ -239,9 +258,39 @@ export default async function KitPage({ params }: { params: Promise<{ slug: stri
             <p className="mt-8 text-xs text-ink-faint">
               This is an all-digital product. No physical items are shipped.
             </p>
+            {relatedGuide && (
+              <p className="mt-4 text-sm text-ink-2">
+                Want the chemistry first?{" "}
+                <Link
+                  href={`/guides/${relatedGuide.slug}`}
+                  className="font-semibold text-ink underline decoration-accent decoration-2 underline-offset-4"
+                >
+                  Read the pairing guide →
+                </Link>
+              </p>
+            )}
           </Container>
         </section>
       </Reveal>
+
+      {/* FAQPage-eligible Q&A, rendered as a simple accordion-free list. */}
+      {kit.faqs && (
+        <Reveal>
+          <section className="border-t border-rule bg-paper-2 py-16">
+            <Container className="max-w-[65ch]">
+              <h2 className="mb-8 font-display text-2xl text-ink">Frequently asked</h2>
+              <div className="flex flex-col divide-y divide-rule">
+                {kit.faqs.map((faq) => (
+                  <div key={faq.question} className="py-6">
+                    <h3 className="font-semibold text-ink">{faq.question}</h3>
+                    <p className="mt-2 text-sm text-ink-2">{faq.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </Container>
+          </section>
+        </Reveal>
+      )}
 
       <Reveal>
         <section className="bg-accent py-16 sm:py-20">
